@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafinder - Temukan Spot Nongkrong Cepat</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/style-part2.css">
+    <link rel="stylesheet" href="css/style-part3.css">
+</head>
+<body>
+    <!-- Progress indicator -->
+    <div class="progress-container">
+        <div class="progress-bar"></div>
+    </div>
+    
+    <!-- Cursor follower -->
+    <div class="cursor-follower"></div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="index.html">
+                        <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 0C8.954 0 0 8.954 0 20C0 31.046 8.954 40 20 40C31.046 40 40 31.046 40 20C40 8.954 31.046 0 20 0Z" fill="#F05438"/>
+                            <path d="M28 14L20 22L18 20L25 12L28 14Z" fill="white"/>
+                            <path d="M14 15C15.6569 15 17 13.6569 17 12C17 10.3431 15.6569 9 14 9C12.3431 9 11 10.3431 11 12C11 13.6569 12.3431 15 14 15Z" fill="white"/>
+                            <path d="M25 29C27.2091 29 29 27.2091 29 25C29 22.7909 27.2091 21 25 21C22.7909 21 21 22.7909 21 25C21 27.2091 22.7909 29 25 29Z" fill="white"/>
+                        </svg>
+                        <span style="font-weight: 700; font-size: 20px; margin-left: 8px; color: #F05438;">Cafinder</span>
+                    </a>
+                </div>
+                
+                <ul class="nav-links">
+                    <li><a href="cafemap.html">Cafe Map</a></li>
+                    <li><a href="catalog.html">Katalog Cafe</a></li>
+                    <li><a href="#">Smart Finder</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                </ul>
+                
+                <div class="auth-btns">
+                    <button class="login-btn">Login</button>
+                    <button class="signup-btn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Temukan <span class="highlight-word">spot</span> nongkrong cepat</h1>
+                <p>Cafinder membantu kamu menemukan tempat ngopi dan nongkrong terbaik sesuai preferensimu.</p>
+                <button class="hero-btn">Cari Sekarang</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Search Form -->
+    <div class="container">
+        <div class="search-form">
+            <div class="search-tabs">
+                <div class="search-tab active">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C7.58 2 4 5.58 4 10C4 14.42 7.58 18 12 18C16.42 18 20 14.42 20 10C20 5.58 16.42 2 12 2ZM12 16C8.69 16 6 13.31 6 10C6 6.69 8.69 4 12 4C15.31 4 18 6.69 18 10C18 13.31 15.31 16 12 16Z" fill="currentColor"/>
+                        <path d="M12 6C9.79 6 8 7.79 8 10C8 12.21 9.79 14 12 14C14.21 14 16 12.21 16 10C16 7.79 14.21 6 12 6ZM12 12C10.9 12 10 11.1 10 10C10 8.9 10.9 8 12 8C13.1 8 14 8.9 14 10C14 11.1 13.1 12 12 12Z" fill="currentColor"/>
+                        <path d="M12 19C11.73 19 11.5 19.11 11.32 19.29L9.29 21.29C9.11 21.47 9 21.72 9 22C9 22.55 9.45 23 10 23C10.28 23 10.53 22.89 10.71 22.71L12 21.41L13.29 22.71C13.47 22.89 13.72 23 14 23C14.55 23 15 22.55 15 22C15 21.72 14.89 21.47 14.71 21.29L12.68 19.29C12.5 19.11 12.27 19 12 19Z" fill="currentColor"/>
+                    </svg>
+                    <span>Location</span>
+                </div>
+                <div class="search-tab">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17 10H7V12H17V10ZM19 3H18V1H16V3H8V1H6V3H5C3.89 3 3.01 3.9 3.01 5L3 19C3 20.1 3.89 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM19 19H5V8H19V19ZM14 14H7V16H14V14Z" fill="currentColor"/>
+                    </svg>
+                    <span>Activity</span>
+                </div>
+                <div class="search-tab">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12.5 7H11V13L16.2 16.2L17 14.9L12.5 12.2V7Z" fill="currentColor"/>
+                    </svg>
+                    <span>Dates</span>
+                </div>
+                <div class="search-tab">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 11C17.66 11 18.99 9.66 18.99 8C18.99 6.34 17.66 5 16 5C14.34 5 13 6.34 13 8C13 9.66 14.34 11 16 11ZM8 11C9.66 11 10.99 9.66 10.99 8C10.99 6.34 9.66 5 8 5C6.34 5 5 6.34 5 8C5 9.66 6.34 11 8 11ZM8 13C5.67 13 1 14.17 1 16.5V19H15V16.5C15 14.17 10.33 13 8 13ZM16 13C15.71 13 15.38 13.02 15.03 13.05C16.19 13.89 17 15.02 17 16.5V19H23V16.5C23 14.17 18.33 13 16 13Z" fill="currentColor"/>
+                    </svg>
+                    <span>Guest</span>
+                </div>
+            </div>
+            
+            <div class="search-fields">
+                <div class="search-field">
+                    <input type="text" placeholder="Lokasi cafe">
+                </div>
+                <div class="search-field">
+                    <select>
+                        <option value="">Jenis Aktivitas</option>
+                        <option value="work">Working Space</option>
+                        <option value="meeting">Meeting</option>
+                        <option value="hangout">Hangout</option>
+                    </select>
+                </div>
+                <div class="search-field">
+                    <input type="date" placeholder="Tanggal">
+                </div>
+                <button class="search-btn">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5 14H14.71L14.43 13.73C15.41 12.59 16 11.11 16 9.5C16 5.91 13.09 3 9.5 3C5.91 3 3 5.91 3 9.5C3 13.09 5.91 16 9.5 16C11.11 16 12.59 15.41 13.73 14.43L14 14.71V15.5L19 20.49L20.49 19L15.5 14ZM9.5 14C7.01 14 5 11.99 5 9.5C5 7.01 7.01 5 9.5 5C11.99 5 14 7.01 14 9.5C14 11.99 11.99 14 9.5 14Z" fill="white"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Popular Category -->
+    <section class="popular-category">
+        <div class="container">
+            <div class="section-header">
+                <h2>Kategori Café Populer</h2>
+                <div class="nav-arrows">
+                    <button class="prev-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M15.41 7.41L14 6L8 12L14 18L15.41 16.59L10.83 12L15.41 7.41Z" fill="#6C757D"/>
+                        </svg>
+                    </button>
+                    <button class="next-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 6L8.59 7.41L13.17 12L8.59 16.59L10 18L16 12L10 6Z" fill="#6C757D"/>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            
+            <p class="category-description">Temukan café menggunakan filter yang memudahkan sesuai dengan kebutuhanmu! Mulai dari berbagai kategori favorit yang sering digunakan oleh pengguna hingga rekomendasi kafe sesuai aktivitas yang paling dicari.</p>
+            
+            <div class="cafe-cards">
+                <div class="cafe-card">
+                    <div class="cafe-img" style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');"></div>
+                    <div class="cafe-details">
+                        <span class="cafe-type">Belajar Spot</span>
+                        <h3 class="cafe-name">Cafe Berkonsep Modern</h3>
+                        <p class="cafe-info">Cafe dengan lingkungan tenang untuk belajar atau bekerja.</p>
+                    </div>
+                </div>
+                
+                <div class="cafe-card">
+                    <div class="cafe-img" style="background-image: url('https://images.unsplash.com/photo-1600093463592-8e36ae95ef56?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');"></div>
+                    <div class="cafe-details">
+                        <span class="cafe-type">Meeting Bisnis</span>
+                        <h3 class="cafe-name">Meeting Room Cafe</h3>
+                        <p class="cafe-info">Tempat ideal untuk meeting bisnis dengan fasilitas lengkap.</p>
+                    </div>
+                </div>
+                
+                <div class="cafe-card">
+                    <div class="cafe-img" style="background-image: url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');"></div>
+                    <div class="cafe-details">
+                        <span class="cafe-type">Nongkrong Bareng</span>
+                        <h3 class="cafe-name">Cafe Ambience Cozy</h3>
+                        <p class="cafe-info">Suasana santai dan nyaman untuk nongkrong bersama teman.</p>
+                    </div>
+                </div>
+                
+                <div class="cafe-card">
+                    <div class="cafe-img" style="background-image: url('https://images.unsplash.com/photo-1525610553991-2bede1a236e2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80');"></div>
+                    <div class="cafe-details">
+                        <span class="cafe-type">Hidden Gem</span>
+                        <h3 class="cafe-name">Secret Garden Cafe</h3>
+                        <p class="cafe-info">Tempat tersembunyi dengan konsep taman yang menyegarkan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Perfect Experience -->
+    <section class="perfect-experience">
+        <div class="container">
+            <div class="experience-content">
+                <div class="experience-text">
+                    <h2>Temukan Pengalaman Café yang Sempurna</h2>
+                    <p>Cafinder membantu kamu menemukan tempat nongkrong favorit berdasarkan preferensi personal. Dari cafe untuk kerja, meeting, hingga nongkrong santai bersama teman.</p>
+                    
+                    <ul class="feature-list">
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="feature-text">Filter pencarian customizable dan fleksibel</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="feature-text">Review asli dari komunitas dan pengguna lain</div>
+                        </li>
+                        <li class="feature-item">
+                            <div class="feature-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <div class="feature-text">Rekomendasi yang sesuai preferensi di profilmu</div>
+                        </li>
+                    </ul>
+                    
+                    <a href="catalog.html" class="experience-btn">Jelajahi Cafe</a>
+                </div>
+                
+                <div class="cafinder-logo">
+                    <svg viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M180 180C201.5 180 230 169.5 230 140C230 110.5 201.5 100 180 100C158.5 100 130 110.5 130 140C130 169.5 158.5 180 180 180Z" fill="#F05438"/>
+                        <path d="M180 160C191.046 160 200 151.046 200 140C200 128.954 191.046 120 180 120C168.954 120 160 128.954 160 140C160 151.046 168.954 160 180 160Z" fill="white"/>
+                        <path d="M180 140L145 100L115 120L150 160L180 140Z" fill="white"/>
+                        <path d="M240 160H210L230 190H260L240 160Z" fill="white"/>
+                        <path d="M115 190C125.493 190 134 181.493 134 171C134 160.507 125.493 152 115 152C104.507 152 96 160.507 96 171C96 181.493 104.507 190 115 190Z" fill="white"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-icon red">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 11.5C11.337 11.5 10.7011 11.2366 10.2322 10.7678C9.76339 10.2989 9.5 9.66304 9.5 9C9.5 8.33696 9.76339 7.70107 10.2322 7.23223C10.7011 6.76339 11.337 6.5 12 6.5C12.663 6.5 13.2989 6.76339 13.7678 7.23223C14.2366 7.70107 14.5 8.33696 14.5 9C14.5 9.3283 14.4353 9.65339 14.3097 9.95671C14.1841 10.26 14 10.5356 13.7678 10.7678C13.5356 11 13.26 11.1841 12.9567 11.3097C12.6534 11.4353 12.3283 11.5 12 11.5ZM4 8C4 4.641 7.554 2 12 2C16.446 2 20 4.641 20 8C20 9.579 19.301 11.008 18.144 12.132C17.768 12.498 17.384 13.83 17.274 13.729C17.736 14.747 19 17.957 19 18.5C19 19.21 18.328 20 17 20C16.596 20 16.2 19.16 16 18.5L13.571 16.714C13.2224 16.6486 12.8634 16.6154 12.504 16.615H11.496C11.1366 16.6154 10.7776 16.6486 10.429 16.714L8 18.5C7.8 19.16 7.404 20 7 20C5.672 20 5 19.21 5 18.5C5 17.957 6.264 14.747 6.726 13.729C6.616 13.83 6.232 12.498 5.856 12.132C4.699 11.008 4 9.579 4 8Z" fill="#F05438"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-text">Café terdaftar</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon yellow">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" fill="#FFC107"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number">500+</div>
+                    <div class="stat-text">Happy users</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon blue">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 12C14.21 12 16 10.21 16 8C16 5.79 14.21 4 12 4C9.79 4 8 5.79 8 8C8 10.21 9.79 12 12 12ZM12 14C9.33 14 4 15.34 4 18V20H20V18C20 15.34 14.67 14 12 14Z" fill="#0D6EFD"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number">300+</div>
+                    <div class="stat-text">Kota tersedia</div>
+                </div>
+                
+                <div class="stat-item">
+                    <div class="stat-icon green">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM13 17H11V15H13V17ZM13 13H11V7H13V13Z" fill="#198754"/>
+                        </svg>
+                    </div>
+                    <div class="stat-number">500</div>
+                    <div class="stat-text">5-star ratings</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 0C8.954 0 0 8.954 0 20C0 31.046 8.954 40 20 40C31.046 40 40 31.046 40 20C40 8.954 31.046 0 20 0Z" fill="#F05438"/>
+                            <path d="M28 14L20 22L18 20L25 12L28 14Z" fill="white"/>
+                            <path d="M14 15C15.6569 15 17 13.6569 17 12C17 10.3431 15.6569 9 14 9C12.3431 9 11 10.3431 11 12C11 13.6569 12.3431 15 14 15Z" fill="white"/>
+                            <path d="M25 29C27.2091 29 29 27.2091 29 25C29 22.7909 27.2091 21 25 21C22.7909 21 21 22.7909 21 25C21 27.2091 22.7909 29 25 29Z" fill="white"/>
+                        </svg>
+                        <span style="font-weight: 700; font-size: 24px; margin-left: 8px; color: white;">Cafinder</span>
+                    </div>
+                    <p class="footer-desc">Discover insights and recommendations to enhance your cafe experience in Surabaya and beyond.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading">About</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find Cafes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Customer Support</a></li>
+                        <li><a href="#">Privacy & Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading">Join Our Community</h3>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email...">
+                        <button>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 20V4H20V20H4ZM12 13L20 8V6L12 11L4 6V8L12 13Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Made with ❤️ by Cafinder Teams</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Load GSAP from CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <script src="js/main.js"></script>
+</body>
+</html>

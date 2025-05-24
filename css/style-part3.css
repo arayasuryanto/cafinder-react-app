@@ -1,0 +1,183 @@
+.cafe-img {
+    height: 180px;
+    background-size: cover;
+    background-position: center;
+}
+
+.cafe-details {
+    padding: 20px;
+}
+
+.cafe-type {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: var(--light);
+    color: var(--primary);
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.cafe-name {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.cafe-info {
+    font-size: 14px;
+    color: var(--gray);
+}
+
+/* Perfect Experience */
+.perfect-experience {
+    padding: 80px 0;
+    background-color: var(--light);
+    position: relative;
+    overflow: hidden;
+}
+
+.experience-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.experience-text {
+    max-width: 500px;
+}
+
+.experience-text h2 {
+    font-size: 32px;
+    color: var(--secondary);
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.experience-text p {
+    color: var(--gray);
+    margin-bottom: 30px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.feature-list {
+    list-style: none;
+}
+
+.feature-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(15px);
+}
+
+.feature-icon {
+    min-width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background-color: rgba(240, 84, 56, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+    margin-top: 3px;
+}
+
+.feature-icon svg {
+    width: 12px;
+    height: 12px;
+    fill: var(--primary);
+}
+
+.feature-text {
+    font-size: 16px;
+}
+
+.experience-btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 30px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: all 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.experience-btn:hover {
+    background-color: #e14a30;
+}
+
+.cafinder-logo {
+    width: 350px;
+    height: 350px;
+    opacity: 0;
+    transform: translateX(50px);
+}
+
+/* Stats */
+.stats {
+    padding: 80px 0;
+    background-color: white;
+}
+
+.stats-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    text-align: center;
+    padding: 20px;
+    flex: 1;
+    min-width: 150px;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+.stat-icon {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 15px;
+}
+
+.stat-icon.red {
+    background-color: rgba(240, 84, 56, 0.2);
+}
+
+.stat-icon.yellow {
+    background-color: rgba(255, 193, 7, 0.2);
+}
+
+.stat-icon.blue {
+    background-color: rgba(13, 110, 253, 0.2);
+}
+
+.stat-icon.green {
+    background-color: rgba(25, 135, 84, 0.2);
+}
+
+.stat-number {
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--secondary);
+    margin-bottom: 5px;
+}
+
+.stat-text {
+    color: var(--gray);
+    font-size: 16px;
+}

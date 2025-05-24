@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapbox Setup Guide - Cafinder</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            line-height: 1.6;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .logo {
+            color: #F05438;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+        }
+        
+        .section h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        
+        .step {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #F05438;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        code {
+            background: #f5f5f5;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: monospace;
+        }
+        
+        .key-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            margin: 10px 0;
+        }
+        
+        .btn {
+            background: #F05438;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .success {
+            color: #28a745;
+            margin-top: 10px;
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px;
+            border-radius: 4px;
+            margin: 15px 0;
+        }
+        
+        .links {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .link {
+            color: #F05438;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .current-key {
+            background: #e9ecef;
+            padding: 10px;
+            border-radius: 4px;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="logo">Cafinder</div>
+        <h1>Mapbox Setup Guide</h1>
+        <p>Follow these steps to get your own Mapbox API key and fix the map display</p>
+    </div>
+
+    <div class="section">
+        <h2>Why do I need my own API key?</h2>
+        <p>The demo Mapbox API key in your code has limited functionality and may stop working at any time. Getting your own free API key ensures reliable map functionality for your application.</p>
+        
+        <div class="warning">
+            <strong>Current Problem:</strong> Your map is showing markers but no map tiles because the demo API key is not working properly.
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>How to Get Your Mapbox API Key</h2>
+        
+        <div class="step">
+            <div class="step-number">1</div>
+            <strong>Create a Mapbox Account</strong><br>
+            Go to <a href="https://account.mapbox.com/auth/signup/" target="_blank">https://account.mapbox.com/auth/signup/</a> and sign up for a free account
+        </div>
+        
+        <div class="step">
+            <div class="step-number">2</div>
+            <strong>Create an Access Token</strong><br>
+            Once logged in, go to your <a href="https://account.mapbox.com/access-tokens/" target="_blank">Access Tokens page</a>
+        </div>
+        
+        <div class="step">
+            <div class="step-number">3</div>
+            <strong>Copy Your Token</strong><br>
+            Copy the "Default public token" or create a new one specifically for your project
+        </div>
+        
+        <div class="step">
+            <div class="step-number">4</div>
+            <strong>Update Your Code</strong><br>
+            Paste your API key below or directly into your <code>js/config.js</code> file
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Update Your API Key</h2>
+        <p>Enter your Mapbox API key here to generate the code you need to update:</p>
+        
+        <input type="text" id="apiKeyInput" class="key-input" placeholder="Paste your Mapbox API key here...">
+        <button onclick="updateApiKey()" class="btn">Generate Update Code</button>
+        
+        <div id="result" style="display: none;">
+            <h3>Code to update in js/config.js:</h3>
+            <pre style="background: #f5f5f5; padding: 15px; border-radius: 4px; overflow-x: auto;"><code id="codeOutput"></code></pre>
+            
+            <h3>Instructions:</h3>
+            <ol>
+                <li>Open <code>/Users/araya/Downloads/cafinder-project/js/config.js</code></li>
+                <li>Replace the <code>mapboxToken</code> value with your new key</li>
+                <li>Save the file</li>
+                <li>Refresh your cafemap.html page</li>
+            </ol>
+            
+            <div class="success">✓ Your API key is ready to use!</div>
+        </div>
+        
+        <div class="current-key">
+            <strong>Current demo key:</strong><br>
+            <code>pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4M29iazA2Z2gycXA4N2pmbDZmangifQ.-g_vE53SD2WrJ6tFX7QHmA</code>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>Alternative: Use OpenStreetMap (No API Key Required)</h2>
+        <p>If you don't want to use Mapbox, you can use the OpenStreetMap version instead:</p>
+        <ul>
+            <li>Open <code>cafemap-leaflet.html</code> instead of <code>cafemap.html</code></li>
+            <li>This version uses Leaflet with OpenStreetMap tiles</li>
+            <li>No API key required</li>
+            <li>All features work the same way</li>
+        </ul>
+    </div>
+
+    <div class="links">
+        <a href="cafemap.html" class="link">← Back to Cafe Map</a>
+        <a href="cafemap-leaflet.html" class="link">Try OpenStreetMap Version →</a>
+    </div>
+
+    <script>
+        function updateApiKey() {
+            const apiKey = document.getElementById('apiKeyInput').value.trim();
+            
+            if (!apiKey) {
+                alert('Please enter your Mapbox API key');
+                return;
+            }
+            
+            // Validate API key format
+            if (!apiKey.startsWith('pk.') || apiKey.length < 50) {
+                alert('Please enter a valid Mapbox API key (should start with "pk." and be quite long)');
+                return;
+            }
+            
+            // Generate the code
+            const codeOutput = `// Configuration file for API keys
+const config = {
+    // Your Mapbox API key
+    mapboxToken: '${apiKey}',
+    
+    // Override with your own key here:
+    // mapboxToken: 'YOUR_MAPBOX_API_KEY_HERE',
+    
+    // ... rest of the config file
+`;
+            
+            document.getElementById('codeOutput').textContent = codeOutput;
+            document.getElementById('result').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

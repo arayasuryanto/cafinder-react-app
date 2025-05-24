@@ -1,0 +1,646 @@
+/**
+ * This is the data imported from cafes_preview.json
+ */
+const cafesPreviewData = [
+  {
+    "id": "ChIJh9U5rh391y0R_D4KjkxgXrY",
+    "name": "Filgud+",
+    "address": "Jl. Raya Lidah Wetan, Lidah Wetan, Kec. Lakarsantri, Surabaya, Jawa Timur 60213, Indonesia",
+    "rating": "4.4",
+    "reviewCount": 328,
+    "placeId": "ChIJh9U5rh391y0R_D4KjkxgXrY",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJh9U5rh391y0R_D4KjkxgXrY",
+    "categories": [
+      "Cafe"
+    ],
+    "phone": null,
+    "website": null,
+    "openingHours": [
+      {"day": "Monday", "hours": "12 to 11:30 PM"},
+      {"day": "Tuesday", "hours": "12 to 11:30 PM"},
+      {"day": "Wednesday", "hours": "12 to 11:30 PM"},
+      {"day": "Thursday", "hours": "12 to 11:30 PM"},
+      {"day": "Friday", "hours": "12 to 11:30 PM"},
+      {"day": "Saturday", "hours": "12 to 11:30 PM"},
+      {"day": "Sunday", "hours": "12 to 11:30 PM"}
+    ],
+    "neighborhood": "Lidah Wetan, Lakarsantri",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh5.googleusercontent.com/p/AF1QipPv4upXMdP5dVBMkpfgRlvh-qXE-YX8TUbgcq38=w408-h408-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"No-contact delivery": true},
+        {"Delivery": true},
+        {"Takeout": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Great tea selection": true}
+      ],
+      "Popular for": [
+        {"Solo dining": true}
+      ],
+      "Offerings": [
+        {"Coffee": true},
+        {"Quick bite": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Trendy": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Groups": true}
+      ],
+      "Children": [
+        {"Good for kids": true}
+      ]
+    }
+  },
+  {
+    "id": "ChIJTTM6WIf91y0RotZGcWHII0k",
+    "name": "Ropopang Citraland",
+    "address": "Telaga Utama Road, Sambikerep, Surabaya, East Java 60213, Indonesia",
+    "rating": "4.6",
+    "reviewCount": 1195,
+    "placeId": "ChIJTTM6WIf91y0RotZGcWHII0k",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJTTM6WIf91y0RotZGcWHII0k",
+    "categories": [
+      "Cafe",
+      "Beer garden",
+      "Restaurant"
+    ],
+    "phone": "+62 811-3339-8818",
+    "website": "http://www.instagram.com/ropopang.sby",
+    "openingHours": [
+      {"day": "Monday", "hours": "4 PM to 2 AM"},
+      {"day": "Tuesday", "hours": "4 PM to 2 AM"},
+      {"day": "Wednesday", "hours": "4 PM to 2 AM"},
+      {"day": "Thursday", "hours": "4 PM to 2 AM"},
+      {"day": "Friday", "hours": "4 PM to 2 AM"},
+      {"day": "Saturday", "hours": "4 PM to 2 AM"},
+      {"day": "Sunday", "hours": "4 PM to 2 AM"}
+    ],
+    "neighborhood": "Sambikerep",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh5.googleusercontent.com/p/AF1QipO8gbrDXMOn72WzBrjLUP6XNe30gkQtsbXWCKY1=w408-h725-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"Outdoor seating": true},
+        {"Delivery": true},
+        {"Takeout": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Great tea selection": true},
+        {"Live music": true},
+        {"Rooftop seating": true},
+        {"Sports": true}
+      ],
+      "Popular for": [
+        {"Lunch": true},
+        {"Dinner": true},
+        {"Good for working on laptop": true}
+      ],
+      "Offerings": [
+        {"Alcohol": true},
+        {"Beer": true},
+        {"Coffee": true},
+        {"Late-night food": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Trendy": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Family-friendly": true},
+        {"Groups": true},
+        {"Tourists": true}
+      ],
+      "Children": [
+        {"Good for kids": true},
+        {"Kids' menu": true}
+      ]
+    }
+  },
+  {
+    "id": "ChIJYwLbGQD91y0R2pb1qgsh06s",
+    "name": "LoveBugsCafe",
+    "address": "Blk. CB, Jl. Citra Utama Lidah Kulon No.23, Lidah Kulon, Kec. Lakarsantri, Surabaya, Jawa Timur 60213, Indonesia",
+    "rating": "4.2",
+    "reviewCount": 171,
+    "placeId": "ChIJYwLbGQD91y0R2pb1qgsh06s",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJYwLbGQD91y0R2pb1qgsh06s",
+    "categories": [
+      "Cafe",
+      "Coffee shop"
+    ],
+    "phone": "+62 812-3013-919",
+    "website": null,
+    "openingHours": [
+      {"day": "Monday", "hours": "4 PM to 1 AM"},
+      {"day": "Tuesday", "hours": "4 PM to 1 AM"},
+      {"day": "Wednesday", "hours": "4 PM to 1 AM"},
+      {"day": "Thursday", "hours": "4 PM to 1 AM"},
+      {"day": "Friday", "hours": "4 PM to 1 AM"},
+      {"day": "Saturday", "hours": "4 PM to 1 AM"},
+      {"day": "Sunday", "hours": "4 PM to 1 AM"}
+    ],
+    "neighborhood": "Lidah Kulon, Lakarsantri",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh5.googleusercontent.com/p/AF1QipMFAVoburIo9BwjQh6xgezbldiImkiTh5cUOAJ0=w408-h302-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"Outdoor seating": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Great tea selection": true}
+      ],
+      "Popular for": [
+        {"Dinner": true},
+        {"Good for working on laptop": true}
+      ],
+      "Offerings": [
+        {"Coffee": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Romantic": true},
+        {"Trendy": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Groups": true},
+        {"Tourists": true}
+      ],
+      "Children": [
+        {"Good for kids": true},
+        {"Kids' menu": true}
+      ]
+    }
+  },
+  {
+    "id": "ChIJfVbuGoT91y0RNhWAjHd-e0o",
+    "name": "Kopi teras",
+    "address": "G-Walk, Citra Land, Jl. Niaga Gapura FG2 no. 1B-2, Lidah Kulon, Kec. Lakarsantri, Surabaya, Jawa Timur 60213, Indonesia",
+    "rating": "3",
+    "reviewCount": 72,
+    "placeId": "ChIJfVbuGoT91y0RNhWAjHd-e0o",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJfVbuGoT91y0RNhWAjHd-e0o",
+    "categories": [
+      "Coffee shop",
+      "Cafe",
+      "Restaurant"
+    ],
+    "phone": "+62 896-2003-5430",
+    "website": "http://instagram.com/kopiterasid",
+    "openingHours": [
+      {"day": "Monday", "hours": "2 to 10 PM"},
+      {"day": "Tuesday", "hours": "2 to 10 PM"},
+      {"day": "Wednesday", "hours": "2 to 10 PM"},
+      {"day": "Thursday", "hours": "2 to 10 PM"},
+      {"day": "Friday", "hours": "2 to 10 PM"},
+      {"day": "Saturday", "hours": "2 to 10 PM"},
+      {"day": "Sunday", "hours": "2 to 10 PM"}
+    ],
+    "neighborhood": "Lidah Kulon, Lakarsantri",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh5.googleusercontent.com/p/AF1QipOCxJc8GdSTy-PZzLQcbY8594P9qpOXGZv2Q8Ho=w426-h240-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"Outdoor seating": true},
+        {"Delivery": true},
+        {"Takeout": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Great tea selection": true}
+      ],
+      "Popular for": [
+        {"Solo dining": true}
+      ],
+      "Offerings": [
+        {"Coffee": true},
+        {"Quick bite": true}
+      ],
+      "Dining options": [
+        {"Brunch": true},
+        {"Lunch": true},
+        {"Dinner": true},
+        {"Catering": true},
+        {"Dessert": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Trendy": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Groups": true}
+      ],
+      "Children": [
+        {"Good for kids": true},
+        {"Kids' menu": true}
+      ]
+    }
+  },
+  {
+    "id": "ChIJVzXd5Mf91y0Rz7fXcuH6LkE",
+    "name": "L Spot Cafe",
+    "address": "G Walk, Food Garden 2 No.5, RW.6, Citraland, Kec. Lakarsantri, Surabaya, Jawa Timur 60213, Indonesia",
+    "rating": "4.3",
+    "reviewCount": 83,
+    "placeId": "ChIJVzXd5Mf91y0Rz7fXcuH6LkE",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJVzXd5Mf91y0Rz7fXcuH6LkE",
+    "categories": [
+      "Cafe"
+    ],
+    "phone": null,
+    "website": null,
+    "openingHours": [
+      {"day": "Monday", "hours": "5 PM to 2 AM"},
+      {"day": "Tuesday", "hours": "5 PM to 2 AM"},
+      {"day": "Wednesday", "hours": "5 PM to 2 AM"},
+      {"day": "Thursday", "hours": "5 PM to 2 AM"},
+      {"day": "Friday", "hours": "5 PM to 2 AM"},
+      {"day": "Saturday", "hours": "5 PM to 2 AM"},
+      {"day": "Sunday", "hours": "5 PM to 2 AM"}
+    ],
+    "neighborhood": "Citraland, Lakarsantri",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh5.googleusercontent.com/p/AF1QipMhSA9D5irGmS3e-MCyUSub_OOniBw4Ae8D5lpe=w408-h725-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"Outdoor seating": true},
+        {"Takeout": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Live music": true},
+        {"Live performances": true}
+      ],
+      "Popular for": [
+        {"Good for working on laptop": true}
+      ],
+      "Offerings": [
+        {"Alcohol": true},
+        {"Beer": true},
+        {"Coffee": true},
+        {"Late-night food": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Quiet": true},
+        {"Trendy": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Groups": true},
+        {"Tourists": true}
+      ]
+    }
+  },
+  {
+    "id": "ChIJoQ56zij91y0ROo8atGcCjGA",
+    "name": "Rukun Kopi Peranakan",
+    "address": "Sebelah Rumble Citraland, Bukit Telaga Golf Road No.10, Jeruk, Kec. Lakarsantri, Surabaya, Jawa Timur 60223, Indonesia",
+    "rating": "4.6",
+    "reviewCount": 79,
+    "placeId": "ChIJoQ56zij91y0ROo8atGcCjGA",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJoQ56zij91y0ROo8atGcCjGA",
+    "categories": [
+      "Coffee shop",
+      "Cafe"
+    ],
+    "phone": "+62 821-3695-8550",
+    "website": null,
+    "openingHours": [
+      {"day": "Monday", "hours": "Closed"},
+      {"day": "Tuesday", "hours": "Closed"},
+      {"day": "Wednesday", "hours": "Closed"},
+      {"day": "Thursday", "hours": "7 AM to 9 PM"},
+      {"day": "Friday", "hours": "7 AM to 9 PM"},
+      {"day": "Saturday", "hours": "7 AM to 3 PM"},
+      {"day": "Sunday", "hours": "Closed"}
+    ],
+    "neighborhood": "Jeruk, Lakarsantri",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh5.googleusercontent.com/p/AF1QipPZrF6StV59eu-FrlWT6GshanUOmfy1bfU7Tvjv=w408-h272-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"Outdoor seating": true},
+        {"Delivery": true},
+        {"Takeout": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Great tea selection": true}
+      ],
+      "Popular for": [
+        {"Solo dining": true}
+      ],
+      "Offerings": [
+        {"Coffee": true}
+      ],
+      "Dining options": [
+        {"Breakfast": true},
+        {"Brunch": true},
+        {"Lunch": true},
+        {"Dinner": true},
+        {"Catering": true},
+        {"Dessert": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Trendy": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Groups": true}
+      ],
+      "Children": [
+        {"Kids' menu": true}
+      ]
+    }
+  },
+  {
+    "id": "ChIJFz1IIjv91y0ROsMuRaFNAZQ",
+    "name": "Gwalk Garden",
+    "address": "PM53+JQH G walk, Kecamatan Jl. Citraland Surabaya, Lidah Kulon, Kec. Lakarsantri, Surabaya, Jawa Timur 60213, Indonesia",
+    "rating": "4.8",
+    "reviewCount": 52,
+    "placeId": "ChIJFz1IIjv91y0ROsMuRaFNAZQ",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJFz1IIjv91y0ROsMuRaFNAZQ",
+    "categories": [
+      "Family restaurant",
+      "Cafe",
+      "Restaurant"
+    ],
+    "phone": null,
+    "website": "https://instagram.com/gwalkgarden?igshid=NTc4MTIwNjQ2YQ==",
+    "openingHours": [
+      {"day": "Monday", "hours": "7 AM to 10 PM"},
+      {"day": "Tuesday", "hours": "7 AM to 10 PM"},
+      {"day": "Wednesday", "hours": "7 AM to 10 PM"},
+      {"day": "Thursday", "hours": "7 AM to 10 PM"},
+      {"day": "Friday", "hours": "7 AM to 10 PM"},
+      {"day": "Saturday", "hours": "7 AM to 12 AM"},
+      {"day": "Sunday", "hours": "7 AM to 12 AM"}
+    ],
+    "neighborhood": "Lidah Kulon, Lakarsantri",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh5.googleusercontent.com/p/AF1QipNgdEUv2qSzjnv6F04HRywQtogzmv1r1VhLTYoZ=w408-h337-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"Outdoor seating": true},
+        {"Delivery": true},
+        {"Takeout": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Great tea selection": true},
+        {"Live music": true},
+        {"Sports": true}
+      ],
+      "Popular for": [
+        {"Lunch": true},
+        {"Dinner": true},
+        {"Good for working on laptop": true}
+      ],
+      "Offerings": [
+        {"Cocktails": true},
+        {"Coffee": true},
+        {"Halal food": true},
+        {"Organic dishes": true},
+        {"Vegetarian options": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Quiet": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Family-friendly": true},
+        {"Groups": true}
+      ],
+      "Children": [
+        {"Good for kids": true},
+        {"Kids' menu": true}
+      ]
+    }
+  },
+  {
+    "id": "ChIJm92QN7j91y0RpkF8Qpbrt1g",
+    "name": "Excelso - SUB G-Walk Citraland",
+    "address": "Jl. Puri Widya Kencana No.26, Lidah Kulon, Kec. Lakarsantri, Surabaya, Jawa Timur 60213, Indonesia",
+    "rating": "4.4",
+    "reviewCount": 705,
+    "placeId": "ChIJm92QN7j91y0RpkF8Qpbrt1g",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJm92QN7j91y0RpkF8Qpbrt1g",
+    "categories": [
+      "Coffee shop",
+      "Cafe"
+    ],
+    "phone": "+62 31 7451234",
+    "website": null,
+    "openingHours": [
+      {"day": "Monday", "hours": "8 AM to 9 PM"},
+      {"day": "Tuesday", "hours": "8 AM to 9 PM"},
+      {"day": "Wednesday", "hours": "8 AM to 9 PM"},
+      {"day": "Thursday", "hours": "8 AM to 9 PM"},
+      {"day": "Friday", "hours": "8 AM to 9 PM"},
+      {"day": "Saturday", "hours": "8 AM to 9 PM"},
+      {"day": "Sunday", "hours": "8 AM to 9 PM"}
+    ],
+    "neighborhood": "Lidah Kulon, Lakarsantri",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh3.googleusercontent.com/gps-cs-s/AB5caB_0TskG0JUz_BPTfpUZevQ4u_cKP3s8TO840M408IhMjzGYxud8vcULOXhg75Bqp90e8-7VgJKOfE9x_Ep44WCxR-nF4yX7EuIpMt_Sad64TQGWkf-Jk6PbUTEXXxmUirNrkpmn=w426-h240-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"Outdoor seating": true},
+        {"Takeout": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Great tea selection": true}
+      ],
+      "Popular for": [
+        {"Breakfast": true},
+        {"Dinner": true},
+        {"Good for working on laptop": true}
+      ],
+      "Offerings": [
+        {"Coffee": true},
+        {"Quick bite": true}
+      ],
+      "Dining options": [
+        {"Breakfast": true},
+        {"Brunch": true},
+        {"Lunch": true},
+        {"Dinner": true},
+        {"Dessert": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Trendy": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Groups": true},
+        {"Tourists": true}
+      ],
+      "Children": [
+        {"Good for kids": true},
+        {"High chairs": true},
+        {"Kids' menu": true}
+      ]
+    }
+  },
+  {
+    "id": "ChIJB4ku0a391y0Ri9md3NHJqEg",
+    "name": "M22 CAFE",
+    "address": "Jl. Lontar Lidah Kulon No.6, Lidah Kulon, Kec. Lakarsantri, Surabaya, Jawa Timur 60213, Indonesia",
+    "rating": "4.5",
+    "reviewCount": 347,
+    "placeId": "ChIJB4ku0a391y0Ri9md3NHJqEg",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJB4ku0a391y0Ri9md3NHJqEg",
+    "categories": [
+      "Cafe",
+      "Coffee store",
+      "Noodle shop"
+    ],
+    "phone": "+62 813-8075-5389",
+    "website": null,
+    "openingHours": [
+      {"day": "Monday", "hours": "10 AM to 10 PM"},
+      {"day": "Tuesday", "hours": "10 AM to 10 PM"},
+      {"day": "Wednesday", "hours": "10 AM to 10 PM"},
+      {"day": "Thursday", "hours": "10 AM to 10 PM"},
+      {"day": "Friday", "hours": "10 AM to 10 PM"},
+      {"day": "Saturday", "hours": "10 AM to 10 PM"},
+      {"day": "Sunday", "hours": "10 AM to 10 PM"}
+    ],
+    "neighborhood": "Lidah Kulon, Lakarsantri",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh5.googleusercontent.com/p/AF1QipOgxSx8jJknbA-p9pn7Yj1IkdqUGEMgC7CL5F6q=w427-h240-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"Outdoor seating": true},
+        {"Delivery": true},
+        {"Takeout": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Great tea selection": true}
+      ],
+      "Popular for": [
+        {"Solo dining": true},
+        {"Good for working on laptop": true}
+      ],
+      "Offerings": [
+        {"Alcohol": true},
+        {"Coffee": true},
+        {"Late-night food": true},
+        {"Prepared foods": true},
+        {"Quick bite": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Quiet": true},
+        {"Trendy": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Family-friendly": true},
+        {"Groups": true}
+      ],
+      "Children": [
+        {"Good for kids": true},
+        {"Kids' menu": true}
+      ]
+    }
+  },
+  {
+    "id": "ChIJ_aEX1jT91y0RPGn_abdWMGY",
+    "name": "Fore Coffee - G Walk Citraland",
+    "address": "Jl. Puri Widya Kencana No.22, Lidah Kulon, Kec. Lakarsantri, Surabaya, Jawa Timur 60213, Indonesia",
+    "rating": "4.6",
+    "reviewCount": 352,
+    "placeId": "ChIJ_aEX1jT91y0RPGn_abdWMGY",
+    "google_maps_direction": "https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJ_aEX1jT91y0RPGn_abdWMGY",
+    "categories": [
+      "Cafe"
+    ],
+    "phone": "+62 888-1084-680",
+    "website": "http://fore.coffee/",
+    "openingHours": [
+      {"day": "Monday", "hours": "7 AM to 10 PM"},
+      {"day": "Tuesday", "hours": "7 AM to 10 PM"},
+      {"day": "Wednesday", "hours": "7 AM to 10 PM"},
+      {"day": "Thursday", "hours": "7 AM to 10 PM"},
+      {"day": "Friday", "hours": "7 AM to 10 PM"},
+      {"day": "Saturday", "hours": "7 AM to 10 PM"},
+      {"day": "Sunday", "hours": "7 AM to 10 PM"}
+    ],
+    "neighborhood": "Lidah Kulon, Lakarsantri",
+    "city": "Surabaya",
+    "description": null,
+    "imageUrl": "https://lh5.googleusercontent.com/p/AF1QipNO5Jcd2SYjBamWNXRXI73ny065p9qzyHZJYBR0=w408-h725-k-no",
+    "additionalInfo": {
+      "Service options": [
+        {"Outdoor seating": true},
+        {"No-contact delivery": true},
+        {"Delivery": true},
+        {"Takeout": true},
+        {"Dine-in": true}
+      ],
+      "Highlights": [
+        {"Great tea selection": true}
+      ],
+      "Popular for": [
+        {"Solo dining": true},
+        {"Good for working on laptop": true}
+      ],
+      "Offerings": [
+        {"Coffee": true},
+        {"Quick bite": true}
+      ],
+      "Dining options": [
+        {"Brunch": true},
+        {"Dessert": true}
+      ],
+      "Atmosphere": [
+        {"Casual": true},
+        {"Cozy": true},
+        {"Trendy": true}
+      ],
+      "Crowd": [
+        {"College students": true},
+        {"Groups": true},
+        {"Tourists": true}
+      ]
+    }
+  }
+];
+
+export default cafesPreviewData;

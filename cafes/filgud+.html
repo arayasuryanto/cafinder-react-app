@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filgud+ - Cafinder</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/cafe-detail.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="../catalog-updated.html">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 0C8.954 0 0 8.954 0 20C0 31.046 8.954 40 20 40C31.046 40 40 31.046 40 20C40 8.954 31.046 0 20 0Z" fill="#F05438"/>
+                            <path d="M28 14L20 22L18 20L25 12L28 14Z" fill="white"/>
+                            <path d="M14 15C15.6569 15 17 13.6569 17 12C17 10.3431 15.6569 9 14 9C12.3431 9 11 10.3431 11 12C11 13.6569 12.3431 15 14 15Z" fill="white"/>
+                            <path d="M25 29C27.2091 29 29 27.2091 29 25C29 22.7909 27.2091 21 25 21C22.7909 21 21 22.7909 21 25C21 27.2091 22.7909 29 25 29Z" fill="white"/>
+                        </svg>
+                        <span style="font-weight: 700; font-size: 24px; margin-left: 8px; color: #F05438;">Cafinder</span>
+                    </a>
+                </div>
+                
+                <nav class="nav-links">
+                    <a href="../catalog-updated.html">Katalog Cafe</a>
+                    <a href="#">Smart Finder</a>
+                    <a href="#">Tentang Kami</a>
+                </nav>
+                
+                <div class="auth-btns">
+                    <button class="login-btn">Masuk</button>
+                    <button class="signup-btn">Daftar</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../catalog-updated.html">Katalog</a>
+            <span>›</span>
+            <a href="../catalog-updated.html">Lidah Wetan, Lakarsantri</a>
+            <span>›</span>
+            <span>Filgud+</span>
+        </div>
+    </div>
+
+    <!-- Cafe Detail Hero -->
+    <section class="cafe-hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Filgud+</h1>
+                <div class="cafe-info-bar">
+                    <div class="rating">
+                        <span class="stars">⭐⭐⭐⭐✨</span>
+                        <span class="rating-value">4.4</span>
+                        <span class="review-count">(328 reviews)</span>
+                    </div>
+                    <div class="status open">
+                        <span class="status-indicator"></span>
+                        <span>Open now</span>
+                        <span class="hours">12 to 11:30 PM</span>
+                    </div>
+                    <div class="price-range">
+                        <span>💰 Affordable</span>
+                    </div>
+                </div>
+                <div class="quick-actions">
+                    <a href="https://www.google.com/maps/dir/?api=1&destination_place_id=ChIJh9U5rh391y0R_D4KjkxgXrY" class="btn primary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="white"/>
+                        </svg>
+                        Petunjuk Arah
+                    </a>
+                    <button class="btn secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.14 12.94C19.73 12.94 20.21 12.46 20.21 11.87C20.21 11.28 19.73 10.8 19.14 10.8C18.55 10.8 18.07 11.28 18.07 11.87C18.07 12.46 18.55 12.94 19.14 12.94Z" fill="currentColor"/>
+                            <path d="M11.9 12.94C12.49 12.94 12.97 12.46 12.97 11.87C12.97 11.28 12.49 10.8 11.9 10.8C11.31 10.8 10.83 11.28 10.83 11.87C10.83 12.46 11.31 12.94 11.9 12.94Z" fill="currentColor"/>
+                            <path d="M4.66 12.94C5.25 12.94 5.73 12.46 5.73 11.87C5.73 11.28 5.25 10.8 4.66 10.8C4.07 10.8 3.59 11.28 3.59 11.87C3.59 12.46 4.07 12.94 4.66 12.94Z" fill="currentColor"/>
+                        </svg>
+                        Bagikan
+                    </button>
+                    <button class="btn secondary">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18 3H6C5.45 3 5 3.45 5 4V19C5 20.1 5.89 21 7 21H17C18.1 21 19 20.1 19 19V9L14 4H6C5.45 4 5 4.45 5 5V19C5 19.55 4.55 20 4 20C3.45 20 3 19.55 3 19V5C3 3.89 3.89 3 5 3H19C19.55 3 20 3.45 20 4V19C20 20.1 19.1 21 18 21C16.9 21 16 20.1 16 19C16 18.45 16.45 18 17 18H19V4H18Z" fill="currentColor"/>
+                        </svg>
+                        Simpan
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="content-grid">
+                <!-- Left Column -->
+                <div class="left-column">
+                    <!-- Image Gallery -->
+                    <section class="image-gallery">
+                        <div class="main-image">
+                            <img src="https://picsum.photos/seed/filgud+-1/800/600" alt="Filgud+">
+                        </div>
+                        <div class="thumbnail-list">
+                            <img src="https://picsum.photos/seed/filgud+-2/400/300" alt="Filgud+ Interior" class="thumbnail active">
+                            <img src="https://picsum.photos/seed/filgud+-3/400/300" alt="Filgud+ Menu" class="thumbnail">
+                            <img src="https://picsum.photos/seed/filgud+-4/400/300" alt="Filgud+ Outdoor" class="thumbnail">
+                            <img src="https://picsum.photos/seed/filgud+-5/400/300" alt="Filgud+ Coffee" class="thumbnail">
+                        </div>
+                    </section>
+
+                    <!-- About Section -->
+                    <section class="about-section">
+                        <h2>Tentang Filgud+</h2>
+                        <p>Filgud+ adalah cafe yang menawarkan pengalaman kopi yang unik dengan atmosphere yang nyaman dan trendy. Tempat yang sempurna untuk bekerja, belajar, atau sekadar bersantai dengan teman.</p>
+                        
+                        <div class="features">
+                            <h3>Highlight</h3>
+                            <div class="feature-tags">
+                                <span class="feature-tag available">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                    </svg>
+                                    Great tea selection
+                                </span>
+                                <span class="feature-tag available">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                    </svg>
+                                    Solo dining
+                                </span>
+                                <span class="feature-tag available">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                    </svg>
+                                    Cozy atmosphere
+                                </span>
+                                <span class="feature-tag available">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                    </svg>
+                                    College students friendly
+                                </span>
+                            </div>
+                            
+                            <h3>Service Options</h3>
+                            <div class="feature-tags">
+                                <span class="feature-tag available">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                    </svg>
+                                    No-contact delivery
+                                </span>
+                                <span class="feature-tag available">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                    </svg>
+                                    Delivery
+                                </span>
+                                <span class="feature-tag available">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                    </svg>
+                                    Takeout
+                                </span>
+                                <span class="feature-tag available">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z" fill="currentColor"/>
+                                    </svg>
+                                    Dine-in
+                                </span>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Reviews Section -->
+                    <section class="reviews-section">
+                        <h2>Ulasan</h2>
+                        <div class="review-stats">
+                            <div class="average-rating">
+                                <div class="rating-large">4.4</div>
+                                <div class="stars">⭐⭐⭐⭐✨</div>
+                                <div class="total-reviews">328 ulasan</div>
+                            </div>
+                            <div class="rating-distribution">
+                                <div class="rating-bar">
+                                    <span class="label">5</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 66%"></div>
+                                    </div>
+                                    <span class="count">217</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="label">4</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 20%"></div>
+                                    </div>
+                                    <span class="count">66</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="label">3</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 8%"></div>
+                                    </div>
+                                    <span class="count">26</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="label">2</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 4%"></div>
+                                    </div>
+                                    <span class="count">13</span>
+                                </div>
+                                <div class="rating-bar">
+                                    <span class="label">1</span>
+                                    <div class="bar-container">
+                                        <div class="bar" style="width: 2%"></div>
+                                    </div>
+                                    <span class="count">6</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="review-list">
+                            <div class="review-card">
+                                <div class="reviewer-info">
+                                    <img src="https://randomuser.me/api/portraits/women/25.jpg" alt="User" class="avatar">
+                                    <div class="reviewer-details">
+                                        <h4>Sarah M.</h4>
+                                        <div class="review-date">2 minggu yang lalu</div>
+                                    </div>
+                                    <div class="review-rating">⭐⭐⭐⭐⭐</div>
+                                </div>
+                                <p class="review-text">Tempat yang nyaman untuk kerja dan belajar. Kopi enak dan harga terjangkau. Staff ramah dan wifi cepat!</p>
+                            </div>
+                            
+                            <div class="review-card">
+                                <div class="reviewer-info">
+                                    <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="User" class="avatar">
+                                    <div class="reviewer-details">
+                                        <h4>Budi T.</h4>
+                                        <div class="review-date">1 bulan yang lalu</div>
+                                    </div>
+                                    <div class="review-rating">⭐⭐⭐⭐☆</div>
+                                </div>
+                                <p class="review-text">Suasana cafe yang cozy dan makanan yang enak. Cocok untuk nongkrong dengan teman atau keluarga.</p>
+                            </div>
+                        </div>
+                        
+                        <button class="btn primary wide">Lihat Semua Ulasan</button>
+                    </section>
+                </div>
+
+                <!-- Right Column -->
+                <div class="right-column">
+                    <!-- Cafe Info Card -->
+                    <div class="info-card">
+                        <h3>Informasi</h3>
+                        <div class="info-list">
+                            <div class="info-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#F05438"/>
+                                </svg>
+                                <div class="info-content">
+                                    <div class="label">Alamat</div>
+                                    <div class="value">Jl. Raya Lidah Wetan, Lidah Wetan, Kec. Lakarsantri, Surabaya, Jawa Timur 60213, Indonesia</div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12.5 7H11V13L16.2 16.2L17 14.9L12.5 12.2V7Z" fill="#F05438"/>
+                                </svg>
+                                <div class="info-content">
+                                    <div class="label">Jam Buka</div>
+                                    <div class="value">
+                                        <div class="hours-container">
+                                            <div class="hours-row">
+                                                <span class="day">Monday</span>
+                                                <span class="time open">12 to 11:30 PM</span>
+                                            </div>
+                                            <div class="hours-row">
+                                                <span class="day">Tuesday</span>
+                                                <span class="time open">12 to 11:30 PM</span>
+                                            </div>
+                                            <div class="hours-row today">
+                                                <span class="day">Wednesday</span>
+                                                <span class="time open">12 to 11:30 PM</span>
+                                            </div>
+                                            <div class="hours-row">
+                                                <span class="day">Thursday</span>
+                                                <span class="time open">12 to 11:30 PM</span>
+                                            </div>
+                                            <div class="hours-row">
+                                                <span class="day">Friday</span>
+                                                <span class="time open">12 to 11:30 PM</span>
+                                            </div>
+                                            <div class="hours-row">
+                                                <span class="day">Saturday</span>
+                                                <span class="time open">12 to 11:30 PM</span>
+                                            </div>
+                                            <div class="hours-row">
+                                                <span class="day">Sunday</span>
+                                                <span class="time open">12 to 11:30 PM</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="info-item">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19 5V19H5V5H19ZM19 3H5C3.9 3 3 3.9 3 5V19C3 20.1 3.9 21 5 21H19C20.1 21 21 20.1 21 19V5C21 3.9 20.1 3 19 3ZM14 17V15.82C14 15.01 14.69 14.27 15.5 14.27H17V12H14V5H17V7H15V5H14V12H17V7H15V12H17V14.27V17M14 17V12H12V17M12 12V7H10V12M12 17V7H10V17M10 7H9V12H7V7M9 17V12H7V17H9" fill="#F05438"/>
+                                </svg>
+                                <div class="info-content">
+                                    <div class="label">Fasilitas Parkir</div>
+                                    <div class="value">Parking information not available</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Similar Cafes -->
+                    <div class="similar-cafes">
+                        <h3>Cafe Serupa</h3>
+                        <div class="similar-list">
+                            <div class="similar-card">
+                                <img src="https://picsum.photos/seed/ropopang/150/150" alt="Ropopang Citraland">
+                                <div class="similar-info">
+                                    <h4>Ropopang Citraland</h4>
+                                    <div class="similar-rating">⭐ 4.6 (1,195)</div>
+                                    <div class="similar-location">Sambikerep</div>
+                                </div>
+                            </div>
+                            
+                            <div class="similar-card">
+                                <img src="https://picsum.photos/seed/excelso/150/150" alt="Excelso G-Walk">
+                                <div class="similar-info">
+                                    <h4>Excelso SUB G-Walk Citraland</h4>
+                                    <div class="similar-rating">⭐ 4.4 (705)</div>
+                                    <div class="similar-location">Lidah Kulon, Lakarsantri</div>
+                                </div>
+                            </div>
+                            
+                            <div class="similar-card">
+                                <img src="https://picsum.photos/seed/fore/150/150" alt="Fore Coffee">
+                                <div class="similar-info">
+                                    <h4>Fore Coffee G Walk Citraland</h4>
+                                    <div class="similar-rating">⭐ 4.6 (352)</div>
+                                    <div class="similar-location">Lidah Kulon, Lakarsantri</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <div class="footer-logo">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20 0C8.954 0 0 8.954 0 20C0 31.046 8.954 40 20 40C31.046 40 40 31.046 40 20C40 8.954 31.046 0 20 0Z" fill="#F05438"/>
+                            <path d="M28 14L20 22L18 20L25 12L28 14Z" fill="white"/>
+                            <path d="M14 15C15.6569 15 17 13.6569 17 12C17 10.3431 15.6569 9 14 9C12.3431 9 11 10.3431 11 12C11 13.6569 12.3431 15 14 15Z" fill="white"/>
+                            <path d="M25 29C27.2091 29 29 27.2091 29 25C29 22.7909 27.2091 21 25 21C22.7909 21 21 22.7909 21 25C21 27.2091 22.7909 29 25 29Z" fill="white"/>
+                        </svg>
+                        <span style="font-weight: 700; font-size: 24px; margin-left: 8px; color: white;">Cafinder</span>
+                    </div>
+                    <p class="footer-desc">Discover insights and recommendations to enhance your cafe experience in Surabaya and beyond.</p>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading">About</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Find Cafes</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading">Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Customer Support</a></li>
+                        <li><a href="#">Privacy & Policy</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3 class="footer-heading">Join Our Community</h3>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email...">
+                        <button>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M4 20V4H20V20H4ZM12 13L20 8V6L12 11L4 6V8L12 13Z" fill="white"/>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Made with ❤️ by Cafinder Teams</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="../js/cafe-detail.js"></script>
+</body>
+</html>

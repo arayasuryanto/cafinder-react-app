@@ -1,0 +1,63 @@
+/* Responsive styles */
+@media (max-width: 992px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 36px;
+    }
+    
+    .search-fields {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .search-btn {
+        width: 100%;
+    }
+    
+    .experience-content {
+        flex-direction: column;
+        gap: 50px;
+    }
+    
+    .cafinder-logo {
+        width: 250px;
+        height: 250px;
+    }
+}
+
+@media (max-width: 768px) {
+    .hero {
+        height: 400px;
+    }
+    
+    .stat-item {
+        min-width: 140px;
+        flex: auto;
+        width: 45%;
+    }
+}
+
+@media (max-width: 576px) {
+    .hero h1 {
+        font-size: 28px;
+    }
+    
+    .hero p {
+        font-size: 16px;
+    }
+    
+    .search-tabs {
+        flex-wrap: wrap;
+    }
+    
+    .cafe-card {
+        min-width: 250px;
+    }
+    
+    .stat-item {
+        width: 100%;
+    }
+}

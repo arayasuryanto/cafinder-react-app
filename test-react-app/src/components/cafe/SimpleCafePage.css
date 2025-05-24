@@ -1,0 +1,656 @@
+/* Simple Cafe Page Styles */
+.simple-cafe-page {
+  padding: 20px 0 60px;
+  background-color: #fff;
+}
+
+/* Breadcrumb navigation */
+.breadcrumb {
+  padding: 15px 0;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.breadcrumb a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.breadcrumb a:hover {
+  color: #F05438;
+}
+
+.breadcrumb span {
+  margin: 0 8px;
+}
+
+/* Main content layout */
+.cafe-content-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 350px;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+/* Main image section */
+.cafe-main-image {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 350px;
+}
+
+.cafe-main-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.view-all-photos-btn {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  border-radius: 8px;
+  padding: 8px 15px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.view-all-photos-btn:hover {
+  background: white;
+  transform: translateY(-2px);
+}
+
+/* Details panel */
+.cafe-details-panel {
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.cafe-header-simple h1 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: #333;
+}
+
+.cafe-rating-simple {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.stars-container {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  color: #E0E0E0;
+  font-size: 16px;
+}
+
+.star.filled {
+  color: #FFC107;
+}
+
+.star.half-filled {
+  position: relative;
+  color: #E0E0E0;
+}
+
+.star.half-filled::before {
+  content: "★";
+  position: absolute;
+  color: #FFC107;
+  width: 50%;
+  overflow: hidden;
+}
+
+.rating-value {
+  font-weight: 700;
+  font-size: 16px;
+  color: #333;
+}
+
+.reviews-count {
+  color: #666;
+  font-size: 14px;
+}
+
+/* Cafe Hours */
+.cafe-hours {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 20px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cafe-hours svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.hours-info {
+  flex-grow: 1;
+}
+
+.toggle-hours {
+  background: none;
+  border: none;
+  color: #F05438;
+  font-size: 13px;
+  padding: 0;
+  margin-left: 10px;
+  cursor: pointer;
+  font-weight: 500;
+}
+
+.toggle-hours:hover {
+  text-decoration: underline;
+}
+
+.all-hours {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hours-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: #333;
+}
+
+.day {
+  font-weight: 500;
+}
+
+.time {
+  color: #666;
+}
+
+/* Cafe Phone */
+.cafe-phone {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cafe-phone svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+.cafe-phone a {
+  color: #666;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.cafe-phone a:hover {
+  color: #F05438;
+}
+
+.cafe-address {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
+  color: #666;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.cafe-address svg {
+  flex-shrink: 0;
+  margin-top: 3px;
+}
+
+/* Action buttons */
+.action-buttons-simple {
+  display: flex;
+  gap: 10px;
+}
+
+.directions-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #F05438;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.directions-btn:hover {
+  background-color: #d84b30;
+  transform: translateY(-2px);
+}
+
+.menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #fff;
+  color: #333;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.menu-btn:hover {
+  background-color: #f9f9f9;
+  transform: translateY(-2px);
+}
+
+/* Cafe Content Section Layout */
+.cafe-content-section {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.content-main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+/* About Cafe Section */
+.about-cafe-section {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #F05438;
+  border-radius: 3px;
+}
+
+.about-text {
+  margin-bottom: 20px;
+  line-height: 1.6;
+  color: #666;
+}
+
+.show-more-btn {
+  background: none;
+  border: none;
+  color: #F05438;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 0;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+}
+
+.show-more-btn:hover {
+  text-decoration: underline;
+}
+
+/* Facilities Section */
+.facilities-section {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.facilities-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.facility-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.facility-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: rgba(240, 84, 56, 0.1);
+  border-radius: 8px;
+  color: #F05438;
+  transition: all 0.3s ease;
+}
+
+.facility-item:hover .facility-icon {
+  transform: scale(1.05);
+  background-color: rgba(240, 84, 56, 0.15);
+}
+
+.facility-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.facility-name {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Map Section */
+.map-section {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.map-placeholder {
+  height: 300px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border: 1px dashed #ddd;
+}
+
+.map-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.coordinates {
+  display: block;
+  font-size: 13px;
+  color: #999;
+  margin-top: 5px;
+}
+
+/* RSVP Card */
+.rsvp-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 20px;
+  height: fit-content;
+}
+
+.rsvp-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.rsvp-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  justify-content: center;
+}
+
+.rsvp-field {
+  margin-bottom: 15px;
+}
+
+.rsvp-label {
+  display: block;
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.rsvp-input {
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 15px;
+  color: #333;
+  background-color: #f9f9f9;
+}
+
+.rsvp-price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+}
+
+.price-label {
+  font-size: 15px;
+  color: #333;
+  font-weight: 600;
+}
+
+.price-value {
+  font-size: 18px;
+  color: #F05438;
+  font-weight: 700;
+}
+
+.rsvp-button {
+  width: 100%;
+  padding: 12px;
+  background-color: #F05438;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-bottom: 10px;
+}
+
+.rsvp-button:hover {
+  background-color: #e23e21;
+  transform: translateY(-2px);
+}
+
+.rsvp-notes {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
+}
+
+/* Reviews Section - TripAdvisor Style */
+.reviews-section {
+  padding: 40px 0;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.reviews-container {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 30px;
+}
+
+/* Make sure the original review styles don't interfere with the new ones */
+.reviews-container.tripadvisor-style .review-card {
+  display: none; /* Hide original cards when tripadvisor style is active */
+}
+
+/* More Reviews Button */
+.more-reviews-container {
+  margin: 30px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.more-reviews-btn {
+  background-color: white;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 10px 25px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.more-reviews-btn:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* No reviews section */
+.no-reviews-section {
+  padding: 40px 0;
+  text-align: center;
+  color: #666;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.no-reviews-section h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+/* Responsive for cafe content section */
+@media (max-width: 992px) {
+  .cafe-content-section {
+    grid-template-columns: 1fr;
+  }
+  
+  .facilities-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .rsvp-card {
+    position: static;
+    order: -1;
+    margin-bottom: 30px;
+  }
+  
+  .review-header {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .review-rating {
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 576px) {
+  .facilities-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Similar cafes section */
+.similar-cafes-section {
+  padding: 40px 0;
+}
+
+.similar-cafes-section h2 {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.similar-cafes-placeholder {
+  padding: 60px 0;
+  text-align: center;
+  background-color: #FFF5F3;
+  border-radius: 12px;
+  color: #666;
+}
+
+/* Responsive design */
+@media (max-width: 992px) {
+  .cafe-content-wrapper {
+    grid-template-columns: 1fr;
+  }
+  
+  .cafe-main-image {
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .cafe-main-image {
+    height: 250px;
+  }
+}
+
+@media (max-width: 576px) {
+  .cafe-main-image {
+    height: 200px;
+  }
+  
+  .cafe-header-simple h1 {
+    font-size: 24px;
+  }
+}

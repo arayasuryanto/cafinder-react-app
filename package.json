@@ -1,0 +1,26 @@
+{
+  "name": "cafinder-project",
+  "version": "1.0.0",
+  "description": "Cafinder - Find Your Perfect Cafe",
+  "main": "run-generator.js",
+  "scripts": {
+    "generate-cafes": "node run-generator.js",
+    "start": "node server.js",
+    "dev": "npx lite-server",
+    "build": "npm run generate-cafes"
+  },
+  "keywords": [
+    "cafe",
+    "finder",
+    "surabaya"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  }
+}

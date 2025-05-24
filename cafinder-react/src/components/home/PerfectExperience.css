@@ -1,0 +1,104 @@
+.perfect-experience {
+    padding: 80px 0;
+    background-color: #f9f9f9;
+}
+
+.experience-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.experience-text {
+    flex: 1;
+}
+
+.experience-text h2 {
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: var(--dark);
+}
+
+.experience-text p {
+    font-size: 1rem;
+    color: var(--gray);
+    margin-bottom: 30px;
+    line-height: 1.6;
+}
+
+.feature-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 30px 0;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.feature-icon {
+    width: 24px;
+    height: 24px;
+    background-color: rgba(240, 84, 56, 0.1);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.feature-icon svg {
+    width: 14px;
+    height: 14px;
+    color: var(--primary);
+}
+
+.feature-text {
+    font-size: 16px;
+    color: var(--dark);
+}
+
+.experience-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: background-color 0.3s;
+}
+
+.experience-btn:hover {
+    background-color: var(--primary-lighter);
+}
+
+.cafinder-logo {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cafinder-logo svg {
+    width: 300px;
+    height: 300px;
+}
+
+@media (max-width: 992px) {
+    .experience-content {
+        flex-direction: column;
+    }
+    
+    .experience-text, .cafinder-logo {
+        width: 100%;
+    }
+    
+    .cafinder-logo svg {
+        width: 200px;
+        height: 200px;
+    }
+}

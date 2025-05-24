@@ -1,0 +1,130 @@
+/* Consolidated CSS file for Cafinder Project */
+
+/* Import all CSS files */
+@import 'style.css';
+@import 'style-part2.css';
+@import 'style-part3.css';
+@import 'style-part4.css';
+@import 'style-part5.css';
+@import 'cafemap.css';
+@import 'additional-map-styles.css';
+@import 'cafe-detail.css';
+@import 'catalog.css';
+
+/* Additional responsive styles */
+@media screen and (max-width: 768px) {
+  /* Mobile styles */
+  .container {
+    padding: 0 15px;
+  }
+  
+  header .nav-links {
+    display: none;
+  }
+  
+  .header-content {
+    flex-direction: column;
+  }
+  
+  .cafe-cards {
+    flex-direction: column;
+  }
+  
+  .cafe-card {
+    width: 100%;
+    margin-bottom: 15px;
+  }
+  
+  .search-form {
+    flex-direction: column;
+  }
+  
+  .map-filters {
+    flex-wrap: wrap;
+  }
+  
+  .filter-btn {
+    margin-bottom: 10px;
+  }
+  
+  .cafe-main-info {
+    flex-direction: column;
+  }
+  
+  .gallery-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  
+  .footer-content {
+    flex-direction: column;
+  }
+  
+  .footer-col {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  /* Mobile menu button */
+  .mobile-menu-btn {
+    display: block;
+  }
+}
+
+/* Standardizing animations */
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.animate-fade-up {
+  animation: fadeUp 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fix for map controls position */
+.mapboxgl-ctrl-top-right {
+  top: 70px !important;
+}
+
+/* Improvements for cafe cards */
+.cafe-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.cafe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Standardize button styles */
+button.primary-btn,
+button.secondary-btn,
+.search-btn,
+.filter-btn {
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
