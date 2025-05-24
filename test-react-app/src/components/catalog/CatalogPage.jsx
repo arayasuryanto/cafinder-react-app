@@ -2,87 +2,51 @@ import React, { useState, useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import RegionNavigation from './RegionNavigation';
 import CafeList from './CafeList';
-import { fetchCleanedCafesData } from '../../data/cleanedCafesData';
+import { fetchAllCafesData } from '../../data/cleanedCafesData';
 import { filterCafesByRegion } from '../../utils/regionFilter';
 
-const CatalogPage = ({ cafes = [], onViewCafe, isLoading: initialLoading = false }) => {
-  // State for loading and pagination
-  const [isLoading, setIsLoading] = useState(initialLoading);
-  const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
-  const [allCafes, setAllCafes] = useState(cafes);
-  
-  // Load more cafes when page changes
-  useEffect(() => {
-    const loadMoreCafes = async () => {
-      if (page === 1) return; // Skip for initial load (already handled in App.js)
-      
-      setIsLoading(true);
-      try {
-        // Load next batch of cafes (30 per page)
-        const moreCafes = await fetchCleanedCafesData(30, (page - 1) * 30);
-        
-        if (moreCafes.length === 0) {
-          setHasMore(false);
-        } else {
-          // Add new cafes to existing ones
-          setAllCafes(prev => [...prev, ...moreCafes]);
-        }
-      } catch (error) {
-        console.error('Error loading more cafes:', error);
-        setHasMore(false);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    
-    loadMoreCafes();
-  }, [page]);
-  
-  // Update allCafes when cafes prop changes (first load)
-  useEffect(() => {
-    setAllCafes(cafes);
-  }, [cafes]);
-  // State for currently selected region and filtered cafes
+const CatalogPage = ({ onViewCafe }) => {
+  // State management
+  const [isLoading, setIsLoading] = useState(true);
+  const [allCafes, setAllCafes] = useState([]); // Complete dataset
   const [selectedRegion, setSelectedRegion] = useState("Semua");
-  const [filteredCafes, setFilteredCafes] = useState(allCafes);
+  const [searchTerm, setSearchTerm] = useState("");
+  
+  // Filtered and displayed data
+  const [filteredCafes, setFilteredCafes] = useState([]); // All cafes matching current filter + search
+  const [displayedCafes, setDisplayedCafes] = useState([]); // Currently shown cafes (paginated)
+  const [displayLimit, setDisplayLimit] = useState(30); // How many to show
   
   // Refs for animations
   const headerRef = useRef(null);
   const subheaderRef = useRef(null);
   const searchRef = useRef(null);
   
-  // Update filtered cafes when all cafes change
+  // Load all cafe data once on component mount
   useEffect(() => {
-    setFilteredCafes(allCafes);
-  }, [allCafes]);
+    const loadAllCafes = async () => {
+      setIsLoading(true);
+      try {
+        const data = await fetchAllCafesData();
+        setAllCafes(data);
+      } catch (error) {
+        console.error('Error loading cafes:', error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    
+    loadAllCafes();
+  }, []);
   
-  // Function to filter cafes by region using the new filtering system
-  const handleFilterByRegion = (region) => {
-    const filtered = filterCafesByRegion(allCafes, region);
-    setFilteredCafes(filtered);
-  };
-  
-  // Handle region change from navigation
-  const handleRegionChange = (region) => {
-    setSelectedRegion(region);
-    handleFilterByRegion(region);
-  };
-  
-  // State for search functionality
-  const [searchTerm, setSearchTerm] = useState("");
-  
-  // Handle search input change
-  const handleSearchChange = (e) => {
-    setSearchTerm(e.target.value);
-  };
-  
-  // Apply search filter on top of region filter
+  // Filter cafes when region or search changes
   useEffect(() => {
+    if (allCafes.length === 0) return;
+    
     // First apply region filter
     let filtered = filterCafesByRegion(allCafes, selectedRegion);
     
-    // If there's a search term, filter by name or tags
+    // Then apply search filter if there's a search term
     if (searchTerm.trim() !== "") {
       const term = searchTerm.toLowerCase();
       filtered = filtered.filter(cafe => 
@@ -93,7 +57,31 @@ const CatalogPage = ({ cafes = [], onViewCafe, isLoading: initialLoading = false
     }
     
     setFilteredCafes(filtered);
-  }, [selectedRegion, searchTerm, allCafes]);
+    setDisplayLimit(30); // Reset to show first 30 when filter changes
+  }, [allCafes, selectedRegion, searchTerm]);
+  
+  // Update displayed cafes when filtered cafes or display limit changes
+  useEffect(() => {
+    setDisplayedCafes(filteredCafes.slice(0, displayLimit));
+  }, [filteredCafes, displayLimit]);
+  
+  // Handle region change from navigation
+  const handleRegionChange = (region) => {
+    setSelectedRegion(region);
+  };
+  
+  // Handle search input change
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+  
+  // Handle load more cafes
+  const handleLoadMore = () => {
+    setDisplayLimit(prev => prev + 30);
+  };
+  
+  // Check if there are more cafes to load
+  const hasMore = filteredCafes.length > displayLimit;
   
   // Animation for page elements on load
   useEffect(() => {
@@ -158,30 +146,40 @@ const CatalogPage = ({ cafes = [], onViewCafe, isLoading: initialLoading = false
           cafes={allCafes}
         />
         
-        <CafeList 
-          cafes={filteredCafes} 
-          region={selectedRegion}
-          onViewCafe={onViewCafe}
-        />
-        
-        {/* Load More Button */}
-        {hasMore && (
-          <div className="load-more-container">
-            <button 
-              className="load-more-btn"
-              onClick={() => setPage(p => p + 1)}
-              disabled={isLoading}
-            >
-              {isLoading ? (
-                <>
-                  <div className="small-loader"></div>
-                  Loading More...
-                </>
-              ) : (
-                'Load More Cafes'
-              )}
-            </button>
+        {isLoading ? (
+          <div className="loading-container">
+            <div className="loader"></div>
+            <p>Loading cafes...</p>
           </div>
+        ) : (
+          <>
+            <CafeList 
+              cafes={displayedCafes} 
+              region={selectedRegion}
+              onViewCafe={onViewCafe}
+            />
+            
+            {/* Load More Button */}
+            {hasMore && (
+              <div className="load-more-container">
+                <button 
+                  className="load-more-btn"
+                  onClick={handleLoadMore}
+                >
+                  Load More Cafes
+                </button>
+              </div>
+            )}
+            
+            {/* Results info */}
+            <div className="results-info">
+              <p>
+                Showing {displayedCafes.length} of {filteredCafes.length} cafes
+                {searchTerm && ` for "${searchTerm}"`}
+                {selectedRegion !== "Semua" && ` in ${selectedRegion}`}
+              </p>
+            </div>
+          </>
         )}
       </div>
     </div>

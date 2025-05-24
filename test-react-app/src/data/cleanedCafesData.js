@@ -7,7 +7,26 @@
 export const cleanedCafesJsonPath = '/cleaned_surabaya_cafes.json';
 
 /**
- * Function to fetch cafes data from the JSON file
+ * Function to fetch ALL cafes data from the JSON file
+ * @returns {Promise<Array>} - Promise that resolves to array of all cafe data
+ */
+export const fetchAllCafesData = async () => {
+  try {
+    const response = await fetch(cleanedCafesJsonPath);
+    if (!response.ok) {
+      throw new Error('Failed to fetch cafes data');
+    }
+    
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching all cafes data:', error);
+    return [];
+  }
+};
+
+/**
+ * Function to fetch cafes data from the JSON file with pagination
  * @param {number} limit - Optional limit of cafes to fetch (default: 20)
  * @param {number} offset - Optional offset for pagination (default: 0)
  * @returns {Promise<Array>} - Promise that resolves to array of cafe data
