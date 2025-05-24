@@ -3,25 +3,37 @@ import React, { useState, useEffect } from 'react';
 const OpeningHours = ({ hours, currentDay }) => {
   const [isOpen, setIsOpen] = useState(false);
   
-  useEffect(() => {
-    // Check if cafe is currently open
-    const now = new Date();
-    const currentHour = now.getHours();
-    const currentMinute = now.getMinutes();
-    const currentTime = currentHour * 60 + currentMinute;
-    
-    const todayHours = hours[currentDay];
-    if (!todayHours || todayHours.open === 'Closed') {
-      setIsOpen(false);
-    } else {
-      const [openHour, openMinute] = todayHours.open.split(':').map(Number);
-      const [closeHour, closeMinute] = todayHours.close.split(':').map(Number);
-      const openTime = openHour * 60 + openMinute;
-      const closeTime = closeHour * 60 + closeMinute;
-      
-      setIsOpen(currentTime >= openTime && currentTime < closeTime);
+  // Convert our hours array to display format
+  const formatHours = () => {
+    if (!hours || hours.length === 0) {
+      return null;
     }
-  }, [hours, currentDay]);
+    
+    const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+    const formattedHours = {};
+    
+    daysOfWeek.forEach(day => {
+      const dayData = hours.find(h => h.day === day);
+      if (dayData && dayData.hours && dayData.hours.hours) {
+        formattedHours[day] = dayData.hours.hours;
+      } else {
+        formattedHours[day] = 'Closed';
+      }
+    });
+    
+    return formattedHours;
+  };
+  
+  const formattedHours = formatHours();
+  
+  useEffect(() => {
+    // Simple check - just see if we have hours for today
+    if (formattedHours && formattedHours[currentDay] && formattedHours[currentDay] !== 'Closed') {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+  }, [formattedHours, currentDay]);
   
   return (
     <div className="hours-section">
@@ -36,16 +48,22 @@ const OpeningHours = ({ hours, currentDay }) => {
       </div>
       
       <div className="hours-list">
-        {Object.entries(hours).map(([day, time]) => (
-          <div key={day} className="hours-item">
-            <span className={`day-name ${day === currentDay ? 'current' : ''}`}>
-              {day}
-            </span>
-            <span className={`opening-hours ${time.open === 'Closed' ? 'closed' : ''}`}>
-              {time.open === 'Closed' ? 'Closed' : `${time.open} - ${time.close}`}
-            </span>
+        {formattedHours ? (
+          Object.entries(formattedHours).map(([day, time]) => (
+            <div key={day} className="hours-item">
+              <span className={`day-name ${day === currentDay ? 'current' : ''}`}>
+                {day}
+              </span>
+              <span className={`opening-hours ${time === 'Closed' ? 'closed' : ''}`}>
+                {time}
+              </span>
+            </div>
+          ))
+        ) : (
+          <div className="no-hours">
+            <p>Opening hours not available</p>
           </div>
-        ))}
+        )}
       </div>
     </div>
   );

@@ -271,15 +271,13 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
             </div>
             
             <div className="cafe-sidebar">
-              {/* Opening Hours - only show if opening hours data exists */}
-              {cafeData.openingHours && (
-                <div className="animate-on-scroll" style={{ opacity: 0, transform: 'translateY(30px)' }}>
-                  <OpeningHours 
-                    hours={cafeData.openingHours} 
-                    currentDay={getCurrentDay()}
-                  />
-                </div>
-              )}
+              {/* Opening Hours - always show, component handles no data case */}
+              <div className="animate-on-scroll" style={{ opacity: 0, transform: 'translateY(30px)' }}>
+                <OpeningHours 
+                  hours={cafeData.openingHours} 
+                  currentDay={getCurrentDay()}
+                />
+              </div>
               
               {/* Contact Information - show if any contact info exists */}
               {(cafeData.phone || cafeData.website) && (

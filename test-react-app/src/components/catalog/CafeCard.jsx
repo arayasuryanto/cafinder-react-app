@@ -66,84 +66,6 @@ const CafeCard = ({ cafe, onViewCafe }) => {
     return null;
   };
 
-  // Generate badges based on cafe data
-  const generateBadges = () => {
-    const badges = [];
-    
-    // Badge 1: Rating based
-    if (cafe.rating >= 4.5) {
-      badges.push({ text: "Highly Rated", color: "#10B981", icon: "star" });
-    } else if (cafe.rating >= 4.0) {
-      badges.push({ text: "Well Rated", color: "#F59E0B", icon: "star" });
-    }
-    
-    // Badge 2: Based on additional info features
-    if (cafe.additionalInfo) {
-      // WiFi badge
-      const hasWifi = cafe.additionalInfo.Amenities?.some(amenity => 
-        Object.keys(amenity)[0].toLowerCase().includes('wi-fi') || 
-        Object.keys(amenity)[0].toLowerCase().includes('wifi')
-      );
-      if (hasWifi && badges.length < 4) {
-        badges.push({ text: "Free WiFi", color: "#3B82F6", icon: "wifi" });
-      }
-      
-      // Coffee quality badge
-      const greatCoffee = cafe.additionalInfo.Highlights?.some(highlight => 
-        Object.keys(highlight)[0].toLowerCase().includes('coffee')
-      );
-      if (greatCoffee && badges.length < 4) {
-        badges.push({ text: "Great Coffee", color: "#8B5CF6", icon: "coffee" });
-      }
-      
-      // Work friendly badge
-      const workFriendly = cafe.additionalInfo["Popular for"]?.some(popular => 
-        Object.keys(popular)[0].toLowerCase().includes('laptop') ||
-        Object.keys(popular)[0].toLowerCase().includes('working')
-      );
-      if (workFriendly && badges.length < 4) {
-        badges.push({ text: "Work Friendly", color: "#EF4444", icon: "laptop" });
-      }
-      
-      // Delivery badge
-      const hasDelivery = cafe.additionalInfo["Service options"]?.some(service => 
-        Object.keys(service)[0].toLowerCase().includes('delivery')
-      );
-      if (hasDelivery && badges.length < 4) {
-        badges.push({ text: "Delivery", color: "#06B6D4", icon: "truck" });
-      }
-      
-      // Rooftop badge
-      const hasRooftop = cafe.additionalInfo.Highlights?.some(highlight => 
-        Object.keys(highlight)[0].toLowerCase().includes('rooftop')
-      );
-      if (hasRooftop && badges.length < 4) {
-        badges.push({ text: "Rooftop", color: "#F97316", icon: "building" });
-      }
-      
-      // Live music badge
-      const hasLiveMusic = cafe.additionalInfo.Highlights?.some(highlight => 
-        Object.keys(highlight)[0].toLowerCase().includes('live music')
-      );
-      if (hasLiveMusic && badges.length < 4) {
-        badges.push({ text: "Live Music", color: "#EC4899", icon: "music" });
-      }
-    }
-    
-    // Fill remaining slots if needed (minimum 2)
-    if (badges.length < 2) {
-      if (cafe.categories && cafe.categories.includes("Cafe")) {
-        badges.push({ text: "Cafe", color: "#6B7280", icon: "cup" });
-      }
-      if (badges.length < 2) {
-        badges.push({ text: "Popular", color: "#6B7280", icon: "heart" });
-      }
-    }
-    
-    return badges.slice(0, 4); // Maximum 4 badges
-  };
-
-  const badges = generateBadges();
   
   return (
     <div className="cafe-catalog-card" ref={cardRef}>
@@ -208,18 +130,6 @@ const CafeCard = ({ cafe, onViewCafe }) => {
           )}
         </div>
 
-        {/* Badges */}
-        <div className="cafe-badges">
-          {badges.map((badge, index) => (
-            <span 
-              key={index} 
-              className="cafe-badge" 
-              style={{ backgroundColor: badge.color }}
-            >
-              {badge.text}
-            </span>
-          ))}
-        </div>
 
         {/* Fixed height container for description and button */}
         <div className="cafe-content-container">
