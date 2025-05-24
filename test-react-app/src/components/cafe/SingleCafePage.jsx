@@ -10,7 +10,8 @@ import CafeFeatures from './CafeFeatures';
 import AboutSection from './AboutSection';
 import OpeningHours from './OpeningHours';
 import LocationSection from './LocationSection';
-import ReviewsSection from './ReviewsSection';
+import GoogleReviewsSection from './GoogleReviewsSection';
+import CafinderReviewsSection from './CafinderReviewsSection';
 
 // Import styles
 import './SingleCafePage.css';
@@ -157,8 +158,8 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
                           <span key={i} className={i < Math.floor(cafeData.rating || 0) ? 'filled' : ''}>★</span>
                         ))}
                       </div>
-                      <span className="rating-number">{cafeData.rating ? cafeData.rating.toFixed(1) : 'N/A'}</span>
-                      <span className="review-count">({cafeData.totalReviews || 0} reviews)</span>
+                      <span className="rating-number">{cafeData.rating ? parseFloat(cafeData.rating).toFixed(1) : 'N/A'}</span>
+                      <span className="review-count">({cafeData.reviewCount || cafeData.totalReviews || 0} reviews)</span>
                     </div>
                   </div>
                   <button className="save-btn">
@@ -177,41 +178,51 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
                     <span>{cafeData.fullAddress || cafeData.address}</span>
                   </div>
                   
-                  {cafeData.openingHours && (
+                  {cafeData.openingHours && cafeData.openingHours.length > 0 && (
                     <div className="detail-item">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M12 2C6.5 2 2 6.5 2 12C2 17.5 6.5 22 12 22C17.5 22 22 17.5 22 12C22 6.5 17.5 2 12 2ZM12 20C7.59 20 4 16.41 4 12C4 7.59 7.59 4 12 4C16.41 4 20 7.59 20 12C20 16.41 16.41 20 12 20ZM12.5 7H11V13L16.2 16.2L17 14.9L12.5 12.2V7Z" fill="var(--primary)"/>
                       </svg>
                       <span>
-                        {getCurrentDay()} - {
-                          cafeData.openingHours[getCurrentDay()] ? 
-                          `${cafeData.openingHours[getCurrentDay()].open} - ${cafeData.openingHours[getCurrentDay()].close}` :
-                          'Hours not available'
-                        }
+                        {(() => {
+                          const todayHours = cafeData.openingHours.find(day => day.day === getCurrentDay());
+                          return todayHours && todayHours.hours && todayHours.hours.hours ? 
+                            `${getCurrentDay()} - ${todayHours.hours.hours}` :
+                            'Hours not available';
+                        })()}
                       </span>
                       <button className="toggle-hours">Show all hours</button>
                     </div>
                   )}
                   
-                  {cafeData.contactInfo && cafeData.contactInfo.phone && (
+                  {cafeData.phone && (
                     <div className="detail-item">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="var(--primary)"/>
                       </svg>
-                      <span>{cafeData.contactInfo.phone}</span>
+                      <span>{cafeData.phone}</span>
                     </div>
                   )}
                   
-                  {cafeData.contactInfo && cafeData.contactInfo.website && (
+                  {cafeData.website && (
                     <div className="detail-item">
                       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M11.99 2C6.47 2 2 6.48 2 12C2 17.52 6.47 22 11.99 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 11.99 2ZM18.92 8H15.97C15.65 6.75 15.19 5.55 14.59 4.44C16.43 5.07 17.96 6.35 18.92 8ZM12 4.04C12.83 5.24 13.48 6.57 13.91 8H10.09C10.52 6.57 11.17 5.24 12 4.04ZM4.26 14C4.1 13.36 4 12.69 4 12C4 11.31 4.1 10.64 4.26 10H7.64C7.56 10.66 7.5 11.32 7.5 12C7.5 12.68 7.56 13.34 7.64 14H4.26ZM5.08 16H8.03C8.35 17.25 8.81 18.45 9.41 19.56C7.57 18.93 6.04 17.66 5.08 16ZM8.03 8H5.08C6.04 6.34 7.57 5.07 9.41 4.44C8.81 5.55 8.35 6.75 8.03 8ZM12 19.96C11.17 18.76 10.52 17.43 10.09 16H13.91C13.48 17.43 12.83 18.76 12 19.96ZM14.34 14H9.66C9.57 13.34 9.5 12.68 9.5 12C9.5 11.32 9.57 10.65 9.66 10H14.34C14.43 10.65 14.5 11.32 14.5 12C14.5 12.68 14.43 13.34 14.34 14ZM14.59 19.56C15.19 18.45 15.65 17.25 15.97 16H18.92C17.96 17.65 16.43 18.93 14.59 19.56ZM16.36 14C16.44 13.34 16.5 12.68 16.5 12C16.5 11.32 16.44 10.66 16.36 10H19.74C19.9 10.64 20 11.31 20 12C20 12.69 19.9 13.36 19.74 14H16.36Z" fill="var(--primary)"/>
                       </svg>
                       <span>
-                        <a href={cafeData.contactInfo.website} target="_blank" rel="noopener noreferrer">
-                          {cafeData.contactInfo.website.replace(/^https?:\/\//, '')}
+                        <a href={cafeData.website} target="_blank" rel="noopener noreferrer">
+                          {cafeData.website.includes('instagram.com') ? 'Instagram Page' : 'Website'}
                         </a>
                       </span>
+                    </div>
+                  )}
+                  
+                  {!cafeData.phone && !cafeData.website && (
+                    <div className="detail-item">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M12 2C17.5 2 22 6.5 22 12C22 17.5 17.5 22 12 22C6.5 22 2 17.5 2 12C2 6.5 6.5 2 12 2ZM12 7C11.45 7 11 7.45 11 8V12C11 12.55 11.45 13 12 13C12.55 13 13 12.55 13 12V8C13 7.45 12.55 7 12 7ZM13 17V15H11V17H13Z" fill="#6C757D"/>
+                      </svg>
+                      <span>Contact information not available</span>
                     </div>
                   )}
                 </div>
@@ -248,13 +259,14 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
                 />
               </div>
               
-              {/* Reviews Section */}
+              {/* Google Reviews Section */}
               <div className="animate-on-scroll" style={{ opacity: 0, transform: 'translateY(30px)' }}>
-                <ReviewsSection 
-                  ratings={cafeData.ratings}
-                  reviews={cafeData.reviews}
-                  totalReviews={cafeData.totalReviews}
-                />
+                <GoogleReviewsSection cafeData={cafeData} />
+              </div>
+              
+              {/* Cafinder User Reviews Section */}
+              <div className="animate-on-scroll" style={{ opacity: 0, transform: 'translateY(30px)' }}>
+                <CafinderReviewsSection cafeId={cafeData.id} />
               </div>
             </div>
             
@@ -269,8 +281,8 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
                 </div>
               )}
               
-              {/* Contact Information - only show if contact info exists */}
-              {cafeData.contactInfo && (
+              {/* Contact Information - show if any contact info exists */}
+              {(cafeData.phone || cafeData.website) && (
                 <div className="animate-on-scroll" style={{ opacity: 0, transform: 'translateY(30px)' }}>
                   <div className="contact-section">
                     <h3 className="contact-title">
@@ -280,7 +292,7 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
                       Contact
                     </h3>
                     <div className="contact-list">
-                      {cafeData.contactInfo.phone && (
+                      {cafeData.phone && (
                         <div className="contact-item">
                           <div className="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -288,25 +300,12 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
                             </svg>
                           </div>
                           <div className="contact-text">
-                            <a href={`tel:${cafeData.contactInfo.phone}`}>{cafeData.contactInfo.phone}</a>
+                            <a href={`tel:${cafeData.phone}`}>{cafeData.phone}</a>
                           </div>
                         </div>
                       )}
                       
-                      {cafeData.contactInfo.email && (
-                        <div className="contact-item">
-                          <div className="contact-icon">
-                            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                              <path d="M20 4H4C2.9 4 2.01 4.9 2.01 6L2 18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6C22 4.9 21.1 4 20 4ZM20 8L12 13L4 8V6L12 11L20 6V8Z" fill="currentColor"/>
-                            </svg>
-                          </div>
-                          <div className="contact-text">
-                            <a href={`mailto:${cafeData.contactInfo.email}`}>{cafeData.contactInfo.email}</a>
-                          </div>
-                        </div>
-                      )}
-                      
-                      {cafeData.contactInfo.website && (
+                      {cafeData.website && (
                         <div className="contact-item">
                           <div className="contact-icon">
                             <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -314,19 +313,19 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
                             </svg>
                           </div>
                           <div className="contact-text">
-                            <a href={cafeData.contactInfo.website} target="_blank" rel="noopener noreferrer">
-                              {cafeData.contactInfo.website.replace(/^https?:\/\//, '')}
+                            <a href={cafeData.website} target="_blank" rel="noopener noreferrer">
+                              {cafeData.website.includes('instagram.com') ? 'Instagram Page' : 'Website'}
                             </a>
                           </div>
                         </div>
                       )}
                     </div>
                     
-                    {/* Social Media */}
-                    {cafeData.contactInfo.socialMedia && (cafeData.contactInfo.socialMedia.instagram || cafeData.contactInfo.socialMedia.facebook) && (
+                    {/* Social Media - if website contains instagram/facebook links */}
+                    {cafeData.website && (cafeData.website.includes('instagram.com') || cafeData.website.includes('facebook.com')) && (
                       <div className="social-media">
-                        {cafeData.contactInfo.socialMedia.instagram && (
-                          <a href={`https://instagram.com/${cafeData.contactInfo.socialMedia.instagram.replace('@', '')}`} 
+                        {cafeData.website.includes('instagram.com') && (
+                          <a href={cafeData.website} 
                              className="social-icon" 
                              target="_blank" 
                              rel="noopener noreferrer">
@@ -336,8 +335,8 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
                           </a>
                         )}
                         
-                        {cafeData.contactInfo.socialMedia.facebook && (
-                          <a href={`https://facebook.com/${cafeData.contactInfo.socialMedia.facebook.replace(/\s+/g, '')}`}
+                        {cafeData.website.includes('facebook.com') && (
+                          <a href={cafeData.website}
                              className="social-icon"
                              target="_blank"
                              rel="noopener noreferrer">
