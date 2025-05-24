@@ -14,8 +14,6 @@ export const adaptCafeDataForSinglePage = (cafeData) => {
   // Extract features from additionalInfo
   const features = extractFeatures(cafeData.additionalInfo);
   
-  // Process opening hours into a more structured format
-  const openingHoursObject = processOpeningHours(cafeData.openingHours);
   
   // Generate placeholder reviews if none are provided
   const reviews = generatePlaceholderReviews(cafeData);
@@ -32,13 +30,15 @@ export const adaptCafeDataForSinglePage = (cafeData) => {
       lat: 0, // These would need to be parsed from Google Maps data or provided
       lng: 0
     },
+    phone: cafeData.phone,
+    website: cafeData.website,
     contactInfo: {
-      phone: cafeData.phone || "Not available",
+      phone: cafeData.phone,
       email: null,
       website: cafeData.website,
       socialMedia: {
-        instagram: null,
-        facebook: null
+        instagram: cafeData.website && cafeData.website.includes('instagram.com') ? cafeData.website : null,
+        facebook: cafeData.website && cafeData.website.includes('facebook.com') ? cafeData.website : null
       }
     },
     rating: parseFloat(cafeData.rating) || 0,
@@ -49,7 +49,7 @@ export const adaptCafeDataForSinglePage = (cafeData) => {
     description: generateDescription(cafeData),
     aboutDetails: generateAboutDetails(cafeData),
     features: features,
-    openingHours: openingHoursObject,
+    openingHours: cafeData.openingHours, // Use original data directly
     ratings: {
       overall: parseFloat(cafeData.rating) || 0,
       categories: {
@@ -105,32 +105,7 @@ const extractFeatures = (additionalInfo) => {
   return [...new Set(features)]; // Remove duplicates
 };
 
-/**
- * Process opening hours into a structured array (same format as the JSON)
- */
-const processOpeningHours = (openingHoursArray) => {
-  if (!openingHoursArray || !Array.isArray(openingHoursArray)) {
-    return defaultOpeningHours();
-  }
-  
-  // Return the array as is - it's already in the right format
-  return openingHoursArray;
-};
 
-/**
- * Default opening hours if none are provided
- */
-const defaultOpeningHours = () => {
-  return [
-    { day: "Monday", hours: "08:00 to 20:00" },
-    { day: "Tuesday", hours: "08:00 to 20:00" },
-    { day: "Wednesday", hours: "08:00 to 20:00" },
-    { day: "Thursday", hours: "08:00 to 20:00" },
-    { day: "Friday", hours: "08:00 to 21:00" },
-    { day: "Saturday", hours: "09:00 to 21:00" },
-    { day: "Sunday", hours: "09:00 to 19:00" }
-  ];
-};
 
 /**
  * Generate placeholder reviews based on cafe data
