@@ -29,6 +29,9 @@ import './components/catalog/CatalogPage.css';
 import SimpleCafePage from './components/cafe/SimpleCafePage';
 import './components/cafe/SimpleCafePage.css';
 
+// Import Map components
+import CafeMapPage from './components/map/CafeMapPage';
+
 // Import sample cafe data for fallback
 import singleCafeData from './data/singleCafeData';
 
@@ -116,6 +119,9 @@ function App() {
       } else if (path === '/catalog' || path.includes('catalog')) {
         setCurrentPage('catalog');
         setSelectedCafe(null);
+      } else if (path === '/map') {
+        setCurrentPage('map');
+        setSelectedCafe(null);
       }
     };
     
@@ -144,6 +150,9 @@ function App() {
       // We handle cafe selection in the viewCafe function instead of here
     } else if (path === '/catalog' || path.includes('catalog')) {
       setCurrentPage('catalog');
+      setSelectedCafe(null);
+    } else if (path === '/map') {
+      setCurrentPage('map');
       setSelectedCafe(null);
     }
   };
@@ -233,6 +242,9 @@ function App() {
         )}
         {currentPage === 'cafe' && selectedCafe && (
           <SimpleCafePage cafeData={selectedCafe} onBackToCatalog={backToCatalog} />
+        )}
+        {currentPage === 'map' && (
+          <CafeMapPage />
         )}
       </main>
       
