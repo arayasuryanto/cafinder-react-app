@@ -462,6 +462,13 @@
   background: #e04427;
 }
 
+/* Loading state */
+.loading {
+  font-size: 18px;
+  color: #666;
+  padding: 20px;
+}
+
 /* Leaflet popup customization */
 .leaflet-popup-content-wrapper {
   border-radius: 8px;

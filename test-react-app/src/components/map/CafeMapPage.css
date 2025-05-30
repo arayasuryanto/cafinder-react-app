@@ -1,6 +1,9 @@
 .cafe-map-page {
-  height: calc(100vh - 140px); /* Adjust for header and footer */
+  height: 100%;
   position: relative;
   display: flex;
   flex-direction: column;
+  flex: 1;
+  background-color: #f5f5f5; /* Debug background */
+  min-height: 600px; /* Ensure minimum height */
 }

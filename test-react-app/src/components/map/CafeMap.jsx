@@ -68,14 +68,19 @@ const CafeMap = () => {
   const [selectedRegion, setSelectedRegion] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCafe, setSelectedCafe] = useState(null);
-  const [mapRef, setMapRef] = useState(null);
   const itemsPerPage = 30;
   const cafeListRef = useRef(null);
 
   useEffect(() => {
     fetch('/cleaned_surabaya_cafes.json')
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(data => {
+        console.log('Loaded cafes count:', data.length);
         // Add coordinates to cafes
         const cafesWithCoords = data.map(cafe => ({
           ...cafe,
@@ -95,14 +100,6 @@ const CafeMap = () => {
         setLoading(false);
       });
   }, []);
-  
-  // Reset selected cafe when page or filter changes
-  useEffect(() => {
-    // Clear selection when page or filter changes
-    if (selectedCafe && !paginatedCafes.find(c => c.id === selectedCafe.id)) {
-      setSelectedCafe(null);
-    }
-  }, [currentPage, selectedRegion, paginatedCafes, selectedCafe]);
 
   const filteredCafes = cafes.filter(cafe => {
     if (selectedRegion !== 'all' && cafe.region !== selectedRegion) {
@@ -118,6 +115,14 @@ const CafeMap = () => {
   const paginatedCafes = filteredCafes.slice(startIndex, endIndex);
 
   const regions = ['all', ...new Set(cafes.map(cafe => cafe.region))];
+  
+  // Reset selected cafe when page or filter changes
+  useEffect(() => {
+    // Clear selection when page or filter changes
+    if (selectedCafe && !paginatedCafes.find(c => c.id === selectedCafe.id)) {
+      setSelectedCafe(null);
+    }
+  }, [currentPage, selectedRegion, paginatedCafes, selectedCafe]);
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
@@ -160,9 +165,38 @@ const CafeMap = () => {
   };
 
   if (loading) {
-    return <div className="loading">Loading cafes...</div>;
+    return (
+      <div className="cafe-map-container">
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100%',
+          width: '100%'
+        }}>
+          <div className="loading">Loading cafes...</div>
+        </div>
+      </div>
+    );
   }
 
+  if (!cafes || cafes.length === 0) {
+    return (
+      <div className="cafe-map-container">
+        <div style={{ 
+          display: 'flex', 
+          justifyContent: 'center', 
+          alignItems: 'center', 
+          height: '100%',
+          width: '100%',
+          flexDirection: 'column'
+        }}>
+          <div>No cafes data available</div>
+          <div>Check console for errors</div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="cafe-map-container">
@@ -324,7 +358,6 @@ const CafeMap = () => {
           center={SURABAYA_CENTER} 
           zoom={12} 
           className="leaflet-map"
-          ref={setMapRef}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
