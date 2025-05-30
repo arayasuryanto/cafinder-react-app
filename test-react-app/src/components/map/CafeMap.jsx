@@ -37,7 +37,7 @@ const selectedCafeIcon = new L.Icon({
 const SURABAYA_CENTER = [-7.2575, 112.7521];
 
 // Component to handle map movement
-function MapController({ selectedCafe }) {
+function MapController({ selectedCafe, cafes }) {
   const map = useMap();
   
   useEffect(() => {
@@ -46,8 +46,17 @@ function MapController({ selectedCafe }) {
         animate: true,
         duration: 1
       });
+    } else if (cafes && cafes.length > 0) {
+      // Fit bounds to show all cafes on the current page
+      const bounds = L.latLngBounds(cafes.map(cafe => cafe.coordinates));
+      if (bounds.isValid()) {
+        map.fitBounds(bounds, { 
+          padding: [50, 50],
+          maxZoom: 14 
+        });
+      }
     }
-  }, [selectedCafe, map]);
+  }, [selectedCafe, cafes, map]);
   
   return null;
 }
@@ -86,6 +95,14 @@ const CafeMap = () => {
         setLoading(false);
       });
   }, []);
+  
+  // Reset selected cafe when page or filter changes
+  useEffect(() => {
+    // Clear selection when page or filter changes
+    if (!paginatedCafes.find(c => c.id === selectedCafe?.id)) {
+      setSelectedCafe(null);
+    }
+  }, [currentPage, selectedRegion]);
 
   const filteredCafes = cafes.filter(cafe => {
     if (selectedRegion !== 'all' && cafe.region !== selectedRegion) {
@@ -104,20 +121,32 @@ const CafeMap = () => {
 
   const handlePageChange = (page) => {
     setCurrentPage(page);
+    setSelectedCafe(null); // Clear selection when changing pages
   };
 
   const handleCafeClick = (cafe) => {
     setSelectedCafe(cafe);
     
-    // Scroll to the cafe in the list if it's on the current page
+    // Check if the cafe is on the current page
     const cafeIndex = paginatedCafes.findIndex(c => c.id === cafe.id);
-    if (cafeIndex !== -1 && cafeListRef.current) {
-      const cafeElements = cafeListRef.current.querySelectorAll('.cafe-card');
-      if (cafeElements[cafeIndex]) {
-        cafeElements[cafeIndex].scrollIntoView({ 
-          behavior: 'smooth', 
-          block: 'center' 
-        });
+    
+    if (cafeIndex !== -1) {
+      // Cafe is on current page, scroll to it
+      if (cafeListRef.current) {
+        const cafeElements = cafeListRef.current.querySelectorAll('.cafe-card');
+        if (cafeElements[cafeIndex]) {
+          cafeElements[cafeIndex].scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'center' 
+          });
+        }
+      }
+    } else {
+      // Cafe is on a different page, find which page and navigate to it
+      const allCafeIndex = filteredCafes.findIndex(c => c.id === cafe.id);
+      if (allCafeIndex !== -1) {
+        const targetPage = Math.floor(allCafeIndex / itemsPerPage) + 1;
+        setCurrentPage(targetPage);
       }
     }
   };
@@ -287,8 +316,8 @@ const CafeMap = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          <MapController selectedCafe={selectedCafe} />
-          {filteredCafes.map(cafe => (
+          <MapController selectedCafe={selectedCafe} cafes={paginatedCafes} />
+          {paginatedCafes.map(cafe => (
             <Marker 
               key={cafe.id} 
               position={cafe.coordinates} 

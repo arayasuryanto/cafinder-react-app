@@ -4,19 +4,19 @@
 // For now, we'll use a comprehensive list of known coordinates for Surabaya cafes
 export const cafeCoordinatesMap = {
   // West Surabaya
-  'ChIJh9U5rh391y0R_D4KjkxgXrY': [-7.2891, 112.6321], // Filgud+
-  'ChIJTTM6WIf91y0RotZGcWHII0k': [-7.2874, 112.6732], // Ropopang Citraland
-  'ChIJbWrtmN_91y0RETmliS0jjRE': [-7.2877, 112.6749], // Wizz Gelato
+  'ChIJh9U5rh391y0R_D4KjkxgXrY': [-7.2890, 112.6323], // Filgud+
+  'ChIJTTM6WIf91y0RotZGcWHII0k': [-7.2874, 112.6733], // Ropopang Citraland
+  'ChIJbWrtmN_91y0RETmliS0jjRE': [-7.2877, 112.6748], // Wizz Gelato
   
   // Central Surabaya
-  'ChIJ318h82T51y0RJ5dvMW9lTG4': [-7.2856, 112.7527], // DEJAVU
+  'ChIJ318h82T51y0RJ5dvMW9lTG4': [-7.2857, 112.7528], // DEJAVU
   'ChIJ0-aSJVr51y0RL6P10cK-ucM': [-7.2609, 112.7074], // Cafe YANTI
-  'ChIJk8aJKAn51y0RcRwHJNnXt-c': [-7.2700, 112.7500], // Lovebugscafe
-  'ChIJHSQzOmb51y0R1PWOiJJ6nfU': [-7.2650, 112.7600], // Rukun Kopi Peranakan
+  'ChIJk8aJKAn51y0RcRwHJNnXt-c': [-7.2701, 112.7502], // Lovebugscafe
+  'ChIJHSQzOmb51y0R1PWOiJJ6nfU': [-7.2651, 112.7599], // Rukun Kopi Peranakan
   
   // North Surabaya
-  'ChIJL4qKKQT71y0RBKB1PAmcYGE': [-7.2203, 112.7392], // Fore Coffee - G Walk Citraland
-  'ChIJq6qqqhL71y0RRCONhAMJMck': [-7.2306, 112.7408], // GWalk Garden
+  'ChIJL4qKKQT71y0RBKB1PAmcYGE': [-7.2202, 112.7391], // Fore Coffee - G Walk Citraland
+  'ChIJq6qqqhL71y0RRCONhAMJMck': [-7.2305, 112.7407], // GWalk Garden
   
   // East Surabaya
   'ChIJwVCGeP_61y0R8LDb1OUTeuM': [-7.2950, 112.7964], // Upper Room Cafe
