@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import './SimpleCafePage.css'; // Use our new CSS file
 import ReviewSummary from './ReviewSummary';
 import ReviewCard from './ReviewCard';
+import UserReviewsSection from './UserReviewsSection';
 
 // Helper function to get the appropriate icon for each facility
 const getFacilityIcon = (feature) => {
@@ -549,40 +550,11 @@ const SimpleCafePage = ({ cafeData, onBackToCatalog }) => {
           </div>
         </div>
         
-        {/* Reviews Section - TripAdvisor Style */}
-        {enrichedReviews.length > 0 ? (
-          <div className="reviews-section">
-            {/* Review Summary Component */}
-            <ReviewSummary 
-              reviews={enrichedReviews} 
-              rating={cafeData.rating || 0} 
-              totalReviews={cafeData.totalReviews || enrichedReviews.length} 
-            />
-            
-            {/* Review Cards - Limited to displayedReviews count */}
-            <div className="reviews-container tripadvisor-style">
-              {enrichedReviews.slice(0, displayedReviews).map(review => (
-                <ReviewCard key={review.id} review={review} />
-              ))}
-              
-              {/* More Reviews Button */}
-              {enrichedReviews.length > displayedReviews && (
-                <div className="more-reviews-container">
-                  <button 
-                    className="more-reviews-btn"
-                    onClick={() => setDisplayedReviews(prev => Math.min(prev + 5, enrichedReviews.length))}
-                  >
-                    Show More Reviews ({enrichedReviews.length - displayedReviews} remaining)
-                  </button>
-                </div>
-              )}  
-            </div>
-          </div>
-        ) : (
-          <div className="no-reviews-section">
-            <h3>No reviews available for this cafe yet.</h3>
-          </div>
-        )}
+        {/* User Reviews Section */}
+        <UserReviewsSection 
+          cafeId={cafeData.id} 
+          cafeName={cafeData.name} 
+        />
         
         {/* "You might also like" section */}
         <div className="similar-cafes-section">
