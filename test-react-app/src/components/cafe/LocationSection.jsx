@@ -89,23 +89,30 @@ const LocationSection = ({ address, coordinates = { lat: 0, lng: 0 }, nearbyAttr
     }
   }, []);
   
-  // In a real application, you would use a map library like Google Maps or Leaflet
-  // For this example, we're just showing a placeholder
+  // Extract the place name from the address or use a default
+  const getPlaceName = () => {
+    if (address) {
+      // Try to get the first part of the address (usually the street name)
+      const firstPart = address.split(',')[0];
+      return encodeURIComponent(firstPart + ', Surabaya');
+    }
+    return encodeURIComponent('Surabaya, Indonesia');
+  };
   
   return (
     <div className="location-section" ref={sectionRef}>
       <h2 className="section-title">Location</h2>
       
       <div className="map-container" ref={mapRef}>
-        <div className="map-placeholder">
-          <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="currentColor"/>
-          </svg>
-          <p>Map loading... (In actual implementation, a real map would be displayed here)</p>
-          {coordinates && (
-            <p>Coordinates: {coordinates.lat}, {coordinates.lng}</p>
-          )}
-        </div>
+        <iframe
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          loading="lazy"
+          allowFullScreen
+          referrerPolicy="no-referrer-when-downgrade"
+          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${getPlaceName()}&zoom=15`}
+        ></iframe>
       </div>
       
       <div className="address-info">

@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from 'react';
 import './SimpleCafePage.css'; // Use our new CSS file
 import ReviewSummary from './ReviewSummary';
 import ReviewCard from './ReviewCard';
-import { generateCafeReviews } from '../../utils/reviewGenerator';
 
 // Helper function to get the appropriate icon for each facility
 const getFacilityIcon = (feature) => {
@@ -273,20 +272,12 @@ const SimpleCafePage = ({ cafeData, onBackToCatalog }) => {
   const [showHours, setShowHours] = useState(false);
   const [displayedReviews, setDisplayedReviews] = useState(3); // Initially show 3 reviews
   
-  // Generate sample reviews if the cafe has few or no reviews
+  // Use only existing reviews (no dummy data)
   const enrichedReviews = useMemo(() => {
     if (!cafeData) return [];
     
     const existingReviews = cafeData.reviews || [];
-    if (existingReviews.length >= 5) return existingReviews;
-    
-    // If less than 5 reviews, generate some sample ones
-    const generatedReviews = generateCafeReviews(
-      8 - existingReviews.length, // Generate enough to have at least 8 total
-      cafeData.rating || Math.random() * 2 + 3 // Use cafe rating or random between 3-5
-    );
-    
-    return [...existingReviews, ...generatedReviews];
+    return existingReviews;
   }, [cafeData]);
   useEffect(() => {
     // Scroll to top when component mounts
@@ -496,20 +487,20 @@ const SimpleCafePage = ({ cafeData, onBackToCatalog }) => {
             {/* Google Map Location */}
             <div className="map-section">
               <h2 className="section-title">Google Map Location</h2>
-              <div className="map-placeholder">
-                <div className="map-content">
-                  <svg width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#F05438"/>
-                  </svg>
-                  <p>
-                    {cafeData.fullAddress || cafeData.address}
-                    {cafeData.coordinates && (
-                      <span className="coordinates">
-                        ({cafeData.coordinates.lat}, {cafeData.coordinates.lng})
-                      </span>
-                    )}
-                  </p>
-                </div>
+              <div className="map-container">
+                <iframe
+                  title={`${cafeData.name} Location Map`}
+                  width="100%"
+                  height="300"
+                  style={{ border: 0, borderRadius: '8px' }}
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
+                  src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent((cafeData.fullAddress || cafeData.address || '') + ', Surabaya')}&zoom=15`}
+                ></iframe>
+              </div>
+              <div className="map-address">
+                <p>{cafeData.fullAddress || cafeData.address}</p>
               </div>
             </div>
           </div>
