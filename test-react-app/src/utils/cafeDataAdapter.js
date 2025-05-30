@@ -15,8 +15,8 @@ export const adaptCafeDataForSinglePage = (cafeData) => {
   const features = extractFeatures(cafeData.additionalInfo);
   
   
-  // Generate placeholder reviews if none are provided
-  const reviews = generatePlaceholderReviews(cafeData);
+  // No dummy reviews - use empty array
+  const reviews = [];
   
   // Format images (use the main image + generate placeholders)
   const images = generateImages(cafeData);
@@ -107,57 +107,7 @@ const extractFeatures = (additionalInfo) => {
 
 
 
-/**
- * Generate placeholder reviews based on cafe data
- */
-const generatePlaceholderReviews = (cafeData) => {
-  if (!cafeData) return [];
-  
-  // Create 3 placeholder reviews based on cafe data
-  const userNames = ["Anisa Wijaya", "Budi Santoso", "Citra Dewi"];
-  const reviewTexts = [
-    `${cafeData.name} memiliki suasana yang sangat nyaman dan cocok untuk bekerja atau bertemu dengan teman. Kopi mereka konsisten kualitasnya, dan staff sangat ramah. Lokasi juga strategis di ${cafeData.neighborhood || "area ini"}.`,
-    `Saya sering berkunjung ke ${cafeData.name} karena tempatnya cozy dan WiFi-nya kencang. Menu kopi dan makanan ringan mereka enak, harga juga terjangkau untuk kualitas yang ditawarkan. Recommended!`,
-    `${cafeData.name} punya interior yang bagus dan instagramable. Selain kopi, menu non-coffee mereka juga enak. Cocok untuk nongkrong bareng teman atau untuk tempat kerja remote.`
-  ];
-  
-  const avatarUrls = [
-    "https://randomuser.me/api/portraits/women/44.jpg",
-    "https://randomuser.me/api/portraits/men/32.jpg",
-    "https://randomuser.me/api/portraits/women/68.jpg"
-  ];
-  
-  const getRandomRating = () => {
-    const baseRating = parseFloat(cafeData.rating) || 4.0;
-    const variation = Math.floor(Math.random() * 2) - 0.5; // -0.5, 0, or 0.5
-    return Math.min(5, Math.max(3, baseRating + variation));
-  };
-  
-  return Array.from({ length: 3 }, (_, i) => ({
-    id: i + 1,
-    user: {
-      name: userNames[i],
-      image: avatarUrls[i],
-      reviewCount: Math.floor(Math.random() * 20) + 1
-    },
-    rating: getRandomRating(),
-    date: getRandomDate(),
-    text: reviewTexts[i]
-  }));
-};
 
-/**
- * Generate random dates within the last 3 months
- */
-const getRandomDate = () => {
-  const months = ["January", "February", "March", "April", "May", "June", 
-                 "July", "August", "September", "October", "November", "December"];
-  
-  const date = new Date();
-  date.setDate(date.getDate() - Math.floor(Math.random() * 90));
-  
-  return `${months[date.getMonth()]} ${date.getDate()}, ${date.getFullYear()}`;
-};
 
 /**
  * Generate images for the cafe
