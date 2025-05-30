@@ -19,7 +19,7 @@ const Header = () => {
             <li><a href="/map">Cafe Map</a></li>
             <li><a href="/catalog">Katalog Cafe</a></li>
             <li><a href="/finder">Smart Finder</a></li>
-            <li><a href="/about">Tentang Kami</a></li>
+            <li><a href="/tentang-kami">Tentang Kami</a></li>
           </ul>
           
           <div className="auth-btns">
