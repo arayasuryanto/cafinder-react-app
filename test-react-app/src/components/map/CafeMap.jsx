@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { useEffect, useState, useRef } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './CafeMap.css';
+import { getCafeCoordinates as getCoordinatesFromService } from '../../utils/geocodingService';
 
 // Fix for default marker icons in React Leaflet
 delete L.Icon.Default.prototype._getIconUrl;
@@ -14,7 +15,7 @@ L.Icon.Default.mergeOptions({
 
 // Custom marker icon
 const cafeIcon = new L.Icon({
-  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-green.png',
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
   shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
   iconSize: [25, 41],
   iconAnchor: [12, 41],
@@ -22,25 +23,35 @@ const cafeIcon = new L.Icon({
   shadowSize: [41, 41]
 });
 
+// Selected marker icon
+const selectedCafeIcon = new L.Icon({
+  iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-orange.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-shadow.png',
+  iconSize: [30, 49],
+  iconAnchor: [15, 49],
+  popupAnchor: [1, -34],
+  shadowSize: [49, 49]
+});
+
 // Surabaya coordinates
 const SURABAYA_CENTER = [-7.2575, 112.7521];
 
-// Sample coordinates for some known locations in Surabaya
-const locationCoordinates = {
-  'ChIJh9U5rh391y0R_D4KjkxgXrY': [-7.3029, 112.6789], // Filgud+ (West Surabaya)
-  'ChIJ318h82T51y0RJ5dvMW9lTG4': [-7.2856, 112.7527], // DEJAVU (Central Surabaya)
-  'ChIJwVCGeP_61y0R8LDb1OUTeuM': [-7.2950, 112.7964], // Upper Room Cafe (East Surabaya)
-  'ChIJ0-aSJVr51y0RL6P10cK-ucM': [-7.2609, 112.7074], // Cafe YANTI (Central Surabaya)
-  'ChIJbWrtmN_91y0RETmliS0jjRE': [-7.2877, 112.6749], // Wizz Gelato (West Surabaya)
-  'ChIJL4qKKQT71y0RBKB1PAmcYGE': [-7.2203, 112.7392], // Fore Coffee (North Surabaya)
-  'ChIJVbhjDh731y0RNFpNfEaQQjQ': [-7.3345, 112.7885], // L Spot Cafe (South Surabaya)
-  'ChIJq6qqqhL71y0RRCONhAMJMck': [-7.2306, 112.7408], // GWalk Garden (North Surabaya)
-  'ChIJcx7-q8v61y0Rn0fnkSkm2kg': [-7.2890, 112.8100], // Kopi Teras (East Surabaya)
-  'ChIJk8aJKAn51y0RcRwHJNnXt-c': [-7.2700, 112.7500], // Lovebugscafe (Central Surabaya)
-  'ChIJJ-0K0un61y0RQRrvT97JxaU': [-7.3000, 112.8200], // M22 Cafe (East Surabaya)
-  'ChIJz3aGQx_91y0Rzdi_GHKo-xo': [-7.2800, 112.6700], // Ropopang Citraland (West Surabaya)
-  'ChIJHSQzOmb51y0R1PWOiJJ6nfU': [-7.2650, 112.7600], // Rukun Kopi Peranakan (Central Surabaya)
-};
+// Component to handle map movement
+function MapController({ selectedCafe }) {
+  const map = useMap();
+  
+  useEffect(() => {
+    if (selectedCafe && selectedCafe.coordinates) {
+      map.setView(selectedCafe.coordinates, 16, {
+        animate: true,
+        duration: 1
+      });
+    }
+  }, [selectedCafe, map]);
+  
+  return null;
+}
+
 
 const CafeMap = () => {
   const [cafes, setCafes] = useState([]);
@@ -48,29 +59,19 @@ const CafeMap = () => {
   const [selectedRegion, setSelectedRegion] = useState('all');
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedCafe, setSelectedCafe] = useState(null);
+  const [mapRef, setMapRef] = useState(null);
   const itemsPerPage = 30;
+  const cafeListRef = useRef(null);
 
   useEffect(() => {
     fetch('/cleaned_surabaya_cafes.json')
       .then(response => response.json())
       .then(data => {
         // Add coordinates to cafes
-        const cafesWithCoords = data.map(cafe => {
-          if (locationCoordinates[cafe.id]) {
-            return {
-              ...cafe,
-              coordinates: locationCoordinates[cafe.id]
-            };
-          }
-          // Generate random coordinates around Surabaya for cafes without known coords
-          return {
-            ...cafe,
-            coordinates: [
-              SURABAYA_CENTER[0] + (Math.random() - 0.5) * 0.1,
-              SURABAYA_CENTER[1] + (Math.random() - 0.5) * 0.1
-            ]
-          };
-        });
+        const cafesWithCoords = data.map(cafe => ({
+          ...cafe,
+          coordinates: getCoordinatesFromService(cafe)
+        }));
         // Sort cafes by rating (highest first)
         const sortedCafes = cafesWithCoords.sort((a, b) => {
           const ratingA = parseFloat(a.rating) || 0;
@@ -107,6 +108,26 @@ const CafeMap = () => {
 
   const handleCafeClick = (cafe) => {
     setSelectedCafe(cafe);
+    
+    // Scroll to the cafe in the list if it's on the current page
+    const cafeIndex = paginatedCafes.findIndex(c => c.id === cafe.id);
+    if (cafeIndex !== -1 && cafeListRef.current) {
+      const cafeElements = cafeListRef.current.querySelectorAll('.cafe-card');
+      if (cafeElements[cafeIndex]) {
+        cafeElements[cafeIndex].scrollIntoView({ 
+          behavior: 'smooth', 
+          block: 'center' 
+        });
+      }
+    }
+  };
+  
+  const handleDirections = (cafe) => {
+    window.open(cafe.google_maps_direction, '_blank');
+  };
+  
+  const handleViewDetails = (cafe) => {
+    window.location.href = `/catalog/cafe/${cafe.id}`;
   };
 
   if (loading) {
@@ -140,35 +161,66 @@ const CafeMap = () => {
           </div>
         </div>
         
-        <div className="cafe-list">
+        <div className="cafe-list" ref={cafeListRef}>
           {paginatedCafes.map((cafe, index) => (
             <div 
               key={cafe.id} 
               className={`cafe-card ${selectedCafe?.id === cafe.id ? 'selected' : ''}`}
               onClick={() => handleCafeClick(cafe)}
             >
-              <div className="cafe-number">{startIndex + index + 1}.</div>
-              <div className="cafe-image">
-                <img src={cafe.imageUrl || '/images/cafe-placeholder.jpg'} alt={cafe.name} />
-                <button className="save-btn">♡</button>
-              </div>
-              <div className="cafe-details">
-                <h3>{cafe.name}</h3>
-                <div className="rating-info">
-                  <span className="rating">⭐ {cafe.rating}</span>
-                  <span className="reviews">({cafe.reviewCount} reviews)</span>
+              <div className="cafe-content">
+                <div className="cafe-number">{startIndex + index + 1}</div>
+                <div className="cafe-image">
+                  {cafe.imageUrl ? (
+                    <img src={cafe.imageUrl} alt={cafe.name} onError={(e) => e.target.src = '/images/cafe-placeholder.jpg'} />
+                  ) : (
+                    <div className="image-placeholder">
+                      <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+                        <path d="M20 3H4C2.9 3 2 3.9 2 5V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V5C22 3.9 21.1 3 20 3ZM20 19H4V5H20V19Z" fill="#E5E7EB"/>
+                        <path d="M11.5 12.5L8.5 16.5L5.5 12.5L3 16H21L15 8L11.5 12.5Z" fill="#E5E7EB"/>
+                      </svg>
+                    </div>
+                  )}
+                  <button className="save-btn" onClick={(e) => { e.stopPropagation(); }}>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <path d="M12 21.35L10.55 20.03C5.4 15.36 2 12.28 2 8.5C2 5.42 4.42 3 7.5 3C9.24 3 10.91 3.81 12 5.09C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.42 22 8.5C22 12.28 18.6 15.36 13.45 20.04L12 21.35Z" stroke="currentColor" strokeWidth="2"/>
+                    </svg>
+                  </button>
                 </div>
-                <div className="cafe-meta">
-                  <span className="category">{cafe.categories?.[0] || 'Cafe'}</span>
-                  <span className="separator">·</span>
-                  <span className="price">$$</span>
-                  <span className="separator">·</span>
-                  <span className="price">{cafe.neighborhood || cafe.region}</span>
+                <div className="cafe-info">
+                  <h3>{cafe.name}</h3>
+                  <div className="rating-row">
+                    <div className="rating">
+                      <span className="stars">★</span>
+                      <span className="rating-value">{cafe.rating}</span>
+                    </div>
+                    <span className="reviews">({cafe.reviewCount})</span>
+                  </div>
+                  <div className="cafe-meta">
+                    <span>{cafe.categories?.[0] || 'Cafe'}</span>
+                    <span className="dot">•</span>
+                    <span>$$</span>
+                    <span className="dot">•</span>
+                    <span>{cafe.neighborhood || cafe.region}</span>
+                  </div>
+                  <div className="cafe-actions">
+                    <button 
+                      className="action-btn directions-btn" 
+                      onClick={(e) => { e.stopPropagation(); handleDirections(cafe); }}
+                    >
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <path d="M21.71 11.29L12.71 2.29C12.32 1.9 11.68 1.9 11.29 2.29L2.29 11.29C1.9 11.68 1.9 12.32 2.29 12.71L11.29 21.71C11.68 22.1 12.32 22.1 12.71 21.71L21.71 12.71C22.1 12.32 22.1 11.68 21.71 11.29ZM7 14V10L17 10V14L13 10.5V17H11V10.5L7 14Z" fill="currentColor"/>
+                      </svg>
+                      Directions
+                    </button>
+                    <button 
+                      className="action-btn details-btn"
+                      onClick={(e) => { e.stopPropagation(); handleViewDetails(cafe); }}
+                    >
+                      View Details
+                    </button>
+                  </div>
                 </div>
-                <div className="open-status">
-                  <span className="status-dot">●</span> Open now
-                </div>
-                <button className="menu-btn">Menu</button>
               </div>
             </div>
           ))}
@@ -226,20 +278,21 @@ const CafeMap = () => {
       {/* Map */}
       <div className="map-wrapper">
         <MapContainer 
-          center={selectedCafe ? selectedCafe.coordinates : SURABAYA_CENTER} 
-          zoom={selectedCafe ? 15 : 12} 
+          center={SURABAYA_CENTER} 
+          zoom={12} 
           className="leaflet-map"
-          key={selectedCafe?.id}
+          ref={setMapRef}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {paginatedCafes.map(cafe => (
+          <MapController selectedCafe={selectedCafe} />
+          {filteredCafes.map(cafe => (
             <Marker 
               key={cafe.id} 
               position={cafe.coordinates} 
-              icon={cafe.id === selectedCafe?.id ? cafeIcon : cafeIcon}
+              icon={cafe.id === selectedCafe?.id ? selectedCafeIcon : cafeIcon}
               eventHandlers={{
                 click: () => handleCafeClick(cafe)
               }}
@@ -247,20 +300,32 @@ const CafeMap = () => {
               <Popup className="cafe-popup">
                 <div className="popup-content">
                   <h3>{cafe.name}</h3>
-                  <div className="rating">
-                    <span className="stars">⭐ {cafe.rating}</span>
-                    <span className="reviews">({cafe.reviewCount})</span>
+                  <div className="popup-rating">
+                    <span className="stars">★ {cafe.rating}</span>
+                    <span className="reviews">({cafe.reviewCount} reviews)</span>
                   </div>
-                  <p className="address">{cafe.address}</p>
+                  <p className="popup-address">{cafe.address}</p>
+                  <div className="popup-meta">
+                    <span>{cafe.categories?.[0] || 'Cafe'}</span>
+                    <span className="dot">•</span>
+                    <span>{cafe.neighborhood || cafe.region}</span>
+                  </div>
                   <div className="popup-actions">
-                    <a 
-                      href={cafe.google_maps_direction} 
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                      className="directions-link"
+                    <button 
+                      className="popup-btn directions"
+                      onClick={() => handleDirections(cafe)}
                     >
-                      Get Directions
-                    </a>
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none">
+                        <path d="M21.71 11.29L12.71 2.29C12.32 1.9 11.68 1.9 11.29 2.29L2.29 11.29C1.9 11.68 1.9 12.32 2.29 12.71L11.29 21.71C11.68 22.1 12.32 22.1 12.71 21.71L21.71 12.71C22.1 12.32 22.1 11.68 21.71 11.29ZM7 14V10L17 10V14L13 10.5V17H11V10.5L7 14Z" fill="currentColor"/>
+                      </svg>
+                      Directions
+                    </button>
+                    <button 
+                      className="popup-btn details"
+                      onClick={() => handleViewDetails(cafe)}
+                    >
+                      View Details
+                    </button>
                   </div>
                 </div>
               </Popup>
