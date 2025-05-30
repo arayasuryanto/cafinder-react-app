@@ -5,7 +5,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 // Make sure ScrollTrigger is registered
 gsap.registerPlugin(ScrollTrigger);
 
-const LocationSection = ({ address, coordinates = { lat: 0, lng: 0 }, nearbyAttractions = [] }) => {
+const LocationSection = ({ address, nearbyAttractions = [], googleMapsUrl, placeId }) => {
   const sectionRef = useRef(null);
   const mapRef = useRef(null);
   const attractionsRef = useRef(null);
@@ -89,14 +89,33 @@ const LocationSection = ({ address, coordinates = { lat: 0, lng: 0 }, nearbyAttr
     }
   }, []);
   
-  // Extract the place name from the address or use a default
-  const getPlaceName = () => {
-    if (address) {
-      // Try to get the first part of the address (usually the street name)
-      const firstPart = address.split(',')[0];
-      return encodeURIComponent(firstPart + ', Surabaya');
+  // Extract place ID from Google Maps URL if available
+  const extractPlaceId = () => {
+    if (placeId) return placeId;
+    
+    if (googleMapsUrl) {
+      const match = googleMapsUrl.match(/query_place_id=([^&]+)/);
+      if (match && match[1]) {
+        return match[1];
+      }
     }
-    return encodeURIComponent('Surabaya, Indonesia');
+    return null;
+  };
+  
+  // Get the map embed URL
+  const getMapEmbedUrl = () => {
+    const extractedPlaceId = extractPlaceId();
+    
+    if (extractedPlaceId) {
+      // Use place ID for precise location
+      return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:${extractedPlaceId}&zoom=17`;
+    } else if (address) {
+      // Fallback to address search
+      return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent(address)}&zoom=15`;
+    }
+    
+    // Default fallback
+    return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent('Surabaya, Indonesia')}&zoom=12`;
   };
   
   return (
@@ -105,13 +124,14 @@ const LocationSection = ({ address, coordinates = { lat: 0, lng: 0 }, nearbyAttr
       
       <div className="map-container" ref={mapRef}>
         <iframe
+          title="Cafe Location Map"
           width="100%"
           height="100%"
           style={{ border: 0 }}
           loading="lazy"
           allowFullScreen
           referrerPolicy="no-referrer-when-downgrade"
-          src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${getPlaceName()}&zoom=15`}
+          src={getMapEmbedUrl()}
         ></iframe>
       </div>
       

@@ -256,6 +256,8 @@ const SingleCafePage = ({ cafeData, onBackToCatalog }) => {
                   address={cafeData.fullAddress || cafeData.address}
                   coordinates={cafeData.coordinates}
                   nearbyAttractions={cafeData.nearbyAttractions}
+                  googleMapsUrl={cafeData.google_maps_direction}
+                  placeId={cafeData.placeId}
                 />
               </div>
               

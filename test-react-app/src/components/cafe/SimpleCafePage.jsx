@@ -496,7 +496,19 @@ const SimpleCafePage = ({ cafeData, onBackToCatalog }) => {
                   loading="lazy"
                   allowFullScreen
                   referrerPolicy="no-referrer-when-downgrade"
-                  src={`https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent((cafeData.fullAddress || cafeData.address || '') + ', Surabaya')}&zoom=15`}
+                  src={(() => {
+                    // Extract place ID from Google Maps URL if available
+                    if (cafeData.placeId) {
+                      return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:${cafeData.placeId}&zoom=17`;
+                    } else if (cafeData.google_maps_direction) {
+                      const match = cafeData.google_maps_direction.match(/query_place_id=([^&]+)/);
+                      if (match && match[1]) {
+                        return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=place_id:${match[1]}&zoom=17`;
+                      }
+                    }
+                    // Fallback to address search
+                    return `https://www.google.com/maps/embed/v1/place?key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8&q=${encodeURIComponent((cafeData.fullAddress || cafeData.address || '') + ', Surabaya')}&zoom=15`;
+                  })()}
                 ></iframe>
               </div>
               <div className="map-address">
