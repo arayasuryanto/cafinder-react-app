@@ -99,10 +99,10 @@ const CafeMap = () => {
   // Reset selected cafe when page or filter changes
   useEffect(() => {
     // Clear selection when page or filter changes
-    if (!paginatedCafes.find(c => c.id === selectedCafe?.id)) {
+    if (selectedCafe && !paginatedCafes.find(c => c.id === selectedCafe.id)) {
       setSelectedCafe(null);
     }
-  }, [currentPage, selectedRegion]);
+  }, [currentPage, selectedRegion, paginatedCafes, selectedCafe]);
 
   const filteredCafes = cafes.filter(cafe => {
     if (selectedRegion !== 'all' && cafe.region !== selectedRegion) {
@@ -163,6 +163,7 @@ const CafeMap = () => {
     return <div className="loading">Loading cafes...</div>;
   }
 
+
   return (
     <div className="cafe-map-container">
       {/* Sidebar with cafe list */}
@@ -191,7 +192,12 @@ const CafeMap = () => {
         </div>
         
         <div className="cafe-list" ref={cafeListRef}>
-          {paginatedCafes.map((cafe, index) => (
+          {paginatedCafes.length === 0 ? (
+            <div style={{ padding: '20px', textAlign: 'center' }}>
+              No cafes found
+            </div>
+          ) : (
+            paginatedCafes.map((cafe, index) => (
             <div 
               key={cafe.id} 
               className={`cafe-card ${selectedCafe?.id === cafe.id ? 'selected' : ''}`}
@@ -201,7 +207,14 @@ const CafeMap = () => {
                 <div className="cafe-number">{startIndex + index + 1}</div>
                 <div className="cafe-image">
                   {cafe.imageUrl ? (
-                    <img src={cafe.imageUrl} alt={cafe.name} onError={(e) => e.target.src = '/images/cafe-placeholder.jpg'} />
+                    <img 
+                      src={cafe.imageUrl} 
+                      alt={cafe.name} 
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTAwIiBoZWlnaHQ9IjgwIiB2aWV3Qm94PSIwIDAgMTAwIDgwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxyZWN0IHdpZHRoPSIxMDAiIGhlaWdodD0iODAiIGZpbGw9IiNGNUY1RjUiLz48cGF0aCBkPSJNNDAgMjBIMjBDMTguOSAyMCAxOCAyMC45IDE4IDIyVjU4QzE4IDU5LjEgMTguOSA2MCAyMCA2MEg4MEM4MS4xIDYwIDgyIDU5LjEgODIgNThWMjJDODIgMjAuOSA4MS4xIDIwIDgwIDIwSDYwTDU4IDI2SDQyTDQwIDIwWiIgZmlsbD0iI0U1RTdFQiIvPjxjaXJjbGUgY3g9IjUwIiBjeT0iNDIiIHI9IjgiIGZpbGw9IiNFNUU3RUIiLz48L3N2Zz4=';
+                      }} 
+                    />
                   ) : (
                     <div className="image-placeholder">
                       <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
@@ -252,7 +265,8 @@ const CafeMap = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+          )}
         </div>
         
         {/* Pagination */}
