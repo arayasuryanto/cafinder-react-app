@@ -35,6 +35,9 @@ import CafeMapPage from './components/map/CafeMapPage';
 // Import About components
 import TentangKamiPage from './components/about/TentangKamiPage';
 
+// Import Smart Finder components
+import SmartFinderPage from './components/smartfinder/SmartFinderPage';
+
 // Import sample cafe data for fallback
 import singleCafeData from './data/singleCafeData';
 
@@ -128,6 +131,9 @@ function App() {
       } else if (path === '/tentang-kami' || path === '/about') {
         setCurrentPage('tentang-kami');
         setSelectedCafe(null);
+      } else if (path === '/finder' || path === '/smart-finder') {
+        setCurrentPage('smart-finder');
+        setSelectedCafe(null);
       }
     };
     
@@ -162,6 +168,9 @@ function App() {
       setSelectedCafe(null);
     } else if (path === '/tentang-kami' || path === '/about') {
       setCurrentPage('tentang-kami');
+      setSelectedCafe(null);
+    } else if (path === '/finder' || path === '/smart-finder') {
+      setCurrentPage('smart-finder');
       setSelectedCafe(null);
     }
   };
@@ -257,6 +266,9 @@ function App() {
         )}
         {currentPage === 'tentang-kami' && (
           <TentangKamiPage />
+        )}
+        {currentPage === 'smart-finder' && (
+          <SmartFinderPage />
         )}
       </main>
       
