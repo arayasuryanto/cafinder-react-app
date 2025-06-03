@@ -225,21 +225,24 @@
 
 .trending-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 24px;
   margin-bottom: 40px;
-  max-width: 1200px;
+  max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
 }
 
 .trending-card {
   background: white;
-  border-radius: 20px;
+  border-radius: 16px;
   overflow: hidden;
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
   transition: all 0.3s;
   position: relative;
+  max-width: 350px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .trending-card:hover {
@@ -262,7 +265,7 @@
 
 .card-image {
   position: relative;
-  height: 200px;
+  height: 180px;
   overflow: hidden;
 }
 
@@ -309,7 +312,7 @@
 }
 
 .card-content {
-  padding: 24px;
+  padding: 20px;
 }
 
 .card-header {
@@ -320,9 +323,10 @@
 }
 
 .card-header h3 {
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #1F2937;
+  line-height: 1.2;
 }
 
 .rating-badge {
@@ -341,15 +345,16 @@
 
 .card-stats {
   display: flex;
-  gap: 16px;
-  margin-bottom: 20px;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
 }
 
 .stat-item {
   display: flex;
   align-items: center;
-  gap: 6px;
-  font-size: 14px;
+  gap: 4px;
+  font-size: 13px;
   color: #6B7280;
 }
 
@@ -364,11 +369,11 @@
 }
 
 .save-btn {
-  width: 40px;
-  height: 40px;
-  border: 2px solid #E5E7EB;
+  width: 36px;
+  height: 36px;
+  border: 1.5px solid #E5E7EB;
   background: white;
-  border-radius: 10px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -383,14 +388,15 @@
 
 .view-btn {
   flex: 1;
-  padding: 10px 20px;
+  padding: 8px 16px;
   background: #F05438;
   color: white;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   text-decoration: none;
   text-align: center;
   font-weight: 600;
+  font-size: 14px;
   transition: all 0.3s;
 }
 
@@ -943,6 +949,11 @@
 
 /* Responsive Design */
 @media (max-width: 1024px) {
+  .trending-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
   .map-content {
     grid-template-columns: 1fr;
     gap: 30px;
@@ -975,10 +986,12 @@
 
   .trending-grid {
     grid-template-columns: 1fr;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .trending-card {
-    max-width: 400px;
+    max-width: 350px;
     margin: 0 auto;
   }
 
