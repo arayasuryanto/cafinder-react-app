@@ -36,7 +36,7 @@ const PopularCategory = () => {
     });
     
     // Animate cafe cards with stagger
-    gsap.to(".cafe-card", {
+    gsap.to(".popular-category .cafe-card", {
       scrollTrigger: {
         trigger: cardsRef.current,
         start: "top 80%"
