@@ -121,9 +121,9 @@
 }
 
 .cafe-content {
-  padding: 16px;
+  padding: 20px 16px;
   display: flex;
-  gap: 12px;
+  gap: 14px;
   align-items: flex-start;
 }
 
@@ -246,20 +246,27 @@
 .cafe-actions {
   display: flex;
   gap: 8px;
+  flex-wrap: nowrap;
+  margin-top: 10px;
 }
 
 .action-btn {
-  padding: 6px 12px;
-  border: 1px solid #e5e7eb;
+  padding: 8px 12px;
+  border: 1.5px solid #e5e7eb;
   background: white;
   border-radius: 6px;
   font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.2s;
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
+  gap: 6px;
   color: #4b5563;
+  white-space: nowrap;
+  flex: 1;
+  min-height: 36px;
 }
 
 .action-btn:hover {
@@ -268,14 +275,20 @@
 }
 
 .directions-btn svg {
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
 }
 
 .details-btn {
   background: #F05438;
   color: white;
   border-color: #F05438;
+  font-weight: 600;
+}
+
+.action-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .details-btn:hover {

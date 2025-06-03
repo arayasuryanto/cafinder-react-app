@@ -346,7 +346,7 @@ header {
   display: none;
 }
 
-.cafe-card {
+.popular-category .cafe-card {
   min-width: 280px;
   background-color: white;
   border-radius: 10px;
@@ -357,7 +357,7 @@ header {
   transform: translateY(20px) scale(0.95);
 }
 
-.cafe-card:hover {
+.popular-category .cafe-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
@@ -379,20 +379,26 @@ header {
   color: var(--primary);
   font-size: 12px;
   font-weight: 600;
-  padding: 4px 12px;
+  padding: 5px 14px;
   border-radius: 30px;
   margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
 }
 
 .cafe-name {
-  font-size: 18px;
+  font-size: 20px;
   font-weight: 700;
   margin-bottom: 10px;
+  line-height: 1.2;
+  color: var(--dark);
 }
 
 .cafe-info {
   font-size: 14px;
   color: var(--gray);
+  line-height: 1.5;
+  font-weight: 400;
 }
 
 /* Perfect Experience */
@@ -434,29 +440,36 @@ header {
   display: flex;
   align-items: flex-start;
   gap: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   opacity: 0;
   transform: translateY(20px);
+  list-style: none;
 }
 
 .feature-icon {
-  width: 24px;
-  height: 24px;
-  background-color: rgba(240, 84, 56, 0.1);
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background-color: rgba(240, 84, 56, 0.15);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--primary);
+  margin-top: 2px;
 }
 
 .feature-icon svg {
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 }
 
 .feature-text {
   flex: 1;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--dark);
+  font-weight: 500;
 }
 
 .experience-btn {
