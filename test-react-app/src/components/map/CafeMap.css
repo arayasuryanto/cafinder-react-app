@@ -251,22 +251,23 @@
 }
 
 .cafe-actions .action-btn {
-  padding: 8px 12px;
-  border: 1.5px solid #e5e7eb;
+  padding: 9px 14px;
+  border: 1px solid #e5e7eb;
   background: white;
-  border-radius: 6px;
+  border-radius: 4px;
   font-size: 13px;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 6px;
-  color: #4b5563;
+  color: #374151;
   white-space: nowrap;
   flex: 1;
   min-height: 36px;
+  text-decoration: none;
 }
 
 .cafe-actions .action-btn:hover {
@@ -283,12 +284,12 @@
   background: #F05438;
   color: white;
   border-color: #F05438;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .cafe-actions .action-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-0.5px);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
 }
 
 .cafe-actions .details-btn:hover {
