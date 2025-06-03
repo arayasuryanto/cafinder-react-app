@@ -15,11 +15,14 @@ import ProgressBar from './components/ui/ProgressBar';
 
 // Import Home sections
 import Hero from './components/home/Hero';
-import SearchForm from './components/home/SearchForm';
-import PopularCategory from './components/home/PopularCategory';
-import PerfectExperience from './components/home/PerfectExperience';
+import InteractiveFinder from './components/home/InteractiveFinder';
+import TrendingCafes from './components/home/TrendingCafes';
+import CafeDiscoveryMap from './components/home/CafeDiscoveryMap';
+import SmartFinderCTA from './components/home/SmartFinderCTA';
+import CuratedCollections from './components/home/CuratedCollections';
 import Testimonials from './components/home/Testimonials';
 import Stats from './components/home/Stats';
+import './components/home/HomePage.css';
 
 // Import Catalog components
 import CatalogPage from './components/catalog/CatalogPage';
@@ -229,9 +232,11 @@ function App() {
   const HomePage = () => (
     <>
       <Hero />
-      <SearchForm />
-      <PopularCategory />
-      <PerfectExperience />
+      <InteractiveFinder />
+      <TrendingCafes />
+      <CafeDiscoveryMap />
+      <SmartFinderCTA />
+      <CuratedCollections />
       <Testimonials />
       <Stats />
     </>
