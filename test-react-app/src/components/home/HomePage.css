@@ -189,6 +189,8 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 40px;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
 .header-content {
@@ -223,9 +225,12 @@
 
 .trending-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 24px;
   margin-bottom: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .trending-card {
@@ -424,23 +429,30 @@
 
 .map-content {
   display: grid;
-  grid-template-columns: 1fr 350px;
+  grid-template-columns: 1.5fr 1fr;
   gap: 40px;
   align-items: start;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .map-visual {
   background: #F3F4F6;
   border-radius: 20px;
-  padding: 40px;
+  padding: 30px;
   position: relative;
+  min-height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .surabaya-map {
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
   margin: 0 auto;
   display: block;
+  height: auto;
 }
 
 .region-path {
@@ -930,21 +942,57 @@
 }
 
 /* Responsive Design */
+@media (max-width: 1024px) {
+  .map-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .map-sidebar {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
 @media (max-width: 768px) {
   .section-title {
     font-size: 28px;
   }
 
+  .section-subtitle {
+    font-size: 16px;
+  }
+
   .filter-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .trending-header {
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   .trending-grid {
     grid-template-columns: 1fr;
   }
 
+  .trending-card {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
   .map-content {
     grid-template-columns: 1fr;
+  }
+
+  .map-visual {
+    padding: 20px;
+    min-height: 300px;
+  }
+
+  .surabaya-map {
+    max-width: 300px;
   }
 
   .map-sidebar {
@@ -953,6 +1001,7 @@
 
   .collections-content {
     grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   .collections-grid {
@@ -969,5 +1018,9 @@
 
   .finder-stats {
     gap: 30px;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
   }
 }
