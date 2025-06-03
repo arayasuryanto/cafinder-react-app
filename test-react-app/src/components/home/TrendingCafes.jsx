@@ -126,17 +126,6 @@ const TrendingCafes = () => {
 
                 <p className="card-location">📍 {cafe.location}</p>
                 
-                <div className="card-stats">
-                  <div className="stat-item">
-                    <span className="stat-icon">💬</span>
-                    <span>{cafe.reviews} reviews</span>
-                  </div>
-                  <div className="stat-item highlight">
-                    <span className="stat-icon">✨</span>
-                    <span>{cafe.highlight}</span>
-                  </div>
-                </div>
-
                 <div className="card-actions">
                   <button className="action-btn save-btn">
                     <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
