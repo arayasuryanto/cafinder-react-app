@@ -21,18 +21,14 @@ const Footer = () => {
             <ul className="footer-links">
               <li><a href="/cafemap">Cafe Map</a></li>
               <li><a href="/catalog">Katalog Cafe</a></li>
-              <li><a href="/finder">Smart Finder</a></li>
-              <li><a href="/about">Tentang Kami</a></li>
             </ul>
           </div>
           
           <div className="footer-col">
-            <h3 className="footer-heading">Support</h3>
+            <h3 className="footer-heading">Feature</h3>
             <ul className="footer-links">
-              <li><a href="/support">Customer Support</a></li>
-              <li><a href="/privacy">Privacy & Policy</a></li>
-              <li><a href="/terms">Terms of Service</a></li>
-              <li><a href="/faq">FAQ</a></li>
+              <li><a href="/finder">Smart Finder</a></li>
+              <li><a href="/about">Tentang Kami</a></li>
             </ul>
           </div>
           

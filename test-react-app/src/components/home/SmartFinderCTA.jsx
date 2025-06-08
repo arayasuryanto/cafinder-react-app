@@ -4,7 +4,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const SmartFinderCTA = () => {
+const SmartFinderCTA = ({ navigateTo }) => {
   const sectionRef = useRef(null);
 
   useEffect(() => {
@@ -18,7 +18,7 @@ const SmartFinderCTA = () => {
       });
 
       // Animate content on scroll
-      gsap.fromTo('.finder-cta-content',
+      gsap.fromTo('.compact-finder-content',
         { opacity: 0, y: 50 },
         {
           opacity: 1,
@@ -31,29 +31,29 @@ const SmartFinderCTA = () => {
         }
       );
 
-      // Animate feature cards
-      gsap.fromTo('.feature-card',
-        { opacity: 0, scale: 0.8 },
+      // Animate key features
+      gsap.fromTo('.key-feature',
+        { opacity: 0, x: -20 },
         {
           opacity: 1,
-          scale: 1,
-          duration: 0.5,
-          stagger: 0.15,
+          x: 0,
+          duration: 0.6,
+          stagger: 0.1,
           scrollTrigger: {
-            trigger: '.features-grid',
+            trigger: '.key-features',
             start: 'top 80%'
           }
         }
       );
 
-      // Floating animation for icons
-      gsap.to('.floating-icon', {
-        y: -10,
+      // Floating AI icon
+      gsap.to('.ai-icon', {
+        y: -8,
+        rotation: 5,
         duration: 2,
         repeat: -1,
         yoyo: true,
-        ease: 'power1.inOut',
-        stagger: 0.3
+        ease: 'power1.inOut'
       });
     }, sectionRef);
 
@@ -64,74 +64,39 @@ const SmartFinderCTA = () => {
     <section className="smart-finder-cta" ref={sectionRef}>
       <div className="gradient-bg"></div>
       <div className="container">
-        <div className="finder-cta-content">
-          <div className="cta-header">
+        <div className="compact-finder-content">
+          <div className="compact-header">
             <div className="ai-badge">
-              <span className="badge-icon">🤖</span>
+              <span className="badge-icon ai-icon">🤖</span>
               <span className="badge-text">AI Powered</span>
             </div>
-            <h2 className="cta-title">
-              Bingung Pilih Cafe? <br />
-              <span className="highlight">Smart Finder Solusinya!</span>
+            
+            <h2 className="compact-title">
+              Bingung Pilih Cafe? <span className="highlight">Smart Finder Solusinya!</span>
             </h2>
-            <p className="cta-subtitle">
-              Jawab beberapa pertanyaan simpel, AI kami akan merekomendasikan 
-              cafe yang sempurna untukmu
+            
+            <p className="compact-subtitle">
+              Jawab 6 pertanyaan simpel, AI akan rekomendasikan cafe perfect untukmu dalam 30 detik!
             </p>
           </div>
 
-          <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon floating-icon">🎯</div>
-              <h4>Akurat</h4>
-              <p>Rekomendasi personal sesuai preferensimu</p>
+          <div className="key-features">
+            <div className="key-feature">
+              <span className="feature-icon">⚡</span>
+              <span className="feature-text">30 Detik</span>
             </div>
-            <div className="feature-card">
-              <div className="feature-icon floating-icon">⚡</div>
-              <h4>Cepat</h4>
-              <p>Hanya butuh 30 detik untuk hasil maksimal</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon floating-icon">🎨</div>
-              <h4>Smart</h4>
-              <p>AI yang terus belajar dari pilihan pengguna</p>
+            <div className="key-feature">
+              <span className="feature-icon">✨</span>
+              <span className="feature-text">Super Helpful</span>
             </div>
           </div>
 
-          <div className="cta-demo">
-            <div className="demo-preview">
-              <div className="chat-bubble user">
-                <p>Saya butuh cafe untuk meeting bisnis</p>
-              </div>
-              <div className="chat-bubble ai">
-                <p>Saya merekomendasikan Starbucks Reserve dengan meeting room private...</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="cta-actions">
-            <a href="/smart-finder" className="primary-cta-btn">
-              <span className="btn-icon">✨</span>
-              Coba Smart Finder Sekarang
+          <div className="compact-cta">
+            <button onClick={() => navigateTo('/smart-finder')} className="primary-cta-btn">
+              <span className="btn-icon">🚀</span>
+              <span className="btn-text">Coba Smart Finder Sekarang</span>
               <span className="btn-arrow">→</span>
-            </a>
-            <p className="cta-note">Gratis, tanpa perlu daftar!</p>
-          </div>
-
-          {/* Stats */}
-          <div className="finder-stats">
-            <div className="stat-item">
-              <span className="stat-number">2.5K+</span>
-              <span className="stat-label">Pengguna Happy</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">95%</span>
-              <span className="stat-label">Akurasi</span>
-            </div>
-            <div className="stat-item">
-              <span className="stat-number">30s</span>
-              <span className="stat-label">Waktu Rata-rata</span>
-            </div>
+            </button>
           </div>
         </div>
       </div>
