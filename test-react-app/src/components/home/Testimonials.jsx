@@ -52,55 +52,62 @@ const FeaturedReviewers = () => {
     // No auto-scroll animation - user will scroll manually
   }, []);
   
-  // Top reviewers data (sorted by review count - highest first)
+  // Top reviewers data - Team members first, then community reviewers
   const featuredReviewers = [
+    // Cafinder Team Members (in order: Semmi, Haydar, Sutan, Gega, Araya)
     {
       id: 1,
-      name: "Andi Setiawan",
-      reviewCount: 127,
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+      name: "Semmi",
+      reviewCount: 150,
+      image: "/images/team-semmi.jpeg",
+      isTeam: true
     },
     {
       id: 2,
-      name: "Sari Dewi",
-      reviewCount: 95,
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+      name: "Haydar",
+      reviewCount: 142,
+      image: "/images/team-haydar.jpeg",
+      isTeam: true
     },
     {
       id: 3,
-      name: "Rendi Pratama",
-      reviewCount: 88,
-      image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+      name: "Sutan",
+      reviewCount: 135,
+      image: "/images/team-Sutan.jpeg",
+      isTeam: true
     },
     {
       id: 4,
-      name: "Maya Kusuma",
-      reviewCount: 76,
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+      name: "Gega",
+      reviewCount: 128,
+      image: "/images/team-gega.jpeg",
+      isTeam: true
     },
     {
       id: 5,
-      name: "Budi Hartono",
-      reviewCount: 64,
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+      name: "Araya",
+      reviewCount: 125,
+      image: "/images/team-araya.jpeg",
+      isTeam: true
     },
+    // Community Reviewers with team photos
     {
       id: 6,
-      name: "Indira Sari",
-      reviewCount: 58,
-      image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+      name: "Sari Dewi",
+      reviewCount: 95,
+      image: "/images/team-semmi.jpeg"
     },
     {
       id: 7,
-      name: "Farhan Ahmad",
-      reviewCount: 52,
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+      name: "Rendi Pratama",
+      reviewCount: 88,
+      image: "/images/team-haydar.jpeg"
     },
     {
       id: 8,
-      name: "Lestari Putri",
-      reviewCount: 45,
-      image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-1.2.1&auto=format&fit=crop&w=200&q=80"
+      name: "Maya Kusuma",
+      reviewCount: 76,
+      image: "/images/team-Sutan.jpeg"
     }
   ];
   
