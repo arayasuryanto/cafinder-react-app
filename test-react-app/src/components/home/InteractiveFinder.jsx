@@ -4,127 +4,295 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const InteractiveFinder = () => {
-  const [activeFilter, setActiveFilter] = useState('wifi');
-  const [searchQuery, setSearchQuery] = useState('');
+const InteractiveFinder = ({ navigateTo }) => {
+  const [hoveredNeed, setHoveredNeed] = useState(null);
+  const [isPaused, setIsPaused] = useState(false);
 
-  const filters = [
-    { id: 'wifi', icon: '📶', label: 'WiFi Kencang', count: 156 },
-    { id: 'aesthetic', icon: '📸', label: 'Aesthetic', count: 89 },
-    { id: 'outdoor', icon: '🌳', label: 'Outdoor Area', count: 67 },
-    { id: 'meeting', icon: '💼', label: 'Meeting Room', count: 45 },
-    { id: 'pet', icon: '🐕', label: 'Pet Friendly', count: 34 },
-    { id: '24h', icon: '🌙', label: 'Buka 24 Jam', count: 12 }
+  const needs = [
+    { 
+      id: 'wifi', 
+      icon: '📶', 
+      label: 'WiFi Kencang', 
+      count: 156,
+      description: 'Koneksi super cepat untuk kerja',
+      gradient: 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
+      sampleCafes: ['Starbucks', 'Excelso', 'Fore Coffee'],
+      benefits: ['Speed 100+ Mbps', 'Stable Connection', 'Power Outlets']
+    },
+    { 
+      id: 'aesthetic', 
+      icon: '📸', 
+      label: 'Aesthetic', 
+      count: 89,
+      description: 'Spot instagramable & cozy',
+      gradient: 'linear-gradient(135deg, #EC4899 0%, #DB2777 100%)',
+      sampleCafes: ['Common Grounds', 'Blue Doors', 'Monopole'],
+      benefits: ['Photo Spots', 'Natural Light', 'Unique Interior']
+    },
+    { 
+      id: 'outdoor', 
+      icon: '🌳', 
+      label: 'Outdoor Area', 
+      count: 67,
+      description: 'Suasana terbuka & segar',
+      gradient: 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+      sampleCafes: ['Garden Cafe', 'The Yard', 'Open Space'],
+      benefits: ['Fresh Air', 'Garden View', 'Smoking Area']
+    },
+    { 
+      id: 'work', 
+      icon: '💼', 
+      label: 'Work From Cafe', 
+      count: 45,
+      description: 'Tempat kerja yang produktif',
+      gradient: 'linear-gradient(135deg, #8B5CF6 0%, #7C3AED 100%)',
+      sampleCafes: ['CoHive', 'Block71', 'Workwell'],
+      benefits: ['Meeting Room', 'Quiet Zone', 'Fast WiFi']
+    },
+    { 
+      id: 'pet', 
+      icon: '🐕', 
+      label: 'Pet Friendly', 
+      count: 34,
+      description: 'Bawa hewan kesayangan',
+      gradient: 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+      sampleCafes: ['Dog Cafe', 'Pet House', 'Furry Friends'],
+      benefits: ['Pet Menu', 'Play Area', 'Pet Facilities']
+    },
+    { 
+      id: '24h', 
+      icon: '🌙', 
+      label: 'Buka 24 Jam', 
+      count: 12,
+      description: 'Nongkrong tanpa batas waktu',
+      gradient: 'linear-gradient(135deg, #6366F1 0%, #4F46E5 100%)',
+      sampleCafes: ['Upnormal', 'Rocket Chicken', '24 Coffee'],
+      benefits: ['Late Night', 'Always Open', 'Night Menu']
+    },
+    { 
+      id: 'instagramable', 
+      icon: '📸', 
+      label: 'Most Instagramable', 
+      count: 42,
+      description: 'Spot foto terbaik untuk feed',
+      gradient: 'linear-gradient(135deg, #E11D48 0%, #F97316 100%)',
+      sampleCafes: ['Aesthetic Cafe', 'Photo Studio', 'Insta Worthy'],
+      benefits: ['Photo Spots', 'Unique Decor', 'Perfect Lighting']
+    },
+    { 
+      id: 'hidden-gems', 
+      icon: '💎', 
+      label: 'Hidden Gems', 
+      count: 18,
+      description: 'Cafe tersembunyi yang unik',
+      gradient: 'linear-gradient(135deg, #8B5CF6 0%, #A855F7 100%)',
+      sampleCafes: ['Secret Garden', 'Hidden Corner', 'Underground'],
+      benefits: ['Exclusive', 'Unique Concept', 'Local Favorite']
+    },
+    { 
+      id: 'date-night', 
+      icon: '💕', 
+      label: 'Perfect for Date', 
+      count: 24,
+      description: 'Suasana romantis untuk berdua',
+      gradient: 'linear-gradient(135deg, #EC4899 0%, #BE185D 100%)',
+      sampleCafes: ['Romance Cafe', 'Intimate Space', 'Couple Corner'],
+      benefits: ['Romantic Ambiance', 'Private Seating', 'Cozy Atmosphere']
+    }
   ];
 
   useEffect(() => {
-    // Animate section on scroll
-    gsap.fromTo('.interactive-finder',
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        scrollTrigger: {
-          trigger: '.interactive-finder',
-          start: 'top 80%',
-          end: 'bottom 20%',
-          toggleActions: 'play none none reverse'
+    const ctx = gsap.context(() => {
+      // Animate section entrance
+      gsap.fromTo('.needs-finder',
+        { opacity: 0, y: 50 },
+        {
+          opacity: 1,
+          y: 0,
+          duration: 1,
+          scrollTrigger: {
+            trigger: '.needs-finder',
+            start: 'top 80%'
+          }
         }
-      }
-    );
+      );
 
-    // Animate filter cards
-    gsap.fromTo('.filter-card',
-      { scale: 0.8, opacity: 0 },
-      {
-        scale: 1,
-        opacity: 1,
-        duration: 0.5,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: '.filter-grid',
-          start: 'top 80%'
+      // Animate need cards with stagger
+      gsap.fromTo('.need-card',
+        { opacity: 0, y: 30, scale: 0.9 },
+        {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.6,
+          stagger: {
+            amount: 0.8,
+            from: "random"
+          },
+          scrollTrigger: {
+            trigger: '.needs-grid',
+            start: 'top 80%'
+          }
         }
-      }
-    );
+      );
+
+      // Row 1 animation - Left to Right
+      gsap.to('.row-1', {
+        x: '-50%',
+        duration: 30,
+        repeat: -1,
+        ease: 'none'
+      });
+      
+      // Row 2 animation - Right to Left
+      gsap.to('.row-2', {
+        x: '50%',
+        duration: 30,
+        repeat: -1,
+        ease: 'none'
+      });
+
+      // Floating animation for icons
+      gsap.to('.need-icon', {
+        y: -5,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: 'power1.inOut',
+        stagger: {
+          amount: 1,
+          from: "random"
+        }
+      });
+    });
+
+    return () => ctx.revert();
   }, []);
 
-  const handleSearch = (e) => {
-    e.preventDefault();
-    // Navigate to catalog with search query
-    window.location.href = `/catalog?search=${encodeURIComponent(searchQuery)}&filter=${activeFilter}`;
-  };
-
   return (
-    <section className="interactive-finder">
+    <section className="needs-finder">
       <div className="container">
-        <div className="finder-content">
-          <h2 className="section-title">
-            Cari Cafe Sesuai <span className="highlight">Kebutuhanmu</span>
+        <div className="needs-header">
+          <div className="header-badge">
+            <span className="badge-icon">✨</span>
+            <span className="badge-text">Rekomendasi Cafe</span>
+          </div>
+          
+          <h2 className="needs-title">
+            Cari Cafe Sesuai<br />
+            <span className="title-gradient">Kebutuhanmu</span>
           </h2>
-          <p className="section-subtitle">
-            Pilih filter favorit atau cari langsung cafe impianmu
+          
+          <p className="needs-subtitle">
+            Pilih kategori kebutuhan cafe yang kamu cari. Kami punya rekomendasi terbaik untuk setiap preferensimu!
           </p>
+        </div>
 
-          {/* Search Bar */}
-          <form className="finder-search" onSubmit={handleSearch}>
-            <div className="search-wrapper">
-              <input
-                type="text"
-                placeholder="Cari nama cafe atau lokasi..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="search-input"
-              />
-              <button type="submit" className="search-button">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                  <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" 
-                    stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-                </svg>
-                Cari
-              </button>
-            </div>
-          </form>
-
-          {/* Filter Grid */}
-          <div className="filter-grid">
-            {filters.map((filter) => (
+        {/* Needs Grid */}
+        <div className="needs-grid-container">
+          {/* Row 1 - First 5 cards (Left to Right) */}
+          <div className="needs-row row-1">
+            {[...needs.slice(0, 5), ...needs.slice(0, 5)].map((need, index) => (
               <div
-                key={filter.id}
-                className={`filter-card ${activeFilter === filter.id ? 'active' : ''}`}
-                onClick={() => setActiveFilter(filter.id)}
+                key={`row1-${need.id}-${index}`}
+                onClick={() => navigateTo(`/rekomendasi?category=${need.id}`)}
+                className="need-card"
+                onMouseEnter={() => setHoveredNeed(need.id)}
+                onMouseLeave={() => setHoveredNeed(null)}
+                style={{background: need.gradient, cursor: 'pointer'}}
               >
-                <div className="filter-icon">{filter.icon}</div>
-                <div className="filter-info">
-                  <h4>{filter.label}</h4>
-                  <p>{filter.count} cafe</p>
+              <div className="need-content">
+                <div className="need-header">
+                  <div className="need-icon">{need.icon}</div>
+                  <div className="need-count">{need.count} cafe</div>
                 </div>
-                <div className="filter-check">
-                  {activeFilter === filter.id && (
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M9 16.17L4.83 12L3.41 13.41L9 19L21 7L19.59 5.59L9 16.17Z"/>
-                    </svg>
-                  )}
+                
+                <h3 className="need-label">{need.label}</h3>
+                <p className="need-description">{need.description}</p>
+                
+                {/* Benefits on hover */}
+                <div className={`need-details ${hoveredNeed === need.id ? 'show' : ''}`}>
+                  <div className="benefits-list">
+                    {need.benefits.map((benefit, index) => (
+                      <span key={index} className="benefit-tag">{benefit}</span>
+                    ))}
+                  </div>
+                  
+                  <div className="sample-cafes">
+                    <span className="sample-label">Popular:</span>
+                    {need.sampleCafes.slice(0, 2).join(', ')}
+                  </div>
+                </div>
+              </div>
+              
+              
+              {/* Decorative elements */}
+              <div className="card-decoration">
+                <div className="deco-circle circle-1"></div>
+                <div className="deco-circle circle-2"></div>
+              </div>
+              </div>
+            ))}
+          </div>
+          
+          {/* Row 2 - Last 4 cards (Right to Left) */}
+          <div className="needs-row row-2">
+            {[...needs.slice(5), ...needs.slice(5)].map((need, index) => (
+              <div
+                key={`row2-${need.id}-${index}`}
+                onClick={() => navigateTo(`/rekomendasi?category=${need.id}`)}
+                className="need-card"
+                onMouseEnter={() => setHoveredNeed(need.id)}
+                onMouseLeave={() => setHoveredNeed(null)}
+                style={{background: need.gradient, cursor: 'pointer'}}
+              >
+                <div className="need-content">
+                  <div className="need-header">
+                    <div className="need-icon">{need.icon}</div>
+                    <div className="need-count">{need.count} cafe</div>
+                  </div>
+                  
+                  <h3 className="need-label">{need.label}</h3>
+                  <p className="need-description">{need.description}</p>
+                  
+                  {/* Benefits on hover */}
+                  <div className={`need-details ${hoveredNeed === need.id ? 'show' : ''}`}>
+                    <div className="benefits-list">
+                      {need.benefits.map((benefit, idx) => (
+                        <span key={idx} className="benefit-tag">{benefit}</span>
+                      ))}
+                    </div>
+                    
+                    <div className="sample-cafes">
+                      <span className="sample-label">Popular:</span>
+                      {need.sampleCafes.slice(0, 2).join(', ')}
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Decorative elements */}
+                <div className="card-decoration">
+                  <div className="deco-circle circle-1"></div>
+                  <div className="deco-circle circle-2"></div>
                 </div>
               </div>
             ))}
           </div>
+        </div>
 
-          {/* Quick Actions */}
-          <div className="quick-actions">
-            <a href="/catalog" className="action-link">
-              <span>Lihat Semua Cafe</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-            </a>
-            <a href="/map" className="action-link highlight">
-              <span>Buka Peta Cafe</span>
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22S19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="currentColor"/>
-              </svg>
-            </a>
+
+        {/* Call to Action */}
+        <div className="finder-cta">
+          <p className="cta-text">Belum menemukan yang kamu cari?</p>
+          <div className="cta-buttons">
+            <button onClick={() => navigateTo('/catalog')} className="cta-btn secondary">
+              <span className="btn-icon">🔍</span>
+              <span>Explore Semua Cafe</span>
+            </button>
+            <button onClick={() => navigateTo('/smart-finder')} className="cta-btn primary">
+              <span className="btn-icon">🤖</span>
+              <span>Gunakan AI Finder</span>
+            </button>
           </div>
         </div>
       </div>

@@ -1,0 +1,790 @@
+// Curated cafe recommendations based on specific categories
+export const curatedCafeData = {
+  wifi: [
+    {
+      id: "monopole-coffee-lab",
+      name: "Monopole Coffee Lab",
+      address: "Jl. Raya Darmo Permai I/38, Dukuh Pakis, Surabaya",
+      hours: "9:00 - 22:00 setiap hari",
+      description: "WiFi super kencang, bisa streaming YouTube tanpa buffering, banyak colokan di setiap meja",
+      priceRange: "Rp 20.000 - 50.000",
+      specialty: "Specialty coffee lab dengan \"Obama Blend\", training academy untuk barista",
+      rating: "4.7",
+      category: "WiFi Kencang",
+      imageUrl: "https://images.unsplash.com/photo-1521017432-4e4023ae2755?w=400&h=350&fit=crop&auto=format&q=85"
+    },
+    {
+      id: "historica-cafe",
+      name: "Historica Cafe & Pastry",
+      address: "Jl. Sumatera No.40, Gubeng, Surabaya (Society Complex)",
+      hours: "9:00 - 22:00 setiap hari",
+      description: "WiFi super cepat dengan colokan di hampir setiap meja, ideal untuk kerja laptop",
+      priceRange: "Rp 30.000 - 50.000",
+      specialty: "Interior kolonial vintage, dekat Stasiun Gubeng",
+      rating: "4.6",
+      category: "WiFi Kencang",
+      imageUrl: "/images/historica-cafe.jpg"
+    },
+    {
+      id: "the-origin-coffee",
+      name: "The Origin Coffee",
+      address: "Jl. Raya Jemursari No.71, Wonocolo, Surabaya (bawah Hotel Cleo)",
+      hours: "9:00 - 24:00 setiap hari",
+      description: "WiFi kencang khusus untuk menyelesaikan pekerjaan cepat",
+      priceRange: "Rp 20.000 - 50.000",
+      specialty: "Interior minimalis, area indoor AC dan semi-outdoor",
+      rating: "4.5",
+      category: "WiFi Kencang",
+      imageUrl: "/images/origin-coffee.jpg"
+    },
+    {
+      id: "calibre-coffee",
+      name: "Calibre Coffee Roasters",
+      address: "Jl. Walikota Mustajab No.67-69, Ketabang, Genteng, Surabaya",
+      hours: "10:00 - 22:00 setiap hari",
+      description: "Full AC dengan banyak colokan per kursi, dirancang khusus untuk bekerja nyaman",
+      priceRange: "Rp 30.000 - 40.000",
+      specialty: "Fully air-conditioned, tempat duduk luas",
+      rating: "4.8",
+      category: "WiFi Kencang",
+      imageUrl: "/images/calibre-coffee.jpg"
+    },
+    {
+      id: "threelogy-coffee",
+      name: "Threelogy Coffee",
+      address: "Jl. Mojopahit No.46, Keputran, Tegalsari, Surabaya",
+      hours: "7:00 - 21:00 setiap hari",
+      description: "WiFi excellent dengan colokan melimpah, destinasi WFC populer",
+      priceRange: "Rp 25.000+",
+      specialty: "Desain Skandinavia, jendela besar untuk cahaya alami",
+      rating: "4.7",
+      category: "WiFi Kencang",
+      imageUrl: "/images/threelogy-coffee.jpg"
+    },
+    {
+      id: "volks-coffee",
+      name: "Volks Coffee",
+      address: "Jl. M.H. Tamrin No.34, Tegalsari, Surabaya",
+      hours: "10:00 - 22:00 setiap hari",
+      description: "WiFi kencang dengan suasana cozy sempurna untuk bekerja",
+      priceRange: "Rp 20.000 - 35.000",
+      specialty: "Dekorasi dominan putih, Breakfast Pack Rp 35.000 (8-11 pagi)",
+      rating: "4.5",
+      category: "WiFi Kencang",
+      imageUrl: "/images/volks-coffee.jpg"
+    },
+    {
+      id: "blackbarn-coffee",
+      name: "BlackBarn Coffee",
+      address: "Jl. Untung Suropati No.79, Tegalsari, Surabaya",
+      hours: "9:00 - 20:00 setiap hari",
+      description: "Desain industrial dengan akses internet cepat khusus untuk bekerja",
+      priceRange: "Rp 30.000 - 31.000",
+      specialty: "Interior industrial, suasana tenang untuk konsentrasi",
+      rating: "4.6",
+      category: "WiFi Kencang",
+      imageUrl: "/images/blackbarn-coffee.jpg"
+    },
+    {
+      id: "locus-cafe",
+      name: "Locus Cafe",
+      address: "Jl. Sidosermo Indah No.6, Sidosermo, Wonocolo, Surabaya",
+      hours: "10:00 - 23:00 setiap hari",
+      description: "WiFi kencang dengan estetika earth-tone dan furniture kayu",
+      priceRange: "Rp 10.000 - 17.000 (sangat terjangkau)",
+      specialty: "Suasana homey, area indoor AC dan semi-outdoor",
+      rating: "4.4",
+      category: "WiFi Kencang",
+      imageUrl: "/images/locus-cafe.jpg"
+    },
+    {
+      id: "dcoffee-cup",
+      name: "D'Coffee Cup",
+      address: "Jl. Ngagel Jaya Selatan No. 63, Pucang Sewu, Gubeng, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "3 lantai full AC dengan WiFi kencang, ideal untuk belajar/bekerja",
+      priceRange: "Rp 12.000 - 37.000",
+      specialty: "Buka 24 jam, ada cabang di Merr dan Prapen",
+      rating: "4.3",
+      category: "WiFi Kencang",
+      imageUrl: "/images/dcoffee-cup.jpg"
+    },
+    {
+      id: "visma-coworking",
+      name: "Visma Coworking & Cafe",
+      address: "Jl. Tegalsari No.35, Tegalsari, Surabaya",
+      hours: "Senin-Sabtu 8:00 - 20:00",
+      description: "Dedicated coworking space dengan WiFi profesional",
+      priceRange: "Rp 35.000 untuk 4 jam (mahasiswa)",
+      specialty: "Fasilitas coworking, galeri seni, event space",
+      rating: "4.8",
+      category: "WiFi Kencang",
+      imageUrl: "/images/visma-coworking.jpg"
+    }
+  ],
+  aesthetic: [
+    {
+      id: "one-pose-cafe",
+      name: "One Pose Cafe",
+      address: "Jl. Puncak Permai III No.23A, Sukomanunggal, Surabaya",
+      hours: "10:00 - 21:00 setiap hari",
+      description: "Desain seperti istana dengan warna putih, pink, dan pastel, penuh dekorasi boneka beruang",
+      priceRange: "Rp 30.000 - 80.000",
+      specialty: "Tema shabby chic, banyak spot foto, dekorasi teddy bear raksasa",
+      rating: "4.9",
+      category: "Aesthetic",
+      imageUrl: "/images/one-pose-cafe.jpg"
+    },
+    {
+      id: "palacio-sky-cafe",
+      name: "Palacio Sky Cafe",
+      address: "Jl. Nginden Semolo, Nginden Jangkungan, Sukolilo, Surabaya",
+      hours: "Bervariasi setiap hari",
+      description: "Tema rustic modern dengan desain bangunan unik, pemandangan kota dari ketinggian",
+      priceRange: "Moderate",
+      specialty: "Konsep rooftop, pemandangan panorama kota",
+      rating: "4.8",
+      category: "Aesthetic",
+      imageUrl: "/images/palacio-sky-cafe.jpg"
+    },
+    {
+      id: "yoi-kona-coffee",
+      name: "Yoi Kona Coffee",
+      address: "Jl. Dr Ir H Soekarno M 20, Rungkut Kidul, Rungkut, Surabaya",
+      hours: "7:30 - 23:00 setiap hari",
+      description: "Desain modern dengan area rooftop, rating Google 4.6/5 dari 1,600+ review",
+      priceRange: "Rp 25.000 - 50.000",
+      specialty: "Pengalaman dining rooftop, family-friendly",
+      rating: "4.6",
+      category: "Aesthetic",
+      imageUrl: "/images/yoi-kona-coffee.jpg"
+    },
+    {
+      id: "le-cafe-gourmand",
+      name: "Le Café Gourmand",
+      address: "Jl. Mayjen Yono Suwoyo, Babatan, Wiyung, Surabaya",
+      hours: "11:00 - 21:30 setiap hari",
+      description: "Desain interior dan eksterior bergaya Perancis, atmosfer elegan dan classy",
+      priceRange: "Sekitar Rp 45.000 untuk dessert es krim",
+      specialty: "Tema Perancis, rasa es krim unik (nastar, birthday cake)",
+      rating: "4.7",
+      category: "Aesthetic",
+      imageUrl: "/images/le-cafe-gourmand.jpg"
+    },
+    {
+      id: "onni-house",
+      name: "Onni House",
+      address: "Jl. Opak No.56, Darmo, Wonokromo, Surabaya",
+      hours: "Bervariasi",
+      description: "Konsep natural menggabungkan kafe dengan toko bunga dan tanaman",
+      priceRange: "31 menu tersedia",
+      specialty: "Casual dining dengan toko bunga, menu seasonal, jual tanaman dan produk handmade",
+      rating: "4.5",
+      category: "Aesthetic",
+      imageUrl: "/images/onni-house.jpg"
+    },
+    {
+      id: "jj-lake-cafe",
+      name: "JJ Lake Cafe & Eatery",
+      address: "Bukit Telaga Golf Blok FG No.16, Jeruk Lakarsantri, Surabaya",
+      hours: "Senin-Jumat 10:00-22:00, Sabtu 10:00-23:00",
+      description: "Setting tepi danau dengan interior instagrammable, spot sunset viewing",
+      priceRange: "Mulai dari Rp 15.000",
+      specialty: "Lokasi tepi danau, pemandangan sunset, dekat lapangan golf",
+      rating: "4.8",
+      category: "Aesthetic",
+      imageUrl: "/images/jj-lake-cafe.jpg"
+    },
+    {
+      id: "oh-gelato-cafe",
+      name: "Oh Gelato Café",
+      address: "Jl. Kusuma Bangsa No.1-3, Ketabang, Genteng & Gang Jangkrik Manyar",
+      hours: "11:00 - 21:00 setiap hari",
+      description: "Desain modern kekinian dengan fokus gelato Italia, banyak spot Instagram",
+      priceRange: "Rp 18.000 - 30.000",
+      specialty: "Gelato Italia autentik dengan rasa unik",
+      rating: "4.6",
+      category: "Aesthetic",
+      imageUrl: "/images/oh-gelato-cafe.jpg"
+    },
+    {
+      id: "mumukuru-caturra",
+      name: "Mumukuru by Caturra Espresso",
+      address: "Jl. International Village I/C1 No. 1, Sambikerep, Surabaya",
+      hours: "7:00 - 21:00 setiap hari",
+      description: "Arsitektur terinspirasi Jepang, konsep eco-green dengan tanaman melimpah",
+      priceRange: "Rp 50.000 - 100.000",
+      specialty: "Konsep eco-friendly, arsitektur Jepang",
+      rating: "4.7",
+      category: "Aesthetic",
+      imageUrl: "/images/mumukuru-caturra.jpg"
+    },
+    {
+      id: "kollabora",
+      name: "Kollabora",
+      address: "Jl. Raya Kupang Indah No. 51, Sonokwijenan, Sukomanunggal, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "Pemenang \"Best Thematic Cafe in Indonesia\", tema white forest",
+      priceRange: "Rp 100.000 - 200.000",
+      specialty: "VIP room tersedia, dekorasi Instagram-worthy, buka 24 jam",
+      rating: "4.9",
+      category: "Aesthetic",
+      imageUrl: "/images/kollabora.jpg"
+    },
+    {
+      id: "vault-board-game",
+      name: "The Vault Board Game Cafe",
+      address: "Level 1 Pakuwon Mall, Babatan, Wiyung, Surabaya",
+      hours: "Senin-Kamis 11:00-22:00, Jumat-Minggu 10:00-22:00",
+      description: "Interior unik dengan 100+ board game, banyak spot Instagrammable",
+      priceRange: "Moderate",
+      specialty: "Koleksi 100+ board game, desain interior menarik",
+      rating: "4.8",
+      category: "Aesthetic",
+      imageUrl: "/images/vault-board-game.jpg"
+    }
+  ],
+  outdoor: [
+    {
+      id: "tropikal-coffee",
+      name: "Tropikal Coffee",
+      address: "Jl. Keputih Tegal Timur No.20, Keputih, Kec. Sukolilo, Surabaya",
+      hours: "9:00 - 24:00 setiap hari",
+      description: "Ruang outdoor bertema Bali tropis dengan tanaman hijau, furniture bambu",
+      priceRange: "Minuman Rp 12.000-20.000, snack dari Rp 15.000+",
+      specialty: "Aroma terapi, suasana seperti pantai",
+      rating: "4.5",
+      category: "Outdoor Area",
+      imageUrl: "/images/tropikal-coffee.jpg"
+    },
+    {
+      id: "deoak-garden-cafe",
+      name: "De'Oak Garden Cafe",
+      address: "Jl. Ngagel No.209, Wonokromo, Surabaya",
+      hours: "12:00 - 22:00 setiap hari",
+      description: "Setting taman indah dengan area outdoor alami dikelilingi tanaman dan pohon",
+      priceRange: "Makanan Rp 30.000-78.000, minuman dari Rp 7.000+",
+      specialty: "Panggung live music, meja dari potongan pohon oak",
+      rating: "4.7",
+      category: "Outdoor Area",
+      imageUrl: "/images/deoak-garden-cafe.jpg"
+    },
+    {
+      id: "garden-cafe-xxi",
+      name: "Garden Cafe XXI (Ciputra World)",
+      address: "Ciputra World Mall, Level 4, Jl. Mayjen Sungkono No.89, Dukuhpakis, Surabaya",
+      hours: "11:00 - 21:00 setiap hari",
+      description: "Kafe rooftop dengan pemandangan kota menakjubkan, area outdoor dan indoor",
+      priceRange: "Di bawah Rp 100.000 per orang",
+      specialty: "Dekat bioskop, pemandangan panorama kota",
+      rating: "4.6",
+      category: "Outdoor Area",
+      imageUrl: "/images/garden-cafe-xxi.jpg"
+    },
+    {
+      id: "carpentier-kitchen",
+      name: "Carpentier Kitchen",
+      address: "Jl. Untung Suropati No.83, DR. Soetomo, Tegalsari, Surabaya",
+      hours: "Senin-Sabtu 11:00-22:00, Minggu tutup",
+      description: "Area outdoor menawan dengan desain vintage, dekorasi putih dan retro, dikelilingi tanaman",
+      priceRange: "Rp 50.000-200.000 per orang",
+      specialty: "Gabungan dengan toko fashion ORE, bangunan heritage vintage",
+      rating: "4.8",
+      category: "Outdoor Area",
+      imageUrl: "/images/carpentier-kitchen.jpg"
+    },
+    {
+      id: "kunokini-cafe",
+      name: "KUNOKINI Cafe & Resto",
+      address: "Jl. Raya Prapen No.69, Panjang Jiwo, Tenggilis Mejoyo, Surabaya",
+      hours: "9:00-23:00 setiap hari",
+      description: "Area outdoor cantik dengan penataan tempat duduk rapi, cocok untuk acara",
+      priceRange: "Mulai dari Rp 7.000+",
+      specialty: "Event-friendly space, penataan tempat duduk rapi",
+      rating: "4.4",
+      category: "Outdoor Area",
+      imageUrl: "/images/kunokini-cafe.jpg"
+    },
+    {
+      id: "cilpa-coffee-house",
+      name: "Cilpa Coffee & House",
+      address: "Jl. Tumapel No.51, Keputran, Tegalsari, Surabaya",
+      hours: "Bervariasi setiap hari",
+      description: "Setting rumah vintage dengan pohon besar rindang, area outdoor cozy untuk malam hari",
+      priceRange: "Moderate",
+      specialty: "Bangunan heritage, teduh oleh pohon besar",
+      rating: "4.5",
+      category: "Outdoor Area",
+      imageUrl: "/images/cilpa-coffee-house.jpg"
+    },
+    {
+      id: "sas-cafe-resto",
+      name: "SAS Cafe n Resto",
+      address: "Jl. Baskara Sawah No.30, Kalisari, Mulyorejo, Surabaya",
+      hours: "9:00-23:00 setiap hari",
+      description: "Tema pedesaan dengan setting taman dan playground untuk anak",
+      priceRange: "Mulai dari Rp 7.000+",
+      specialty: "Family-friendly dengan playground, atmosfer pedesaan",
+      rating: "4.3",
+      category: "Outdoor Area",
+      imageUrl: "/images/sas-cafe-resto.jpg"
+    },
+    {
+      id: "petrichor-cafe",
+      name: "Petrichor Cafe",
+      address: "Jl. Manyar Kerta Adi No. 93, Manyar Sabrangan, Mulyorejo, Surabaya",
+      hours: "10:00-23:00 setiap hari",
+      description: "Area backyard luas sempurna untuk hewan peliharaan bermain",
+      priceRange: "Rp 50.000-100.000 per orang",
+      specialty: "Garden vibes dengan pavilion kayu, atap kaca dengan tanaman rambat",
+      rating: "4.6",
+      category: "Outdoor Area",
+      imageUrl: "/images/petrichor-cafe.jpg"
+    },
+    {
+      id: "spread-tootoomoo",
+      name: "Spread by TooTooMoo",
+      address: "Jl. Opak No. 10, Darmo, Wonokromo, Surabaya",
+      hours: "Senin-Jumat 9:00-22:00, Sabtu-Minggu 8:00-22:00",
+      description: "Arsitektur bergaya Eropa dengan backyard luas",
+      priceRange: "Rp 80.000-120.000 per orang",
+      specialty: "Desain Eropa klasik, awalnya bakery",
+      rating: "4.7",
+      category: "Outdoor Area",
+      imageUrl: "/images/spread-tootoomoo.jpg"
+    },
+    {
+      id: "mibimibi-rooftop",
+      name: "Mibimibi Rooftop",
+      address: "Jl. Petemon 3 No. 136, Petemon, Sawahan, Surabaya",
+      hours: "16:00-22:00 setiap hari",
+      description: "Full outdoor rooftop dengan pemandangan kota",
+      priceRange: "Moderate",
+      specialty: "Konsep full outdoor, city view",
+      rating: "4.5",
+      category: "Outdoor Area",
+      imageUrl: "/images/mibimibi-rooftop.jpg"
+    }
+  ],
+  work: [
+    {
+      id: "noach-cafe-bistro",
+      name: "Noach Cafe and Bistro",
+      address: "Jl. Pregolan No.4, Tegalsari, Surabaya",
+      hours: "Sen-Kam 11:00-22:00, Jum 11:00-24:00, Sab-Min 11:00-24:00",
+      description: "Ruang VIP tersedia, banyak colokan listrik, tempat duduk indoor/outdoor berbeda atmosfer",
+      priceRange: "Moderate hingga upscale",
+      specialty: "Ruang VIP, area \"bird cage\" privat, suasana mewah",
+      rating: "4.8",
+      category: "Work From Cafe",
+      imageUrl: "/images/noach-cafe-bistro.jpg"
+    },
+    {
+      id: "kudos-cafe",
+      name: "Kudos Cafe",
+      address: "Pakuwon Square AK 2 No.3, Jl. Mayjend. Jonosewojo No.100, Lidah Wetan, Lakarsantri, Surabaya",
+      hours: "8:00-22:00 setiap hari",
+      description: "Atmosfer tenang dengan furniture kayu dan warna hangat, WiFi stabil",
+      priceRange: "Sekitar Rp 100.000 untuk main dish + minuman",
+      specialty: "Jam operasional panjang, WiFi cepat stabil, lingkungan profesional",
+      rating: "4.7",
+      category: "Work From Cafe",
+      imageUrl: "/images/kudos-cafe.jpg"
+    },
+    {
+      id: "regus-pakuwon",
+      name: "Regus (Pakuwon Centre)",
+      address: "Pakuwon Centre, Jl. Embong Malang No.1, Lantai 23, Kedungdoro, Tegalsari, Surabaya",
+      hours: "24/7",
+      description: "Business center profesional dengan 4 ruang meeting, 22 meja coworking, 70 kantor privat",
+      priceRange: "Mulai dari Rp 250.000 (berbagai paket tersedia)",
+      specialty: "Business center, akses 24/7, pemandangan kota, dekat mall",
+      rating: "4.9",
+      category: "Work From Cafe",
+      imageUrl: "/images/regus-pakuwon.jpg"
+    },
+    {
+      id: "urban-office",
+      name: "Urban Office",
+      address: "Jl. Dr. Ir. H. Soekarno No.470, Kedung Baruk, Rungkut, Surabaya",
+      hours: "Senin-Sabtu 8:00-17:00",
+      description: "Ruang coworking modern dengan ruang meeting, fasilitas profesional",
+      priceRange: "Rp 35.000 untuk 6 jam",
+      specialty: "Dedicated coworking space, ruang meeting, internet cepat, layanan printer",
+      rating: "4.6",
+      category: "Work From Cafe",
+      imageUrl: "/images/urban-office.jpg"
+    },
+    {
+      id: "we-the-fork",
+      name: "We The Fork Tunjungan",
+      address: "Jl. Tunjungan, Kedungdoro, Genteng, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "Kafe 24 jam pertama di Jalan Tunjungan ikonik, full AC",
+      priceRange: "Rp 60.000-120.000 per orang",
+      specialty: "Lokasi Surabaya Pusat, area bersejarah, buka 24 jam",
+      rating: "4.5",
+      category: "Work From Cafe",
+      imageUrl: "/images/we-the-fork.jpg"
+    },
+    {
+      id: "cold-n-brew",
+      name: "Cold 'N Brew",
+      address: "Jl. Bali No. 11, Gubeng, Surabaya",
+      hours: "7:00 - 01:00 setiap hari",
+      description: "Fasilitas ruang meeting, lokasi strategis di pusat kota",
+      priceRange: "Moderate",
+      specialty: "Ruang meeting tersedia, lokasi sentral",
+      rating: "4.4",
+      category: "Work From Cafe",
+      imageUrl: "/images/cold-n-brew.jpg"
+    },
+    {
+      id: "societe",
+      name: "Société",
+      address: "Jl. Mayjen HR. Muhammad No. 102, Pradahkalikendal, Dukuhpakis, Surabaya",
+      hours: "Bervariasi",
+      description: "Konsep hybrid cafe/restaurant/bar, \"Culture du Cafe\"",
+      priceRange: "Premium",
+      specialty: "Konsep multifungsi, atmosfer profesional",
+      rating: "4.7",
+      category: "Work From Cafe",
+      imageUrl: "/images/societe.jpg"
+    },
+    {
+      id: "first-floor-coffee",
+      name: "First Floor Coffee",
+      address: "Jl. Tunjungan No. 57d, Genteng, Surabaya",
+      hours: "Bervariasi",
+      description: "Artisanal brews, dekor minimalis hangat, work/leisure friendly",
+      priceRange: "Moderate",
+      specialty: "Lokasi strategis Tunjungan, suasana kerja nyaman",
+      rating: "4.6",
+      category: "Work From Cafe",
+      imageUrl: "/images/first-floor-coffee.jpg"
+    }
+  ],
+  pet: [
+    {
+      id: "pawvilion-dog-cafe",
+      name: "Pawvilion Dog Cafe",
+      address: "Jl. Telaga Utama No. 21, Jeruk, Lakarsantri, Surabaya (area Citraland)",
+      hours: "Selasa-Jumat 11:00-20:00, Sabtu-Minggu 9:00-20:00, Senin tutup",
+      description: "Surga anjing dengan ~10 anjing terlatih ramah, izinkan hewan customer dengan health check",
+      priceRange: "Di bawah Rp 50.000, minimum order Rp 50.000 weekend/Rp 30.000 weekday",
+      specialty: "Dog playground, boarding, grooming, mini pet shop",
+      rating: "4.9",
+      category: "Pet Friendly",
+      imageUrl: "/images/pawvilion-dog-cafe.jpg"
+    },
+    {
+      id: "breeze-bean-coffee",
+      name: "Breeze Bean Coffee",
+      address: "Jl. Pandegiling No. 63, DR. Soetomo, Tegalsari, Surabaya",
+      hours: "7:00-22:00 setiap hari",
+      description: "Hewan diizinkan area indoor dan outdoor - sangat pet-friendly",
+      priceRange: "Rp 30.000-60.000 per orang",
+      specialty: "Desain dua lantai, interior minimalis modern",
+      rating: "4.6",
+      category: "Pet Friendly",
+      imageUrl: "/images/breeze-bean-coffee.jpg"
+    },
+    {
+      id: "lapet-land",
+      name: "La'Pet Land",
+      address: "Jl. Telaga Utama Road No.25, Citraland, Surabaya",
+      hours: "8:00-20:00 setiap hari",
+      description: "Dog paradise dengan indoor playground, daycare, grooming services",
+      priceRange: "Bervariasi",
+      specialty: "Professional dog sitters, complete pet services",
+      rating: "4.8",
+      category: "Pet Friendly",
+      imageUrl: "/images/lapet-land.jpg"
+    },
+    {
+      id: "thirty-three-brew",
+      name: "Thirty Three Brew (Cabang Citraland)",
+      address: "Tierra Soho, Jl. Raya Darmo Harapan No. 9 Blok E No. 8, Sukomanunggal, Surabaya",
+      hours: "7:00-22:00 setiap hari",
+      description: "Cabang pet-friendly khusus di lokasi Citraland",
+      priceRange: "Rp 25.000-50.000 per orang",
+      specialty: "Chain kopi lokal populer, multiple locations",
+      rating: "4.5",
+      category: "Pet Friendly",
+      imageUrl: "/images/thirty-three-brew.jpg"
+    },
+    {
+      id: "locaahands",
+      name: "Locaahands",
+      address: "Jl. Opak No. 39, Wonokromo, Surabaya",
+      hours: "7:00-22:00 setiap hari",
+      description: "Pet-friendly space dengan chef-driven comfort dining",
+      priceRange: "Rp 60.000-120.000 per orang",
+      specialty: "All-day breakfast, curated desserts",
+      rating: "4.7",
+      category: "Pet Friendly",
+      imageUrl: "/images/locaahands.jpg"
+    },
+    {
+      id: "rustic-market",
+      name: "Rustic Market",
+      address: "Graha Natura Park, Jl. Manyar Kerta Adi No.93, Manyar Sabrangan, Surabaya",
+      hours: "10:00-21:00 setiap hari",
+      description: "Area outdoor/semi-indoor luas, vibes nature/garden",
+      priceRange: "Moderate",
+      specialty: "Natural garden setting",
+      rating: "4.4",
+      category: "Pet Friendly",
+      imageUrl: "/images/rustic-market.jpg"
+    },
+    {
+      id: "misteri-makcik",
+      name: "Misteri Makcik",
+      address: "Jl. Manyar Rejo X No.1, Menur Pumpungan, Surabaya",
+      hours: "10:00-21:00 setiap hari",
+      description: "Gaya kopitiam, pet-friendly dengan kaya toast gratis",
+      priceRange: "Moderate",
+      specialty: "Kopitiam style, dim sum tersedia",
+      rating: "4.3",
+      category: "Pet Friendly",
+      imageUrl: "/images/misteri-makcik.jpg"
+    }
+  ],
+  h24: [
+    {
+      id: "kedai-ciamso",
+      name: "Kedai Ciamso",
+      address: "Jl. Taman Apsari No. 25A, Embong Kaliasin, Genteng & Jl. Bukit Lontar 11 No. 82, Lidah Wetan",
+      hours: "24 jam setiap hari",
+      description: "Tema Cina kuat dengan dekorasi tradisional, makanan halal",
+      priceRange: "Rp 15.000-40.000 per orang",
+      specialty: "Kaya toast, teh tarik, masakan Peranakan, multiple cabang",
+      rating: "4.5",
+      category: "Buka 24 Jam",
+      imageUrl: "/images/kedai-ciamso.jpg"
+    },
+    {
+      id: "jokopi-gwalk",
+      name: "Jokopi GWalk",
+      address: "Jl. Niaga Gapura No. 9, Lidah Kulon, Lakarsantri, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "Desain industrial modern, area indoor dan outdoor",
+      priceRange: "Rp 25.000-50.000 per orang",
+      specialty: "Dekat G-Walk shopping center, Surabaya Barat",
+      rating: "4.4",
+      category: "Buka 24 Jam",
+      imageUrl: "/images/jokopi-gwalk.jpg"
+    },
+    {
+      id: "point-cafe",
+      name: "Point Cafe",
+      address: "Jl. Diponegoro No. 209, Darmo, Wonokromo, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "Terintegrasi dengan minimarket, area duduk terpisah",
+      priceRange: "Rp 15.000-35.000 per orang",
+      specialty: "Es Loreng, Kopi Pandan, akses mudah, budget-friendly",
+      rating: "4.3",
+      category: "Buka 24 Jam",
+      imageUrl: "/images/point-cafe.jpg"
+    },
+    {
+      id: "onetwothree-coffee",
+      name: "Onetwothree Coffee & Eatery",
+      address: "Jl. Taman Apsari No. 69, Embong Kaliasin, Genteng, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "Dekat Gedung Negara Grahadi, menu bervariasi",
+      priceRange: "Moderate",
+      specialty: "Lokasi strategis, menu lengkap",
+      rating: "4.2",
+      category: "Buka 24 Jam",
+      imageUrl: "/images/onetwothree-coffee.jpg"
+    },
+    {
+      id: "uptown-pool-coffee",
+      name: "Uptown Pool and Coffee",
+      address: "Jl. Ngagel Jaya Utara No. 67, Pucang Sewu, Gubeng, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "3 lantai, meja biliar (Rp 25k/jam), full AC",
+      priceRange: "Moderate",
+      specialty: "Kombinasi kafe dan biliar",
+      rating: "4.3",
+      category: "Buka 24 Jam",
+      imageUrl: "/images/uptown-pool-coffee.jpg"
+    },
+    {
+      id: "sturgeon-coffee",
+      name: "Sturgeon Coffee and Eatery",
+      address: "Jl. Bogowonto No. 20, Darmo, Wonokromo, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "Atmosfer outdoor homey, harga terjangkau",
+      priceRange: "Affordable",
+      specialty: "Suasana rumahan nyaman",
+      rating: "4.2",
+      category: "Buka 24 Jam",
+      imageUrl: "/images/sturgeon-coffee.jpg"
+    },
+    {
+      id: "deja-vu-cafe",
+      name: "Deja-Vu Cafe",
+      address: "Jl. Ngagel Jaya Selatan No. 33, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "Konsep industrial, makanan tradisional, event live music/nobar",
+      priceRange: "Moderate",
+      specialty: "Regular live music events",
+      rating: "4.4",
+      category: "Buka 24 Jam",
+      imageUrl: "/images/deja-vu-cafe.jpg"
+    },
+    {
+      id: "libreria-eatery",
+      name: "Libreria Eatery",
+      address: "Jl. Randu No. 64, Sidotopo Wetan, Kenjeran, Surabaya",
+      hours: "24 jam setiap hari",
+      description: "Interior bertema perpustakaan, baca buku sambil makan",
+      priceRange: "Moderate",
+      specialty: "Library-themed, reading while dining",
+      rating: "4.5",
+      category: "Buka 24 Jam",
+      imageUrl: "/images/libreria-eatery.jpg"
+    }
+  ],
+  date: [
+    {
+      id: "de-soematra-1910",
+      name: "de Soematra 1910",
+      address: "Jl. Sumatera No.75, Gubeng, Surabaya",
+      hours: "Reservasi diperlukan 2 hari sebelumnya",
+      description: "Colonial mansion dating to 1910 dengan multiple private dining rooms untuk ultimate intimacy",
+      priceRange: "Fine dining price range",
+      specialty: "Live pianist performances, fresh flower arrangements, fine dining Italian menu",
+      rating: "4.9",
+      category: "Perfect for Date",
+      imageUrl: "/images/de-soematra-1910.jpg"
+    },
+    {
+      id: "citilites-skyclub",
+      name: "Citilites Skyclub & Bistro",
+      address: "21st floor Hotel Java Paragon, Jl. Mayjen Sungkono No. 101-103, Surabaya",
+      hours: "Bervariasi setiap hari",
+      description: "Panoramic city views transform from sunset to glittering nightscape, creating natural romance",
+      priceRange: "Premium",
+      specialty: "Candlelight dining, Western cuisine, perfect for special celebrations",
+      rating: "4.8",
+      category: "Perfect for Date",
+      imageUrl: "/images/citilites-skyclub.jpg"
+    },
+    {
+      id: "sky-36-restaurant",
+      name: "Sky 36 Restaurant",
+      address: "Apartemen Sumatra 36, Surabaya",
+      hours: "Bervariasi setiap hari",
+      description: "Rooftop dining with premium cuisine including Salmon Carpaccio and Fillet Mignon",
+      priceRange: "Premium",
+      specialty: "Elegant atmosphere with soothing background music, city overlook",
+      rating: "4.7",
+      category: "Perfect for Date",
+      imageUrl: "/images/sky-36-restaurant.jpg"
+    },
+    {
+      id: "soiree-rooftop-bar",
+      name: "Soirée Rooftop Bar",
+      address: "Four Points Sheraton, West Surabaya",
+      hours: "15:00 - 24:00 setiap hari",
+      description: "Sophisticated romance di West Surabaya dengan craft cocktails",
+      priceRange: "Premium",
+      specialty: "Refined ambiance designed specifically for romantic evenings",
+      rating: "4.8",
+      category: "Perfect for Date",
+      imageUrl: "/images/soiree-rooftop-bar.jpg"
+    },
+    {
+      id: "graha-es-krim-zangrandi",
+      name: "Graha Es Krim Zangrandi",
+      address: "Jl. Yos Sudarso No.15, Genteng, Surabaya",
+      hours: "Afternoon date perfect",
+      description: "Nostalgic romance in a 1930s colonial setting, historic ice cream parlor",
+      priceRange: "Moderate",
+      specialty: "Classical specialties served in authentic vintage atmosphere",
+      rating: "4.6",
+      category: "Perfect for Date",
+      imageUrl: "/images/graha-es-krim-zangrandi.jpg"
+    },
+    {
+      id: "onni-house-date",
+      name: "ONNI House",
+      address: "Jl. Opak No.56, Darmo, Wonokromo, Surabaya",
+      hours: "Bervariasi",
+      description: "Rustic vintage decor with natural garden elements creating organic romance",
+      priceRange: "31 menu tersedia",
+      specialty: "Fresh flowers, seasonal menus, beautiful photo opportunities",
+      rating: "4.5",
+      category: "Perfect for Date",
+      imageUrl: "/images/onni-house-date.jpg"
+    },
+    {
+      id: "locaahands-date",
+      name: "Locaāhands",
+      address: "Jl. Opak No. 39, Wonokromo, Surabaya",
+      hours: "7:00-22:00 setiap hari",
+      description: "Modern romance dengan warm lighting yang transitions beautifully dari day to evening",
+      priceRange: "Rp 60.000-120.000 per orang",
+      specialty: "Elevated comfort dining with exceptional presentation",
+      rating: "4.7",
+      category: "Perfect for Date",
+      imageUrl: "/images/locaahands-date.jpg"
+    }
+  ]
+};
+
+// Category mapping for easy access
+export const categoryMap = {
+  wifi: {
+    id: 'wifi',
+    name: 'WiFi Kencang',
+    icon: '📶',
+    description: 'Koneksi super cepat untuk kerja',
+    color: '#3B82F6'
+  },
+  aesthetic: {
+    id: 'aesthetic',
+    name: 'Aesthetic',
+    icon: '📸',
+    description: 'Spot instagramable & cozy',
+    color: '#EC4899'
+  },
+  outdoor: {
+    id: 'outdoor',
+    name: 'Outdoor Area',
+    icon: '🌳',
+    description: 'Suasana terbuka & segar',
+    color: '#10B981'
+  },
+  work: {
+    id: 'work',
+    name: 'Work From Cafe',
+    icon: '💼',
+    description: 'Tempat kerja yang produktif',
+    color: '#8B5CF6'
+  },
+  pet: {
+    id: 'pet',
+    name: 'Pet Friendly',
+    icon: '🐕',
+    description: 'Bawa hewan kesayangan',
+    color: '#F59E0B'
+  },
+  h24: {
+    id: 'h24',
+    name: 'Buka 24 Jam',
+    icon: '🌙',
+    description: 'Nongkrong tanpa batas waktu',
+    color: '#6366F1'
+  },
+  date: {
+    id: 'date',
+    name: 'Perfect for Date',
+    icon: '💕',
+    description: 'Suasana romantis untuk berdua',
+    color: '#EC4899'
+  }
+};

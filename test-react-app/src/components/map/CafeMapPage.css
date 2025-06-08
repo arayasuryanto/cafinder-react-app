@@ -7,3 +7,12 @@
   height: 100%;
   overflow: hidden;
 }
+
+/* Mobile optimization */
+@media (max-width: 768px) {
+  .cafe-map-page {
+    height: calc(100vh - 60px); /* Adjust for mobile header */
+    width: 100%;
+    position: relative;
+  }
+}

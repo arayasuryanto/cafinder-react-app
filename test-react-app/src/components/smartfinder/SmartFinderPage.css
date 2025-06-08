@@ -18,7 +18,7 @@
 
 .start-content {
   text-align: center;
-  max-width: 500px;
+  max-width: 900px;
   width: 100%;
 }
 
@@ -87,6 +87,176 @@
 .start-button:hover {
   transform: translateY(-2px);
   box-shadow: 0 6px 20px rgba(240, 84, 56, 0.4);
+}
+
+/* Explanation Steps */
+.explanation-steps {
+  margin: 3rem 0;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  border-radius: 20px;
+  border: 1px solid #e2e8f0;
+}
+
+.steps-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 2rem;
+}
+
+.step-carousel {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+
+.step-item {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.5s ease;
+  text-align: center;
+  padding: 1rem;
+}
+
+.step-item.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.step-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+
+.step-title {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.step-description {
+  font-size: 1rem;
+  color: #6b7280;
+  line-height: 1.6;
+}
+
+.step-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 1rem;
+}
+
+.indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #e5e7eb;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.indicator.active {
+  background: #F05438;
+  transform: scale(1.2);
+}
+
+/* Personality Showcase */
+.personality-showcase {
+  margin: 3rem 0;
+}
+
+.personality-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.personality-subtitle {
+  font-size: 1rem;
+  color: #6b7280;
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+.personality-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.personality-card {
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.personality-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--accent-color);
+}
+
+.personality-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border-color: var(--accent-color);
+}
+
+.personality-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background: var(--accent-color);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1rem auto;
+  position: relative;
+}
+
+.personality-emoji {
+  font-size: 2rem;
+  filter: grayscale(0%);
+  z-index: 1;
+}
+
+.personality-card .personality-type {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 0.5rem;
+}
+
+.personality-card .personality-desc {
+  font-size: 0.9rem;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
+.start-disclaimer {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-top: 1rem;
+  font-style: italic;
 }
 
 /* Question Screen */
@@ -277,14 +447,139 @@
   color: #6b7280;
 }
 
-.personality-card {
-  background: linear-gradient(135deg, #F05438 0%, #ff6b47 100%);
-  color: white;
-  padding: 2rem;
+/* Analysis Result Card */
+.personality-result-card {
+  background: white;
+  border: 2px solid var(--personality-color);
   border-radius: 20px;
+  padding: 2rem;
   margin: 2rem 0;
-  box-shadow: 0 10px 30px rgba(240, 84, 56, 0.3);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: left;
 }
+
+.personality-header {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.personality-icon-large {
+  font-size: 4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 80px;
+  background: var(--personality-color);
+  border-radius: 20px;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.personality-info {
+  flex: 1;
+}
+
+.personality-type-name {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--personality-color);
+  margin-bottom: 0.5rem;
+}
+
+.personality-description {
+  font-size: 1rem;
+  color: #6b7280;
+  margin: 0;
+}
+
+.personality-traits {
+  margin-bottom: 2rem;
+}
+
+.traits-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.traits-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.75rem;
+}
+
+.trait-item {
+  font-size: 0.95rem;
+  color: #4b5563;
+  padding: 0.75rem 1rem;
+  background: #f9fafb;
+  border-radius: 10px;
+  border-left: 4px solid var(--personality-color);
+  position: relative;
+}
+
+.trait-item::before {
+  content: '✓';
+  position: absolute;
+  left: -12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  background: var(--personality-color);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.analysis-text {
+  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #e2e8f0;
+}
+
+.analysis-text p {
+  margin: 0;
+  color: #4b5563;
+  line-height: 1.6;
+  font-size: 0.95rem;
+}
+
+.next-steps {
+  background: #f9fafb;
+  border: 2px solid var(--personality-color);
+  color: #1f2937;
+  padding: 1.5rem;
+  border-radius: 16px;
+  margin: 2rem 0;
+  text-align: center;
+}
+
+.next-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.next-description {
+  margin: 0;
+  color: #6b7280;
+  line-height: 1.5;
+}
+
 
 .personality-text {
   font-size: 1.2rem;
@@ -661,57 +956,749 @@
   color: #F05438;
 }
 
-/* Responsive Design */
+/* Enhanced Mobile Optimization */
 @media (max-width: 768px) {
-  .start-title {
-    font-size: 2.5rem;
+  /* Smart Finder Page Mobile */
+  .smart-finder-page {
+    padding-bottom: 80px; /* Account for bottom nav */
+    min-height: calc(100vh - 60px); /* Adjust for mobile header */
   }
-  
-  .question-text {
+
+  /* Start Screen Mobile */
+  .start-screen {
+    min-height: calc(100vh - 60px);
+    padding: 16px;
+  }
+
+  .start-content {
+    max-width: 100%;
+    padding: 0 4px;
+  }
+
+  .start-title {
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .start-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    padding: 0 8px;
+    line-height: 1.5;
+  }
+
+  .start-features {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .feature-item {
+    gap: 0.3rem;
+  }
+
+  .feature-icon {
     font-size: 1.5rem;
   }
-  
+
+  .feature-text {
+    font-size: 0.8rem;
+    text-align: center;
+  }
+
+  .start-button {
+    padding: 14px 32px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+
+  /* Explanation Steps Mobile */
+  .explanation-steps {
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-radius: 16px;
+  }
+
+  .steps-title {
+    font-size: 1.3rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .step-carousel {
+    height: 160px;
+  }
+
+  .step-item {
+    padding: 0.5rem;
+  }
+
+  .step-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .step-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .step-description {
+    font-size: 0.9rem;
+  }
+
+  /* Personality Showcase Mobile */
+  .personality-showcase {
+    margin: 2rem 0;
+  }
+
+  .personality-title {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .personality-subtitle {
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding: 0 8px;
+  }
+
+  .personality-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .personality-card {
+    padding: 1.2rem;
+    border-radius: 12px;
+  }
+
+  .personality-icon-wrapper {
+    width: 50px;
+    height: 50px;
+    margin-bottom: 0.8rem;
+  }
+
+  .personality-emoji {
+    font-size: 1.5rem;
+  }
+
+  .personality-type {
+    font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .personality-desc {
+    font-size: 0.8rem;
+  }
+
+  .start-disclaimer {
+    font-size: 0.8rem;
+    margin-top: 0.8rem;
+  }
+
+  /* Question Screen Mobile */
+  .question-screen {
+    min-height: calc(100vh - 60px);
+    padding: 16px;
+  }
+
+  .question-header {
+    margin-bottom: 2rem;
+    padding: 0 4px;
+  }
+
+  .back-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .progress-indicator {
+    max-width: 200px;
+    margin: 0 12px;
+  }
+
+  .progress-text {
+    font-size: 0.8rem;
+    margin-bottom: 6px;
+  }
+
+  .progress-bar {
+    height: 6px;
+  }
+
+  .question-content {
+    padding: 0 4px;
+  }
+
+  .question-text {
+    font-size: 1.4rem;
+    margin-bottom: 2rem;
+    line-height: 1.3;
+    padding: 0 8px;
+  }
+
   .options-grid {
     grid-template-columns: 1fr;
+    gap: 1rem;
   }
-  
+
+  .option-card {
+    padding: 1.5rem 1rem;
+    border-radius: 16px;
+    border-width: 2px;
+  }
+
+  .option-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .option-label {
+    font-size: 1rem;
+  }
+
+  .selected-indicator {
+    width: 24px;
+    height: 24px;
+    top: 8px;
+    right: 8px;
+  }
+
+  /* Analysis Screen Mobile */
+  .analysis-screen {
+    min-height: calc(100vh - 60px);
+    padding: 16px;
+  }
+
+  .analysis-content {
+    max-width: 100%;
+    padding: 0 4px;
+  }
+
+  .brain-icon {
+    margin-bottom: 1.5rem;
+  }
+
+  .analysis-title {
+    font-size: 1.6rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .loading-dots {
+    font-size: 2.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .analysis-subtitle {
+    font-size: 0.9rem;
+  }
+
+  /* Personality Result Card Mobile */
+  .personality-result-card {
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1.5rem 0;
+  }
+
+  .personality-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+
+  .personality-icon-large {
+    width: 60px;
+    height: 60px;
+    font-size: 2.5rem;
+    border-radius: 16px;
+    margin: 0 auto;
+  }
+
+  .personality-type-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .personality-description {
+    font-size: 0.9rem;
+  }
+
+  .personality-traits {
+    margin-bottom: 1.5rem;
+  }
+
+  .traits-title {
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .traits-list {
+    gap: 0.5rem;
+  }
+
+  .trait-item {
+    font-size: 0.85rem;
+    padding: 0.6rem 0.8rem;
+    border-radius: 8px;
+  }
+
+  .analysis-text {
+    padding: 1.2rem;
+    border-radius: 10px;
+  }
+
+  .analysis-text p {
+    font-size: 0.85rem;
+  }
+
+  .next-steps {
+    padding: 1.2rem;
+    border-radius: 12px;
+    margin: 1.5rem 0;
+  }
+
+  .next-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.3rem;
+  }
+
+  .next-description {
+    font-size: 0.9rem;
+  }
+
+  .personality-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  .next-message {
+    font-size: 0.9rem;
+    margin-top: 1.5rem;
+  }
+
+  .continue-button {
+    padding: 14px 32px;
+    font-size: 1rem;
+    width: 100%;
+    max-width: 280px;
+    margin-top: 1.5rem;
+  }
+
+  .click-hint {
+    font-size: 0.8rem;
+    margin-top: 1rem;
+  }
+
+  /* Recommendation Screen Mobile */
+  .recommendation-screen {
+    min-height: calc(100vh - 60px);
+    padding: 12px;
+  }
+
+  .recommendation-header {
+    margin-bottom: 16px;
+    padding: 0 4px;
+  }
+
+  .counter {
+    font-size: 0.9rem;
+  }
+
+  .match-badge {
+    padding: 4px 12px;
+    font-size: 0.8rem;
+  }
+
+  .recommendation-card {
+    height: calc(100vh - 140px);
+    max-height: 600px;
+    border-radius: 16px;
+  }
+
+  .card-image {
+    height: 35%;
+  }
+
+  .card-gradient {
+    height: 80px;
+  }
+
+  .swipe-indicator {
+    padding: 8px 16px;
+    font-size: 1rem;
+  }
+
+  .swipe-indicator.left {
+    left: 16px;
+  }
+
+  .swipe-indicator.right {
+    right: 16px;
+  }
+
+  .card-content {
+    height: 65%;
+    padding: 16px;
+  }
+
+  .cafe-name {
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+    line-height: 1.2;
+  }
+
+  .cafe-location {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .cafe-tags {
+    gap: 6px;
+    margin-bottom: 1rem;
+  }
+
+  .tag {
+    padding: 4px 10px;
+    font-size: 0.75rem;
+  }
+
   .cafe-features {
     grid-template-columns: 1fr;
+    gap: 8px;
+    margin-bottom: 1rem;
   }
-  
-  .recommendation-card {
-    height: calc(100vh - 100px);
-    border-radius: 20px 20px 0 0;
+
+  .feature {
+    gap: 6px;
+  }
+
+  .feature-icon {
+    font-size: 1rem;
+  }
+
+  .feature-text {
+    font-size: 0.8rem;
+  }
+
+  .cafe-description {
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-bottom: 1rem;
+  }
+
+  .match-reasons {
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 80px;
+  }
+
+  .match-reasons h4 {
+    font-size: 0.8rem;
+    margin-bottom: 8px;
+  }
+
+  .match-reasons li {
+    font-size: 0.75rem;
+    margin-bottom: 4px;
+    padding-left: 16px;
+  }
+
+  .card-actions {
+    bottom: 16px;
+    gap: 30px;
+    padding: 8px 16px;
+  }
+
+  .action-btn {
+    width: 50px;
+    height: 50px;
+  }
+
+  /* Heart Animation Mobile */
+  .heart-animation {
+    font-size: 4rem;
+  }
+
+  /* End Screen Mobile */
+  .end-screen {
+    min-height: calc(100vh - 60px);
+    padding: 16px;
+  }
+
+  .end-content {
+    max-width: 100%;
+    padding: 0 4px;
+  }
+
+  .end-content h2 {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .end-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    padding: 0 8px;
+  }
+
+  .view-favorites-btn,
+  .restart-btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+    margin-bottom: 0.8rem;
   }
 }
 
 @media (max-width: 480px) {
+  /* Extra Small Mobile */
+  .smart-finder-page {
+    padding-bottom: 70px;
+  }
+
+  .start-screen {
+    padding: 12px;
+  }
+
   .start-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
+    margin-bottom: 0.8rem;
   }
-  
+
   .start-description {
-    font-size: 1rem;
+    font-size: 0.9rem;
+    margin-bottom: 1.5rem;
+    padding: 0 4px;
   }
-  
+
   .start-features {
     grid-template-columns: 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
   }
-  
-  .question-header {
-    margin-bottom: 2rem;
+
+  .feature-item {
+    flex-direction: row;
+    justify-content: center;
+    gap: 0.5rem;
   }
-  
-  .question-text {
+
+  .feature-icon {
+    font-size: 1.2rem;
+  }
+
+  .feature-text {
+    font-size: 0.75rem;
+  }
+
+  .start-button {
+    padding: 12px 28px;
+    font-size: 0.9rem;
+    max-width: 260px;
+  }
+
+  .explanation-steps {
+    margin: 1.5rem 0;
+    padding: 1rem;
+  }
+
+  .steps-title {
+    font-size: 1.1rem;
+  }
+
+  .step-carousel {
+    height: 140px;
+  }
+
+  .step-icon {
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .step-title {
+    font-size: 1rem;
+  }
+
+  .step-description {
+    font-size: 0.8rem;
+  }
+
+  .personality-title {
     font-size: 1.3rem;
-    margin-bottom: 2rem;
   }
-  
+
+  .personality-subtitle {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .personality-card {
+    padding: 1rem;
+  }
+
+  .personality-icon-wrapper {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.6rem;
+  }
+
+  .personality-emoji {
+    font-size: 1.2rem;
+  }
+
+  .personality-type {
+    font-size: 0.9rem;
+  }
+
+  .personality-desc {
+    font-size: 0.75rem;
+  }
+
+  .question-screen {
+    padding: 12px;
+  }
+
+  .question-header {
+    margin-bottom: 1.5rem;
+    padding: 0;
+  }
+
+  .back-button {
+    width: 36px;
+    height: 36px;
+  }
+
+  .progress-indicator {
+    max-width: 160px;
+    margin: 0 8px;
+  }
+
+  .question-text {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    padding: 0 4px;
+  }
+
+  .options-grid {
+    gap: 0.8rem;
+  }
+
   .option-card {
-    padding: 1.5rem 1rem;
+    padding: 1.2rem 0.8rem;
   }
-  
+
   .option-icon {
-    font-size: 2.5rem;
+    font-size: 2rem;
+    margin-bottom: 0.6rem;
+  }
+
+  .option-label {
+    font-size: 0.9rem;
+  }
+
+  .analysis-screen {
+    padding: 12px;
+  }
+
+  .analysis-title {
+    font-size: 1.4rem;
+  }
+
+  .loading-dots {
+    font-size: 2rem;
+    margin: 1rem 0;
+  }
+
+  .personality-result-card {
+    padding: 1.2rem;
+    margin: 1rem 0;
+  }
+
+  .personality-icon-large {
+    width: 50px;
+    height: 50px;
+    font-size: 2rem;
+  }
+
+  .personality-type-name {
+    font-size: 1.3rem;
+  }
+
+  .recommendation-screen {
+    padding: 8px;
+  }
+
+  .recommendation-card {
+    height: calc(100vh - 120px);
+    max-height: 550px;
+  }
+
+  .card-content {
+    padding: 12px;
+  }
+
+  .cafe-name {
+    font-size: 1.3rem;
+  }
+
+  .cafe-location {
+    font-size: 0.8rem;
+  }
+
+  .tag {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+  }
+
+  .feature-text {
+    font-size: 0.75rem;
+  }
+
+  .cafe-description {
+    font-size: 0.8rem;
+  }
+
+  .match-reasons {
+    padding: 10px;
+    margin-bottom: 70px;
+  }
+
+  .match-reasons h4 {
+    font-size: 0.75rem;
+  }
+
+  .match-reasons li {
+    font-size: 0.7rem;
+  }
+
+  .card-actions {
+    bottom: 12px;
+    gap: 20px;
+    padding: 6px 12px;
+  }
+
+  .action-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  .end-content h2 {
+    font-size: 1.8rem;
+  }
+
+  .end-content p {
+    font-size: 0.9rem;
+    padding: 0 4px;
+  }
+
+  .view-favorites-btn,
+  .restart-btn {
+    padding: 12px 24px;
+    font-size: 0.9rem;
   }
 }

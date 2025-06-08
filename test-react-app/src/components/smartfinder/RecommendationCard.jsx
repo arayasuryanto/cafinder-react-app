@@ -92,7 +92,7 @@ const RecommendationCard = ({ cafe, onSwipe, currentIndex, totalCount }) => {
     <div className="recommendation-screen phase-content">
       <div className="recommendation-header">
         <div className="counter">{currentIndex} / {totalCount}</div>
-        <div className="match-badge">{cafe.matchPercentage}% Match</div>
+        <div className="match-badge">Rekomendasi</div>
       </div>
       
       <div 

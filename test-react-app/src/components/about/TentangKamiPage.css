@@ -89,37 +89,45 @@
 }
 
 .team-card {
-  background: white;
   border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
-  padding: 0;
+  padding: 20px;
+  height: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 .team-card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
 }
 
 .team-image {
   width: 100%;
-  height: 220px;
+  height: 300px;
   overflow: hidden;
   position: relative;
+  border-radius: 8px;
+  margin-top: auto;
 }
 
 .team-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center;
   transition: transform 0.3s ease;
+  border-radius: 8px;
 }
 
 .team-card:hover .team-image img {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
 .placeholder-avatar {
@@ -132,37 +140,38 @@
   font-weight: bold;
   color: white;
   text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  border-radius: 8px;
+  background: rgba(255,255,255,0.1);
 }
 
-.team-info {
-  padding: 20px;
+.team-name-vertical {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
-  color: white;
+  left: 15px;
+  top: 20px;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.8);
+  text-transform: uppercase;
 }
 
-.team-info h3 {
-  font-size: 1.2rem;
+.team-role-badge {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(255, 255, 255, 0.95);
+  color: #333;
+  font-size: 0.7rem;
   font-weight: 600;
-  margin-bottom: 4px;
-  color: white;
-}
-
-.team-info p {
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.9);
+  padding: 6px 12px;
+  border-radius: 20px;
   text-transform: uppercase;
   letter-spacing: 0.5px;
-  margin: 0;
-  background-color: var(--team-color);
-  display: inline-block;
-  padding: 4px 12px;
-  border-radius: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
 }
+
 
 /* Values Section */
 .values-section {
@@ -379,66 +388,444 @@
   font-size: 0.9rem;
 }
 
-/* Responsive Design */
+
+/* Enhanced Mobile Optimization */
 @media (max-width: 768px) {
+  /* Tentang Kami Page Mobile */
+  .tentang-kami-page {
+    padding-bottom: 80px; /* Account for bottom nav */
+  }
+
+  /* Container Mobile */
+  .container {
+    padding: 0 16px;
+  }
+  
+  /* Hero Section Mobile */
+  .about-hero {
+    padding: 60px 0 50px;
+    background-attachment: scroll; /* Better performance */
+  }
+  
   .about-hero h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    letter-spacing: 1px;
   }
   
   .about-hero p {
     font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    padding: 0 8px;
+  }
+  
+  /* Mission Section Mobile */
+  .mission-section {
+    padding: 60px 0;
+  }
+  
+  .mission-content {
+    text-align: center;
+  }
+  
+  .mission-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.3;
+  }
+  
+  .mission-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    padding: 0 8px;
+  }
+  
+  /* Team Section Mobile */
+  .team-section {
+    padding: 60px 0;
+  }
+  
+  .team-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .team-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: 0 8px;
   }
   
   .team-grid {
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 20px;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .team-card {
+    height: 380px;
+    padding: 16px;
+    border-radius: 16px;
+    margin: 0 auto;
+    max-width: 300px;
+  }
+  
+  .team-image {
+    height: 280px;
+    border-radius: 12px;
+  }
+  
+  .team-name-vertical {
+    font-size: 0.7rem;
+    left: 12px;
+    top: 16px;
+    letter-spacing: 1px;
+  }
+  
+  .team-role-badge {
+    font-size: 0.7rem;
+    padding: 5px 12px;
+    top: 16px;
+    right: 16px;
+    border-radius: 12px;
+  }
+  
+  .team-card:hover {
+    transform: translateY(-8px);
+  }
+  
+  /* Values Section Mobile */
+  .values-section {
+    padding: 60px 0;
+  }
+  
+  .values-section h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .values-description {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    padding: 0 8px;
   }
   
   .values-grid {
     grid-template-columns: 1fr;
-    gap: 30px;
+    gap: 24px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .value-card {
+    padding: 24px 20px;
+    border-radius: 12px;
+  }
+  
+  .value-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .value-card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .value-card p {
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  
+  /* Stats Section Mobile */
+  .stats-section {
+    padding: 60px 0;
   }
   
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 30px;
+    gap: 24px;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .stat-item {
+    padding: 16px;
+  }
+  
+  .stat-number {
+    font-size: 2.5rem;
+    margin-bottom: 0.3rem;
+  }
+  
+  .stat-label {
+    font-size: 0.9rem;
+  }
+  
+  /* Founder Section Mobile */
+  .founder-section {
+    padding: 60px 0;
+  }
+  
+  .founder-content {
+    max-width: 100%;
+  }
+  
+  .founder-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+  }
+  
+  .founder-text p {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    padding: 0 8px;
   }
   
   .founder-signature {
     flex-direction: column;
     text-align: center;
-    gap: 15px;
+    gap: 16px;
+    margin-top: 2rem;
   }
   
-  .testimonial-content blockquote {
+  .founder-image {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+  }
+  
+  .founder-details h4 {
     font-size: 1.1rem;
-    padding: 0 20px;
+    margin-bottom: 0.3rem;
   }
   
-  .team-section h2,
-  .values-section h2,
-  .founder-text h2 {
-    font-size: 2rem;
-  }
-}
-
-@media (max-width: 480px) {
-  .container {
-    padding: 0 15px;
+  .founder-details p {
+    font-size: 0.9rem;
+    margin: 0;
   }
   
-  .about-hero {
-    padding: 80px 0 60px;
-  }
-  
-  .team-section,
-  .values-section,
-  .founder-section,
+  /* Testimonial Section Mobile */
   .testimonial-section {
     padding: 60px 0;
   }
   
+  .testimonial-content {
+    max-width: 100%;
+    text-align: center;
+  }
+  
+  .testimonial-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .testimonial-content blockquote {
+    font-size: 1.1rem;
+    padding: 0 16px;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  
+  .testimonial-content blockquote::before {
+    font-size: 4rem;
+    top: -15px;
+    left: -10px;
+  }
+  
+  .testimonial-author {
+    gap: 12px;
+    flex-direction: column;
+  }
+  
+  .author-info strong {
+    font-size: 1rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .author-info span {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Extra Small Mobile */
+  .tentang-kami-page {
+    padding-bottom: 70px;
+  }
+
+  .container {
+    padding: 0 12px;
+  }
+  
+  /* Hero Section Small Mobile */
+  .about-hero {
+    padding: 50px 0 40px;
+  }
+  
+  .about-hero h1 {
+    font-size: 1.8rem;
+    margin-bottom: 1.2rem;
+    letter-spacing: 0.5px;
+  }
+  
+  .about-hero p {
+    font-size: 0.9rem;
+    margin-bottom: 0.8rem;
+    padding: 0 4px;
+  }
+  
+  /* Sections Small Mobile */
+  .team-section,
+  .values-section,
+  .stats-section,
+  .founder-section,
+  .testimonial-section,
+  .mission-section {
+    padding: 50px 0;
+  }
+  
+  .team-section h2,
+  .values-section h2,
+  .founder-text h2,
+  .testimonial-content h2,
+  .mission-content h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.2rem;
+  }
+  
+  .team-description,
+  .values-description,
+  .mission-content p,
+  .founder-text p {
+    font-size: 0.9rem;
+    padding: 0 4px;
+  }
+  
+  /* Team Grid Small Mobile */
+  .team-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    max-width: 280px;
+  }
+  
+  .team-card {
+    height: 360px;
+    padding: 12px;
+    max-width: 100%;
+  }
+  
+  .team-image {
+    height: 260px;
+  }
+  
+  .team-name-vertical {
+    font-size: 0.65rem;
+    left: 8px;
+    top: 12px;
+  }
+  
+  .team-role-badge {
+    font-size: 0.65rem;
+    padding: 4px 10px;
+    top: 12px;
+    right: 12px;
+  }
+  
+  /* Values Grid Small Mobile */
+  .values-grid {
+    max-width: 320px;
+    gap: 20px;
+  }
+  
+  .value-card {
+    padding: 20px 16px;
+  }
+  
+  .value-icon {
+    font-size: 2rem;
+    margin-bottom: 0.8rem;
+  }
+  
+  .value-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .value-card p {
+    font-size: 0.8rem;
+  }
+  
+  /* Stats Grid Small Mobile */
   .stats-grid {
     grid-template-columns: 1fr;
+    gap: 20px;
+    max-width: 200px;
+  }
+  
+  .stat-item {
+    padding: 12px;
+  }
+  
+  .stat-number {
+    font-size: 2rem;
+    margin-bottom: 0.2rem;
+  }
+  
+  .stat-label {
+    font-size: 0.8rem;
+  }
+  
+  /* Founder Section Small Mobile */
+  .founder-content {
+    padding: 0 4px;
+  }
+  
+  .founder-image {
+    width: 70px;
+    height: 70px;
+  }
+  
+  .founder-details h4 {
+    font-size: 1rem;
+  }
+  
+  .founder-details p {
+    font-size: 0.8rem;
+  }
+  
+  /* Testimonial Small Mobile */
+  .testimonial-content blockquote {
+    font-size: 1rem;
+    padding: 0 12px;
+    line-height: 1.5;
+  }
+  
+  .testimonial-content blockquote::before {
+    font-size: 3rem;
+    top: -10px;
+    left: -5px;
+  }
+  
+  .testimonial-author {
+    gap: 10px;
+  }
+  
+  .author-info strong {
+    font-size: 0.9rem;
+  }
+  
+  .author-info span {
+    font-size: 0.8rem;
   }
 }

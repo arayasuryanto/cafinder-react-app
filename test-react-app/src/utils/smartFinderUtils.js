@@ -36,7 +36,7 @@ export const generateAnalysis = (responses) => {
     ${responses.time === 'morning' ? 'Anda suka memulai hari dengan secangkir kopi di pagi hari.' : ''}
     ${responses.priority === 'wifi' ? 'Koneksi internet yang stabil adalah prioritas utama Anda.' : ''}
     ${responses.priority === 'coffee' ? 'Kualitas kopi adalah hal yang tidak bisa dikompromikan.' : ''}
-    Kami telah menemukan kafe-kafe yang sempurna sesuai dengan kepribadian unik Anda.`;
+    Mari kita lihat kafe-kafe yang mungkin cocok dengan preferensi Anda.`;
   
   return analysis;
 };
@@ -267,14 +267,14 @@ export const generateRecommendations = async (responses) => {
       
       return {
         ...cafe,
-        matchPercentage: Math.min(Math.round(score * 0.95), 95), // Max 95%
+        matchScore: score, // Internal score for sorting
         matchReasons: matchReasons
       };
     });
     
-    // Sort by match percentage and return top 15
+    // Sort by match score and return top 15
     return scoredCafes
-      .sort((a, b) => b.matchPercentage - a.matchPercentage)
+      .sort((a, b) => b.matchScore - a.matchScore)
       .slice(0, 15)
       .map(cafe => ({
         ...cafe,

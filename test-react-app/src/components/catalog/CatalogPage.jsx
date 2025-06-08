@@ -39,7 +39,7 @@ const CatalogPage = ({ onViewCafe }) => {
     loadAllCafes();
   }, []);
   
-  // Filter cafes when region or search changes
+  // Filter and sort cafes when region or search changes
   useEffect(() => {
     if (allCafes.length === 0) return;
     
@@ -55,6 +55,13 @@ const CatalogPage = ({ onViewCafe }) => {
         (cafe.description && cafe.description.toLowerCase().includes(term))
       );
     }
+    
+    // Sort by highest Google review count (highest first)
+    filtered = filtered.sort((a, b) => {
+      const reviewCountA = parseInt(a.reviewCount) || 0;
+      const reviewCountB = parseInt(b.reviewCount) || 0;
+      return reviewCountB - reviewCountA; // Descending order (highest to lowest)
+    });
     
     setFilteredCafes(filtered);
     setDisplayLimit(30); // Reset to show first 30 when filter changes

@@ -73,64 +73,39 @@ const TentangKamiPage = () => {
 
   const teamMembers = [
     { 
-      name: 'Araya Suryanto', 
-      role: 'FOUNDER & CEO', 
+      name: 'Araya', 
+      role: 'PROJECT LEAD & BUILDER', 
       color: '#F05438', 
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      image: '/images/team-araya.jpeg',
+      instagram: 'http://instagram.com/arayasuryanto/'
     },
     { 
-      name: 'Budi Santoso', 
-      role: 'DEVELOPER', 
+      name: 'Gega', 
+      role: 'SPRINT & DOC LEAD', 
       color: '#8BC34A', 
-      image: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      image: '/images/team-gega.jpeg',
+      instagram: 'http://instagram.com/gegadafaa'
     },
     { 
-      name: 'Sari Widiarti', 
-      role: 'DESIGNER & RESEARCHER', 
+      name: 'Haydar', 
+      role: 'SPRINT & DOC SUPPORT', 
       color: '#E91E63', 
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      image: '/images/team-haydar.jpeg',
+      instagram: 'https://www.instagram.com/haydarthoriq28_/'
     },
     { 
-      name: 'Ahmad Rahman', 
-      role: 'PRODUCT MANAGER', 
+      name: 'Semmi', 
+      role: 'ADMIN, PR, & COST LEAD', 
       color: '#FF5722', 
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      image: '/images/team-semmi.jpeg',
+      instagram: 'https://www.instagram.com/semmi.23/'
     },
     { 
-      name: 'Lisa Chen', 
-      role: 'MARKETING', 
-      color: '#FFEB3B', 
-      image: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
-    },
-    { 
-      name: 'David Kurniawan', 
-      role: 'DEVELOPER', 
+      name: 'Sutan', 
+      role: 'ADMIN, PR, & COST SUPPORT', 
       color: '#FFC107', 
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
-    },
-    { 
-      name: 'Maya Putri', 
-      role: 'GRAPHIC DESIGNER', 
-      color: '#4CAF50', 
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
-    },
-    { 
-      name: 'Rian Pratama', 
-      role: 'BUSINESS DEVELOPMENT', 
-      color: '#2196F3', 
-      image: 'https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
-    },
-    { 
-      name: 'Nina Sari', 
-      role: 'CONTENT', 
-      color: '#00BCD4', 
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
-    },
-    { 
-      name: 'Alex Thompson', 
-      role: 'TECHNICAL ADVISOR', 
-      color: '#607D8B', 
-      image: 'https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80'
+      image: '/images/team-Sutan.jpeg',
+      instagram: 'https://www.instagram.com/_sutanbatara/'
     }
   ];
 
@@ -167,12 +142,6 @@ const TentangKamiPage = () => {
     }
   ];
 
-  const stats = [
-    { number: '100+', label: 'Kafe Partner', color: '#F05438' },
-    { number: '50+', label: 'Tim Kreatif', color: '#2196F3' },
-    { number: '1000+', label: 'Pengguna Aktif', color: '#4CAF50' },
-    { number: '25+', label: 'Review Harian', color: '#E91E63' }
-  ];
 
   return (
     <div className="tentang-kami-page">
@@ -184,12 +153,9 @@ const TentangKamiPage = () => {
             Selamat datang di Cafinder, platform inovatif yang didedikasikan untuk 
             membantu Anda menemukan pengalaman kafe terbaik di Surabaya. Kami percaya 
             bahwa setiap cangkir kopi memiliki cerita, dan setiap kafe memiliki 
-            karakteristik unik yang layak untuk dijelajahi.
-          </p>
-          <p>
-            Misi kami adalah menghubungkan pecinta kopi dengan tempat-tempat istimewa 
-            yang menawarkan lebih dari sekadar minuman - tetapi pengalaman yang 
-            berkesan dan komunitas yang hangat.
+            karakteristik unik yang layak untuk dijelajahi. Misi kami adalah menghubungkan 
+            pecinta kopi dengan tempat-tempat istimewa yang menawarkan lebih dari sekadar 
+            minuman - tetapi pengalaman yang berkesan dan komunitas yang hangat.
           </p>
         </div>
       </section>
@@ -205,21 +171,30 @@ const TentangKamiPage = () => {
           
           <div className="team-grid">
             {teamMembers.map((member, index) => (
-              <div key={index} className="team-card">
+              <a 
+                key={index} 
+                href={member.instagram} 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="team-card" 
+                style={{ backgroundColor: member.color }}
+              >
+                <div className="team-name-vertical">
+                  {member.name.toUpperCase()}
+                </div>
+                <div className="team-role-badge">
+                  {member.role}
+                </div>
                 <div className="team-image">
                   {member.image ? (
                     <img src={member.image} alt={member.name} />
                   ) : (
-                    <div className="placeholder-avatar" style={{ backgroundColor: member.color }}>
+                    <div className="placeholder-avatar">
                       {member.name.split(' ').map(n => n[0]).join('')}
                     </div>
                   )}
                 </div>
-                <div className="team-info">
-                  <h3>{member.name}</h3>
-                  <p style={{ backgroundColor: member.color }}>{member.role}</p>
-                </div>
-              </div>
+              </a>
             ))}
           </div>
         </div>
@@ -246,51 +221,6 @@ const TentangKamiPage = () => {
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="stats-section">
-        <div className="container">
-          <div className="stats-grid">
-            {stats.map((stat, index) => (
-              <div key={index} className="stat-item" style={{ color: stat.color }}>
-                <div className="stat-number">{stat.number}</div>
-                <div className="stat-label">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Founder Note */}
-      <section className="founder-section">
-        <div className="container">
-          <div className="founder-content">
-            <div className="founder-text">
-              <h2>CATATAN DARI FOUNDER</h2>
-              <p>
-                "Cafinder lahir dari kecintaan saya terhadap budaya kafe dan keinginan 
-                untuk berbagi pengalaman istimewa dengan sesama pecinta kopi. Setiap kafe 
-                memiliki cerita uniknya sendiri, dan melalui platform ini, kami ingin 
-                membantu Anda menemukan tempat yang tidak hanya menyajikan kopi berkualitas, 
-                tetapi juga menciptakan momen-momen berharga."
-              </p>
-              <p>
-                "Kami berkomitmen untuk terus berinovasi dan memberikan nilai terbaik 
-                bagi komunitas kafe di Surabaya. Terima kasih telah menjadi bagian dari 
-                perjalanan kami."
-              </p>
-              <div className="founder-signature">
-                <div className="signature-badge">
-                  <span>Founder</span>
-                </div>
-                <div className="founder-name">
-                  <strong>Araya Suryanto</strong>
-                  <span>CEO & Founder, Cafinder</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* Testimonial Section */}
       <section className="testimonial-section">
@@ -307,7 +237,7 @@ const TentangKamiPage = () => {
             </blockquote>
             <div className="testimonial-author">
               <div className="author-info">
-                <strong>Sarah Michelle</strong>
+                <strong>Niko Airlangga</strong>
                 <span>Pemilik Kafe Artisan, Surabaya</span>
               </div>
             </div>

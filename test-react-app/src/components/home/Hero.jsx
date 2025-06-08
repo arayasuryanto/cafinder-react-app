@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 
-const Hero = () => {
+const Hero = ({ navigateTo }) => {
   const headingRef = useRef(null);
   const paragraphRef = useRef(null);
   const buttonRef = useRef(null);
@@ -33,14 +33,55 @@ const Hero = () => {
       ease: "back.out(1.7)"
     }, "-=0.5");
     
-    // Special animation for highlighted word
-    gsap.from(highlightRef.current, {
-      color: '#F05438',
-      fontWeight: 900,
-      scale: 1.2,
+    // Enhanced animation for highlighted word "spot"
+    const spotTl = gsap.timeline({ delay: 1 });
+    
+    spotTl
+      // Initial entrance with bounce
+      .fromTo(highlightRef.current, 
+        { 
+          scale: 0.5, 
+          opacity: 0,
+          rotation: -10,
+          transformOrigin: "center center"
+        },
+        {
+          scale: 1.3,
+          opacity: 1,
+          rotation: 0,
+          duration: 0.6,
+          ease: "back.out(2)",
+        }
+      )
+      // Glow effect
+      .to(highlightRef.current, {
+        textShadow: "0 0 20px #F05438, 0 0 30px #F05438, 0 0 40px #F05438",
+        duration: 0.4,
+        ease: "power2.out"
+      }, "-=0.3")
+      // Scale down to normal with bounce
+      .to(highlightRef.current, {
+        scale: 1,
+        duration: 0.5,
+        ease: "elastic.out(1, 0.6)"
+      }, "-=0.2")
+      // Continuous subtle pulsing
+      .to(highlightRef.current, {
+        scale: 1.05,
+        duration: 2,
+        repeat: -1,
+        yoyo: true,
+        ease: "power1.inOut"
+      });
+    
+    // Add floating animation
+    gsap.to(highlightRef.current, {
+      y: -2,
       duration: 1.5,
-      ease: "elastic.out(1.2, 0.4)",
-      delay: 1
+      repeat: -1,
+      yoyo: true,
+      ease: "power1.inOut",
+      delay: 2
     });
     
   }, []);
@@ -55,7 +96,7 @@ const Hero = () => {
           <p ref={paragraphRef}>
             Cafinder membantu kamu menemukan tempat ngopi dan nongkrong terbaik sesuai preferensimu.
           </p>
-          <button className="hero-btn" ref={buttonRef}>Cari Sekarang</button>
+          <button className="hero-btn" ref={buttonRef} onClick={() => navigateTo('/catalog')}>Cari Sekarang</button>
         </div>
       </div>
     </section>

@@ -16,12 +16,10 @@ import ProgressBar from './components/ui/ProgressBar';
 // Import Home sections
 import Hero from './components/home/Hero';
 import InteractiveFinder from './components/home/InteractiveFinder';
-import TrendingCafes from './components/home/TrendingCafes';
+import MapCTA from './components/home/MapCTA';
 import CafeDiscoveryMap from './components/home/CafeDiscoveryMap';
 import SmartFinderCTA from './components/home/SmartFinderCTA';
-import CuratedCollections from './components/home/CuratedCollections';
 import Testimonials from './components/home/Testimonials';
-import Stats from './components/home/Stats';
 import './components/home/HomePage.css';
 
 // Import Catalog components
@@ -40,6 +38,9 @@ import TentangKamiPage from './components/about/TentangKamiPage';
 
 // Import Smart Finder components
 import SmartFinderPage from './components/smartfinder/SmartFinderPage';
+
+// Import Recommendations components
+import CategoryRecommendationsPage from './components/recommendations/CategoryRecommendationsPage';
 
 // Import sample cafe data for fallback
 import singleCafeData from './data/singleCafeData';
@@ -137,6 +138,9 @@ function App() {
       } else if (path === '/finder' || path === '/smart-finder') {
         setCurrentPage('smart-finder');
         setSelectedCafe(null);
+      } else if (path === '/rekomendasi' || path === '/recommendations') {
+        setCurrentPage('recommendations');
+        setSelectedCafe(null);
       }
     };
     
@@ -157,6 +161,9 @@ function App() {
   const navigateTo = (path) => {
     window.history.pushState({}, '', path);
     
+    // Scroll to top when navigating
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+    
     if (path === '/' || path === '') {
       setCurrentPage('home');
       setSelectedCafe(null);
@@ -174,6 +181,9 @@ function App() {
       setSelectedCafe(null);
     } else if (path === '/finder' || path === '/smart-finder') {
       setCurrentPage('smart-finder');
+      setSelectedCafe(null);
+    } else if (path === '/rekomendasi' || path === '/recommendations') {
+      setCurrentPage('recommendations');
       setSelectedCafe(null);
     }
   };
@@ -231,14 +241,12 @@ function App() {
   // HomePage component
   const HomePage = () => (
     <>
-      <Hero />
-      <InteractiveFinder />
-      <TrendingCafes />
-      <CafeDiscoveryMap />
-      <SmartFinderCTA />
-      <CuratedCollections />
+      <Hero navigateTo={navigateTo} />
+      <InteractiveFinder navigateTo={navigateTo} />
+      <MapCTA navigateTo={navigateTo} />
+      <CafeDiscoveryMap navigateTo={navigateTo} />
+      <SmartFinderCTA navigateTo={navigateTo} />
       <Testimonials />
-      <Stats />
     </>
   );
   
@@ -274,6 +282,9 @@ function App() {
         )}
         {currentPage === 'smart-finder' && (
           <SmartFinderPage />
+        )}
+        {currentPage === 'recommendations' && (
+          <CategoryRecommendationsPage />
         )}
       </main>
       

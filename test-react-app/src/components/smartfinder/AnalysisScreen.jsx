@@ -2,6 +2,56 @@ import React, { useEffect } from 'react';
 import { gsap } from 'gsap';
 
 const AnalysisScreen = ({ analysis, onContinue }) => {
+  // Parse personality type from analysis text
+  const getPersonalityInfo = (analysisText) => {
+    const personalityTypes = {
+      'Profesional Produktif': {
+        icon: '💼',
+        description: 'Fokus kerja, suasana tenang, WiFi kencang',
+        color: '#2563eb',
+        traits: ['Berorientasi produktivitas', 'Menyukai lingkungan tenang', 'Butuh konektivitas tinggi']
+      },
+      'Social Butterfly': {
+        icon: '🦋',
+        description: 'Suka hangout, suasana ramai, spot Instagramable',
+        color: '#dc2626',
+        traits: ['Senang bersosialisasi', 'Menyukai keramaian', 'Visual-oriented']
+      },
+      'Penikmat Me-Time': {
+        icon: '☕',
+        description: 'Waktu sendiri, suasana cozy, kopi berkualitas',
+        color: '#059669',
+        traits: ['Menghargai waktu pribadi', 'Menyukai kenyamanan', 'Coffee connoisseur']
+      },
+      'Digital Nomad': {
+        icon: '💻',
+        description: 'Kerja mobile, teknologi, fleksibilitas tinggi',
+        color: '#7c3aed',
+        traits: ['Bekerja mobile', 'Tech-savvy', 'Fleksibel']
+      },
+      'Cafe Explorer': {
+        icon: '🗺️',
+        description: 'Suka eksplorasi, open-minded, variatif',
+        color: '#ea580c',
+        traits: ['Suka mencoba hal baru', 'Open-minded', 'Adaptif']
+      }
+    };
+
+    for (const [type, info] of Object.entries(personalityTypes)) {
+      if (analysisText.includes(type)) {
+        return { type, ...info };
+      }
+    }
+
+    // Default fallback
+    return {
+      type: 'Cafe Explorer',
+      ...personalityTypes['Cafe Explorer']
+    };
+  };
+
+  const personalityInfo = analysis ? getPersonalityInfo(analysis) : null;
+
   useEffect(() => {
     // Animate loading dots
     gsap.to('.loading-dot', {
@@ -67,12 +117,40 @@ const AnalysisScreen = ({ analysis, onContinue }) => {
           </>
         ) : (
           <div className="analysis-result">
-            <h2 className="analysis-title">Analisis Selesai!</h2>
-            <div className="personality-card">
-              <p className="personality-text">{analysis}</p>
+            <h2 className="analysis-title">Tipe Kepribadian Kafe Anda</h2>
+            
+            <div className="personality-result-card" style={{ '--personality-color': personalityInfo.color }}>
+              <div className="personality-header">
+                <div className="personality-icon-large">{personalityInfo.icon}</div>
+                <div className="personality-info">
+                  <h3 className="personality-type-name">{personalityInfo.type}</h3>
+                  <p className="personality-description">{personalityInfo.description}</p>
+                </div>
+              </div>
+
+              <div className="personality-traits">
+                <h4 className="traits-title">Karakteristik Utama:</h4>
+                <ul className="traits-list">
+                  {personalityInfo.traits.map((trait, index) => (
+                    <li key={index} className="trait-item">{trait}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="analysis-text">
+                <p>{analysis}</p>
+              </div>
             </div>
+
+            <div className="next-steps">
+              <h4 className="next-title">Langkah Selanjutnya</h4>
+              <p className="next-description">
+                Berdasarkan jawaban Anda, kami punya beberapa saran kafe yang mungkin Anda suka. Coba eksplorasi!
+              </p>
+            </div>
+
             <button className="continue-button" onClick={onContinue}>
-              Lihat Rekomendasi Anda
+              Lihat Rekomendasi Saya
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
                 <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
               </svg>
