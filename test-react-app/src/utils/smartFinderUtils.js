@@ -1,176 +1,218 @@
 // Smart Finder Utilities
-import { fetchAllCafesData } from '../data/cleanedCafesData';
+import { cleanedCafesData } from '../data/cleanedCafesData';
 import { adaptCafeDataForSinglePage } from './cafeDataAdapter';
 
 export const generateAnalysis = (responses) => {
-  let personality = '';
-  let traits = [];
-  
-  // Analyze based on responses
-  if (responses.purpose === 'work' && responses.atmosphere === 'quiet') {
-    personality = 'Profesional Produktif';
-    traits.push('fokus pada produktivitas', 'menyukai ketenangan');
-  } else if (responses.purpose === 'social' && responses.atmosphere === 'bustling') {
-    personality = 'Social Butterfly';
-    traits.push('senang bersosialisasi', 'menyukai suasana ramai');
-  } else if (responses.purpose === 'solo' && responses.atmosphere === 'cozy') {
-    personality = 'Penikmat Me-Time';
-    traits.push('menghargai waktu sendiri', 'menyukai kenyamanan');
-  } else if (responses.purpose === 'business' && responses.priority === 'wifi') {
-    personality = 'Digital Nomad';
-    traits.push('bekerja mobile', 'butuh konektivitas tinggi');
-  } else {
-    personality = 'Cafe Explorer';
-    traits.push('suka mencoba hal baru', 'fleksibel');
+  // Define 6 personality types with scoring weights
+  const personalityScores = {
+    'The Productivity Hunter': 0,
+    'The Social Connector': 0,
+    'The Coffee Connoisseur': 0,
+    'The Aesthetic Seeker': 0,
+    'The Comfort Lover': 0,
+    'The Night Owl': 0
+  };
+
+  // Score based on purpose
+  if (responses.purpose === 'work') {
+    personalityScores['The Productivity Hunter'] += 3;
+    personalityScores['The Coffee Connoisseur'] += 1;
+  } else if (responses.purpose === 'social') {
+    personalityScores['The Social Connector'] += 3;
+    personalityScores['The Aesthetic Seeker'] += 1;
+  } else if (responses.purpose === 'business') {
+    personalityScores['The Social Connector'] += 2;
+    personalityScores['The Productivity Hunter'] += 2;
+  } else if (responses.purpose === 'solo') {
+    personalityScores['The Comfort Lover'] += 3;
+    personalityScores['The Coffee Connoisseur'] += 2;
   }
+
+  // Score based on time preference
+  if (responses.time === 'night') {
+    personalityScores['The Night Owl'] += 3;
+    personalityScores['The Comfort Lover'] += 1;
+  } else if (responses.time === 'morning') {
+    personalityScores['The Productivity Hunter'] += 2;
+    personalityScores['The Coffee Connoisseur'] += 1;
+  } else if (responses.time === 'afternoon') {
+    personalityScores['The Social Connector'] += 1;
+    personalityScores['The Aesthetic Seeker'] += 1;
+  }
+
+  // Score based on atmosphere preference
+  if (responses.atmosphere === 'quiet') {
+    personalityScores['The Productivity Hunter'] += 2;
+    personalityScores['The Coffee Connoisseur'] += 2;
+    personalityScores['The Comfort Lover'] += 1;
+  } else if (responses.atmosphere === 'bustling') {
+    personalityScores['The Social Connector'] += 3;
+    personalityScores['The Night Owl'] += 1;
+  } else if (responses.atmosphere === 'cozy') {
+    personalityScores['The Comfort Lover'] += 3;
+    personalityScores['The Coffee Connoisseur'] += 1;
+  } else if (responses.atmosphere === 'modern') {
+    personalityScores['The Aesthetic Seeker'] += 2;
+    personalityScores['The Productivity Hunter'] += 1;
+  }
+
+  // Score based on priority
+  if (responses.priority === 'wifi') {
+    personalityScores['The Productivity Hunter'] += 3;
+    personalityScores['The Social Connector'] += 1;
+  } else if (responses.priority === 'coffee') {
+    personalityScores['The Coffee Connoisseur'] += 3;
+    personalityScores['The Comfort Lover'] += 1;
+  } else if (responses.priority === 'instagram') {
+    personalityScores['The Aesthetic Seeker'] += 3;
+    personalityScores['The Social Connector'] += 1;
+  } else if (responses.priority === 'price') {
+    personalityScores['The Comfort Lover'] += 2;
+    personalityScores['The Night Owl'] += 1;
+  }
+
+  // Score based on seating preference
+  if (responses.seating === 'sofa') {
+    personalityScores['The Comfort Lover'] += 2;
+    personalityScores['The Night Owl'] += 1;
+  } else if (responses.seating === 'outdoor') {
+    personalityScores['The Aesthetic Seeker'] += 2;
+    personalityScores['The Social Connector'] += 1;
+  } else if (responses.seating === 'counter') {
+    personalityScores['The Coffee Connoisseur'] += 2;
+    personalityScores['The Social Connector'] += 1;
+  } else if (responses.seating === 'table') {
+    personalityScores['The Productivity Hunter'] += 2;
+    personalityScores['The Social Connector'] += 1;
+  }
+
+  // Score based on vibe preference
+  if (responses.vibe === 'productive') {
+    personalityScores['The Productivity Hunter'] += 3;
+  } else if (responses.vibe === 'creative') {
+    personalityScores['The Aesthetic Seeker'] += 2;
+    personalityScores['The Coffee Connoisseur'] += 1;
+  } else if (responses.vibe === 'social') {
+    personalityScores['The Social Connector'] += 3;
+  } else if (responses.vibe === 'relaxation') {
+    personalityScores['The Comfort Lover'] += 2;
+    personalityScores['The Night Owl'] += 1;
+  }
+
+  // Find the personality type with highest score
+  const maxScore = Math.max(...Object.values(personalityScores));
   
-  // Add more traits based on other responses
-  if (responses.time === 'morning') traits.push('early bird');
-  if (responses.time === 'night') traits.push('night owl');
-  if (responses.priority === 'coffee') traits.push('coffee connoisseur');
-  if (responses.priority === 'instagram') traits.push('visual-oriented');
-  if (responses.vibe === 'productive') traits.push('goal-oriented');
-  if (responses.vibe === 'creative') traits.push('kreatif');
-  
-  const analysis = `Anda adalah seorang **${personality}** yang ${traits.slice(0, 3).join(', ')}. 
-    ${responses.time === 'morning' ? 'Anda suka memulai hari dengan secangkir kopi di pagi hari.' : ''}
-    ${responses.priority === 'wifi' ? 'Koneksi internet yang stabil adalah prioritas utama Anda.' : ''}
-    ${responses.priority === 'coffee' ? 'Kualitas kopi adalah hal yang tidak bisa dikompromikan.' : ''}
-    Mari kita lihat kafe-kafe yang mungkin cocok dengan preferensi Anda.`;
+  // Handle ties by selecting the first one that matches (or add tie-breaking logic)
+  let winningPersonality = Object.keys(personalityScores).find(
+    key => personalityScores[key] === maxScore
+  );
+
+  // Tie-breaking logic: if multiple personalities have same score, prioritize based on response patterns
+  const tiedPersonalities = Object.keys(personalityScores).filter(
+    key => personalityScores[key] === maxScore
+  );
+
+  if (tiedPersonalities.length > 1) {
+    // Priority order for tie-breaking
+    const priorityOrder = [
+      'The Productivity Hunter',
+      'The Social Connector', 
+      'The Coffee Connoisseur',
+      'The Aesthetic Seeker',
+      'The Comfort Lover',
+      'The Night Owl'
+    ];
+    
+    winningPersonality = priorityOrder.find(personality => 
+      tiedPersonalities.includes(personality)
+    ) || tiedPersonalities[0];
+  }
+
+  // Ensure we have a valid personality (fallback)
+  if (!winningPersonality || personalityScores[winningPersonality] === 0) {
+    // If no clear winner or all scores are 0, assign based on dominant response
+    if (responses.purpose === 'work') {
+      winningPersonality = 'The Productivity Hunter';
+    } else if (responses.purpose === 'social') {
+      winningPersonality = 'The Social Connector';
+    } else if (responses.priority === 'coffee') {
+      winningPersonality = 'The Coffee Connoisseur';
+    } else if (responses.priority === 'instagram') {
+      winningPersonality = 'The Aesthetic Seeker';
+    } else if (responses.time === 'night') {
+      winningPersonality = 'The Night Owl';
+    } else {
+      winningPersonality = 'The Comfort Lover';
+    }
+  }
+
+  // Generate analysis text based on winning personality
+  const personalityDescriptions = {
+    'The Productivity Hunter': 'Anda adalah tipe yang berorientasi pada produktivitas dan efisiensi. Anda membutuhkan lingkungan yang mendukung fokus dengan WiFi kencang dan suasana yang kondusif untuk bekerja.',
+    'The Social Connector': 'Anda adalah tipe yang senang bersosialisasi dan networking. Anda menyukai suasana ramai yang energik dan tempat yang cocok untuk meeting atau hangout dengan teman.',
+    'The Coffee Connoisseur': 'Anda adalah pencinta kopi sejati yang mengutamakan kualitas. Anda menyukai suasana cozy dan intimate sambil menikmati secangkir kopi berkualitas tinggi.',
+    'The Aesthetic Seeker': 'Anda adalah tipe yang visual-oriented dan kreatif. Anda mencari spot foto yang menarik dengan desain interior yang unik dan Instagram-worthy.',
+    'The Comfort Lover': 'Anda mengutamakan kenyamanan dan relaksasi. Anda mencari tempat untuk me-time berkualitas dengan area duduk yang empuk dan suasana yang santai.',
+    'The Night Owl': 'Anda aktif di malam hari dan menyukai tempat yang buka larut dengan vibe santai dan chill. Anda cocok dengan suasana yang lebih santai dan tidak terburu-buru.'
+  };
+
+  const analysis = `${personalityDescriptions[winningPersonality]} Mari kita lihat kafe-kafe yang cocok dengan kepribadian ${winningPersonality} Anda.`;
   
   return analysis;
 };
 
 export const generateRecommendations = async (responses) => {
   try {
-    // Fetch all cafes from the database (700+ entries)
-    const allCafesRaw = await fetchAllCafesData();
+    // Use the cleaned cafes data directly (contains Google Photos URLs)
+    const allCafesRaw = cleanedCafesData;
     
-    // Adapt cafe data to match our format
+    // Use the same data adapter that catalog pages use, but preserve original imageUrl
     const allCafes = allCafesRaw.map(cafe => {
       const adapted = adaptCafeDataForSinglePage(cafe);
       
-      // Extract features from the cafe data
-      const features = [];
+      console.log(`DEBUG: Cafe ${cafe.name} - Original imageUrl:`, cafe.imageUrl);
       
-      // WiFi feature
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('wifi')) || 
-          cafe.description?.toLowerCase().includes('wifi')) {
-        features.push({ icon: '📶', text: 'WiFi tersedia' });
+      // Add SmartFinder-specific properties for scoring
+      let atmosphere = 'modern';
+      if (cafe.additionalInfo?.Atmosphere) {
+        const atmosphereData = cafe.additionalInfo.Atmosphere;
+        if (atmosphereData.some(item => item.Cozy)) atmosphere = 'cozy';
+        else if (atmosphereData.some(item => item.Quiet)) atmosphere = 'quiet';
+        else if (atmosphereData.some(item => item.Casual)) atmosphere = 'bustling';
       }
       
-      // Coffee quality
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('specialty')) ||
-          cafe.tags?.some(tag => tag.toLowerCase().includes('coffee'))) {
-        features.push({ icon: '☕', text: 'Specialty coffee' });
-      }
-      
-      // Workspace
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('work')) ||
-          cafe.description?.toLowerCase().includes('work')) {
-        features.push({ icon: '💻', text: 'Work friendly' });
-      }
-      
-      // Instagram worthy
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('instagram')) ||
-          cafe.tags?.some(tag => tag.toLowerCase().includes('aesthetic'))) {
-        features.push({ icon: '📸', text: 'Instagramable' });
-      }
-      
-      // Outdoor seating
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('outdoor')) ||
-          cafe.description?.toLowerCase().includes('outdoor')) {
-        features.push({ icon: '🌿', text: 'Outdoor area' });
-      }
-      
-      // Add at least 2 features for each cafe
-      if (features.length < 2) {
-        features.push({ icon: '🪑', text: 'Tempat nyaman' });
-      }
-      if (features.length < 3) {
-        features.push({ icon: '🍽️', text: 'Menu lengkap' });
-      }
-      
-      // Determine atmosphere based on tags and description
-      let atmosphere = 'modern'; // default
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('cozy')) ||
-          cafe.description?.toLowerCase().includes('cozy')) {
-        atmosphere = 'cozy';
-      } else if (cafe.tags?.some(tag => tag.toLowerCase().includes('quiet')) ||
-                 cafe.description?.toLowerCase().includes('tenang')) {
-        atmosphere = 'quiet';
-      } else if (cafe.tags?.some(tag => tag.toLowerCase().includes('bustling')) ||
-                 cafe.description?.toLowerCase().includes('ramai')) {
-        atmosphere = 'bustling';
-      }
-      
-      // Determine best purposes
       const bestFor = [];
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('work')) ||
-          cafe.description?.toLowerCase().includes('kerja')) {
-        bestFor.push('work');
+      if (cafe.additionalInfo?.['Popular for']) {
+        const popularFor = cafe.additionalInfo['Popular for'];
+        if (popularFor.some(item => item['Good for working on laptop'])) {
+          bestFor.push('work');
+        }
+        if (popularFor.some(item => item['Solo dining'])) {
+          bestFor.push('solo');
+        }
       }
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('meeting')) ||
-          cafe.description?.toLowerCase().includes('meeting')) {
-        bestFor.push('business');
-      }
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('hangout')) ||
-          cafe.tags?.some(tag => tag.toLowerCase().includes('social'))) {
-        bestFor.push('social');
-      }
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('solo')) ||
-          atmosphere === 'quiet') {
-        bestFor.push('solo');
-      }
-      
-      // Default if no specific purpose found
       if (bestFor.length === 0) {
         bestFor.push('social', 'solo');
       }
       
-      // Determine price range
       let priceRange = 'medium';
-      if (cafe.priceLevel === '$') {
-        priceRange = 'low';
-      } else if (cafe.priceLevel === '$$$' || cafe.priceLevel === '$$$$') {
-        priceRange = 'high';
-      }
-      
-      // Determine WiFi strength
       let wifiStrength = 'good';
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('fast wifi')) ||
-          cafe.tags?.some(tag => tag.toLowerCase().includes('high speed'))) {
+      if (adapted.features?.some(f => f.toLowerCase().includes('wifi'))) {
         wifiStrength = 'excellent';
-      } else if (!features.some(f => f.text.includes('WiFi'))) {
-        wifiStrength = 'moderate';
       }
-      
-      // Determine opening time preference
       let openTime = 'morning';
-      if (cafe.tags?.some(tag => tag.toLowerCase().includes('24 jam')) ||
-          cafe.tags?.some(tag => tag.toLowerCase().includes('24 hours'))) {
-        openTime = 'night';
-      } else if (cafe.tags?.some(tag => tag.toLowerCase().includes('brunch'))) {
-        openTime = 'morning';
-      } else if (cafe.businessStatus?.includes('evening')) {
-        openTime = 'evening';
-      }
-      
+
       return {
-        id: cafe.id,
-        name: cafe.name,
-        location: cafe.address || cafe.location || 'Surabaya',
-        imageUrl: adapted.images?.[0] || cafe.imageUrl || '/images/placeholder-cafe.jpg',
-        tags: cafe.tags || [],
-        features: features.slice(0, 4), // Limit to 4 features
-        description: cafe.description || adapted.about || 'Kafe berkualitas di Surabaya dengan suasana nyaman.',
+        ...adapted,
+        // FORCE use original Google Photos URL
+        imageUrl: cafe.imageUrl,
+        images: cafe.imageUrl ? [cafe.imageUrl, cafe.imageUrl, cafe.imageUrl] : ['https://images.unsplash.com/photo-1521017432531-fbd92d768814?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'],
+        google_maps_direction: cafe.google_maps_direction,
         atmosphere: atmosphere,
         wifiStrength: wifiStrength,
         priceRange: priceRange,
         bestFor: bestFor,
-        openTime: openTime,
-        rating: cafe.rating || '4.0',
-        reviewCount: cafe.reviewCount || 50
+        openTime: openTime
       };
     });
     
@@ -208,13 +250,13 @@ export const generateRecommendations = async (responses) => {
         score += 25;
         matchReasons.push('WiFi super kencang');
       } else if (responses.priority === 'coffee' && 
-                (cafe.tags.some(tag => tag.toLowerCase().includes('specialty')) || 
-                 cafe.tags.some(tag => tag.toLowerCase().includes('coffee')))) {
+                (cafe.features?.some(f => f.toLowerCase().includes('coffee')) || 
+                 cafe.tags?.some(tag => tag.toLowerCase().includes('coffee')))) {
         score += 25;
         matchReasons.push('Kopi specialty berkualitas');
       } else if (responses.priority === 'instagram' && 
-                (cafe.tags.some(tag => tag.toLowerCase().includes('instagram')) ||
-                 cafe.tags.some(tag => tag.toLowerCase().includes('aesthetic')))) {
+                (cafe.tags?.some(tag => tag.toLowerCase().includes('trendy')) ||
+                 cafe.features?.some(f => f.toLowerCase().includes('trendy')))) {
         score += 25;
         matchReasons.push('Spot foto Instagram worthy');
       } else if (responses.priority === 'price' && cafe.priceRange === 'low') {
@@ -224,16 +266,16 @@ export const generateRecommendations = async (responses) => {
       
       // Seating preference
       if (responses.seating === 'sofa' && 
-         (cafe.features.some(f => f.text.toLowerCase().includes('sofa')) ||
-          cafe.tags.some(tag => tag.toLowerCase().includes('cozy')))) {
+         (cafe.features?.some(f => f.toLowerCase().includes('cozy')) ||
+          cafe.tags?.some(tag => tag.toLowerCase().includes('cozy')))) {
         score += 10;
         matchReasons.push('Tersedia sofa nyaman');
       } else if (responses.seating === 'outdoor' && 
-                cafe.features.some(f => f.text.toLowerCase().includes('outdoor'))) {
+                cafe.features?.some(f => f.toLowerCase().includes('outdoor'))) {
         score += 10;
         matchReasons.push('Ada area outdoor');
       } else if (responses.seating === 'counter' && 
-                cafe.tags.some(tag => tag.toLowerCase().includes('bar'))) {
+                cafe.features?.some(f => f.toLowerCase().includes('counter'))) {
         score += 10;
         matchReasons.push('Counter seating tersedia');
       }
@@ -242,8 +284,8 @@ export const generateRecommendations = async (responses) => {
       if (responses.vibe === 'productive' && cafe.bestFor.includes('work')) {
         score += 15;
       } else if (responses.vibe === 'creative' && 
-                (cafe.tags.some(tag => tag.toLowerCase().includes('artistic')) || 
-                 cafe.tags.some(tag => tag.toLowerCase().includes('creative')))) {
+                (cafe.tags?.some(tag => tag.toLowerCase().includes('trendy')) || 
+                 cafe.features?.some(f => f.toLowerCase().includes('trendy')))) {
         score += 15;
         matchReasons.push('Atmosfer kreatif');
       } else if (responses.vibe === 'social' && cafe.bestFor.includes('social')) {
@@ -272,10 +314,10 @@ export const generateRecommendations = async (responses) => {
       };
     });
     
-    // Sort by match score and return top 15
+    // Sort by match score and return top 7
     return scoredCafes
       .sort((a, b) => b.matchScore - a.matchScore)
-      .slice(0, 15)
+      .slice(0, 7)
       .map(cafe => ({
         ...cafe,
         // Ensure all required fields have values

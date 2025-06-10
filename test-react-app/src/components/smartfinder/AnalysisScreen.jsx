@@ -5,35 +5,41 @@ const AnalysisScreen = ({ analysis, onContinue }) => {
   // Parse personality type from analysis text
   const getPersonalityInfo = (analysisText) => {
     const personalityTypes = {
-      'Profesional Produktif': {
-        icon: '💼',
-        description: 'Fokus kerja, suasana tenang, WiFi kencang',
-        color: '#2563eb',
-        traits: ['Berorientasi produktivitas', 'Menyukai lingkungan tenang', 'Butuh konektivitas tinggi']
+      'The Productivity Hunter': {
+        icon: '⚡',
+        description: 'Kerja/belajar intensif dengan WiFi kencang dan suasana fokus',
+        color: '#3b82f6',
+        traits: ['Berorientasi pada produktivitas', 'Butuh koneksi internet stabil', 'Menyukai lingkungan yang mendukung fokus']
       },
-      'Social Butterfly': {
-        icon: '🦋',
-        description: 'Suka hangout, suasana ramai, spot Instagramable',
-        color: '#dc2626',
-        traits: ['Senang bersosialisasi', 'Menyukai keramaian', 'Visual-oriented']
+      'The Social Connector': {
+        icon: '🌟',
+        description: 'Hangout seru, meeting bisnis, dan networking di spot ramai',
+        color: '#ef4444',
+        traits: ['Senang bersosialisasi dan networking', 'Menyukai suasana ramai dan energik', 'Cocok untuk meeting dan diskusi']
       },
-      'Penikmat Me-Time': {
+      'The Coffee Connoisseur': {
         icon: '☕',
-        description: 'Waktu sendiri, suasana cozy, kopi berkualitas',
-        color: '#059669',
-        traits: ['Menghargai waktu pribadi', 'Menyukai kenyamanan', 'Coffee connoisseur']
+        description: 'Menikmati kopi berkualitas dalam suasana tenang dan cozy',
+        color: '#8b5cf6',
+        traits: ['Mengutamakan kualitas kopi', 'Menyukai suasana cozy dan intimate', 'Menghargai craftsmanship barista']
       },
-      'Digital Nomad': {
-        icon: '💻',
-        description: 'Kerja mobile, teknologi, fleksibilitas tinggi',
-        color: '#7c3aed',
-        traits: ['Bekerja mobile', 'Tech-savvy', 'Fleksibel']
+      'The Aesthetic Seeker': {
+        icon: '📸',
+        description: 'Mencari spot Instagram-worthy dengan interior yang memukau',
+        color: '#ec4899',
+        traits: ['Visual-oriented dan kreatif', 'Mencari spot foto yang menarik', 'Menyukai desain interior yang unik']
       },
-      'Cafe Explorer': {
-        icon: '🗺️',
-        description: 'Suka eksplorasi, open-minded, variatif',
-        color: '#ea580c',
-        traits: ['Suka mencoba hal baru', 'Open-minded', 'Adaptif']
+      'The Comfort Lover': {
+        icon: '🛋️',
+        description: 'Prioritas kenyamanan dan relaksasi untuk me-time berkualitas',
+        color: '#10b981',
+        traits: ['Mengutamakan kenyamanan fisik', 'Mencari tempat untuk relaksasi', 'Menyukai area duduk yang empuk']
+      },
+      'The Night Owl': {
+        icon: '🌙',
+        description: 'Aktif malam hari, suka tempat yang buka larut dengan vibe santai',
+        color: '#f59e0b',
+        traits: ['Aktif di malam hari', 'Menyukai vibe santai dan chill', 'Butuh tempat yang buka larut']
       }
     };
 
@@ -45,8 +51,8 @@ const AnalysisScreen = ({ analysis, onContinue }) => {
 
     // Default fallback
     return {
-      type: 'Cafe Explorer',
-      ...personalityTypes['Cafe Explorer']
+      type: 'The Comfort Lover',
+      ...personalityTypes['The Comfort Lover']
     };
   };
 

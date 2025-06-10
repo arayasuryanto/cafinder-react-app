@@ -24,79 +24,121 @@ const SmartFinderStart = ({ onStart }) => {
 
   const personalityTypes = [
     {
-      type: "Profesional Produktif",
-      icon: "💼",
-      description: "Fokus kerja, suasana tenang, WiFi kencang",
-      color: "#2563eb"
+      type: "The Productivity Hunter",
+      icon: "⚡",
+      description: "Kerja/belajar intensif dengan WiFi kencang dan suasana fokus",
+      color: "#3b82f6"
     },
     {
-      type: "Social Butterfly",
-      icon: "🦋",
-      description: "Suka hangout, suasana ramai, spot Instagramable",
-      color: "#dc2626"
+      type: "The Social Connector",
+      icon: "🌟",
+      description: "Hangout seru, meeting bisnis, dan networking di spot ramai",
+      color: "#ef4444"
     },
     {
-      type: "Penikmat Me-Time",
+      type: "The Coffee Connoisseur",
       icon: "☕",
-      description: "Waktu sendiri, suasana cozy, kopi berkualitas",
-      color: "#059669"
+      description: "Menikmati kopi berkualitas dalam suasana tenang dan cozy",
+      color: "#8b5cf6"
     },
     {
-      type: "Digital Nomad",
-      icon: "💻",
-      description: "Kerja mobile, teknologi, fleksibilitas tinggi",
-      color: "#7c3aed"
+      type: "The Aesthetic Seeker",
+      icon: "📸",
+      description: "Mencari spot Instagram-worthy dengan interior yang memukau",
+      color: "#ec4899"
     },
     {
-      type: "Cafe Explorer",
-      icon: "🗺️",
-      description: "Suka eksplorasi, open-minded, variatif",
-      color: "#ea580c"
+      type: "The Comfort Lover",
+      icon: "🛋️",
+      description: "Prioritas kenyamanan dan relaksasi untuk me-time berkualitas",
+      color: "#10b981"
+    },
+    {
+      type: "The Night Owl",
+      icon: "🌙",
+      description: "Aktif malam hari, suka tempat yang buka larut dengan vibe santai",
+      color: "#f59e0b"
     }
   ];
 
   useEffect(() => {
-    // Animate entrance
+    // Animate entrance with more creative and slower animations
     const tl = gsap.timeline();
     
+    // Logo entrance - dramatic scale and rotation with bounce
     tl.fromTo('.start-logo', 
-      { scale: 0, rotation: -180 },
-      { scale: 1, rotation: 0, duration: 1, ease: 'back.out(1.7)' }
+      { scale: 0, rotation: -360, opacity: 0 },
+      { scale: 1, rotation: 0, opacity: 1, duration: 1.8, ease: 'elastic.out(1, 0.5)' }
     )
+    // Title entrance - typewriter-like effect
     .fromTo('.start-title', 
-      { opacity: 0, y: 30 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5'
+      { opacity: 0, y: 50, rotationX: 90 },
+      { opacity: 1, y: 0, rotationX: 0, duration: 1.2, ease: 'power3.out' }, '-=0.8'
     )
+    // Description slides in from left
     .fromTo('.start-description', 
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5'
+      { opacity: 0, x: -100, skewX: 15 },
+      { opacity: 1, x: 0, skewX: 0, duration: 1, ease: 'power2.out' }, '-=0.6'
     )
-    .fromTo('.explanation-steps', 
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.5'
-    )
-    .fromTo('.personality-showcase', 
-      { opacity: 0, y: 20 },
-      { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out' }, '-=0.3'
-    )
+    // Button morphs in with scale and glow effect
     .fromTo('.start-button', 
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.6, ease: 'back.out(1.7)' }, '-=0.3'
+      { opacity: 0, scale: 0.3, rotationY: 180 },
+      { opacity: 1, scale: 1, rotationY: 0, duration: 1, ease: 'back.out(2)' }, '-=0.4'
+    )
+    // Explanation steps fade in with stagger
+    .fromTo('.explanation-steps', 
+      { opacity: 0, y: 30, rotationX: -30 },
+      { opacity: 1, y: 0, rotationX: 0, duration: 1.2, ease: 'power2.out' }, '-=0.6'
+    )
+    // Personality cards cascade in
+    .fromTo('.personality-showcase', 
+      { opacity: 0, y: 40, scale: 0.8 },
+      { opacity: 1, y: 0, scale: 1, duration: 1.4, ease: 'power2.out' }, '-=0.8'
+    )
+    // Individual personality cards stagger animation
+    .fromTo('.personality-card', 
+      { opacity: 0, y: 20, rotationY: 45 },
+      { 
+        opacity: 1, 
+        y: 0, 
+        rotationY: 0, 
+        duration: 0.8, 
+        ease: 'power2.out',
+        stagger: {
+          amount: 1.2,
+          from: "start"
+        }
+      }, '-=0.6'
     );
 
-    // Add floating animation to logo
+    // Enhanced floating animation for logo with rotation
     gsap.to('.start-logo', {
-      y: -10,
-      duration: 2,
+      y: -15,
+      rotation: 5,
+      duration: 3,
       repeat: -1,
       yoyo: true,
-      ease: 'power1.inOut'
+      ease: 'sine.inOut'
     });
 
-    // Auto-rotate explanation steps
+
+    // Floating effect for personality cards
+    gsap.to('.personality-card', {
+      y: -5,
+      duration: 2.5,
+      repeat: -1,
+      yoyo: true,
+      ease: 'power1.inOut',
+      stagger: {
+        amount: 2,
+        from: "random"
+      }
+    });
+
+    // Auto-rotate explanation steps with slower timing
     const interval = setInterval(() => {
       setCurrentStep((prev) => (prev + 1) % explanationSteps.length);
-    }, 3000);
+    }, 4000);
 
     return () => clearInterval(interval);
   }, [explanationSteps.length]);
@@ -104,20 +146,27 @@ const SmartFinderStart = ({ onStart }) => {
   return (
     <div className="start-screen phase-content">
       <div className="start-content">
-        <div className="start-logo">
-          <svg viewBox="0 0 100 100" width="80" height="80">
-            <circle cx="50" cy="50" r="45" fill="#F05438" opacity="0.1"/>
-            <path d="M50 20 L60 40 L80 40 L65 55 L70 75 L50 60 L30 75 L35 55 L20 40 L40 40 Z" 
-                  fill="#F05438" stroke="#F05438" strokeWidth="2"/>
-            <circle cx="50" cy="50" r="15" fill="white"/>
-            <text x="50" y="55" textAnchor="middle" fill="#F05438" fontSize="16" fontWeight="bold">AI</text>
-          </svg>
+        <div className="start-logo" style={{ marginTop: '4rem' }}>
+          <img 
+            src="/favicon.ico" 
+            alt="CaFinder Logo" 
+            width="80" 
+            height="80"
+            style={{ objectFit: 'contain' }}
+          />
         </div>
         
         <h1 className="start-title">Smart Finder</h1>
         <p className="start-description">
           Temukan kafe yang mungkin cocok untuk Anda dengan kuis kepribadian singkat
         </p>
+
+        <button className="start-button" onClick={onStart}>
+          Mulai Test Sekarang
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+          </svg>
+        </button>
 
         <div className="explanation-steps">
           <h3 className="steps-title">Bagaimana Cara Kerjanya?</h3>
@@ -145,7 +194,7 @@ const SmartFinderStart = ({ onStart }) => {
         </div>
 
         <div className="personality-showcase">
-          <h3 className="personality-title">5 Tipe Kepribadian Kafe</h3>
+          <h3 className="personality-title">6 Tipe Kepribadian Kafe</h3>
           <p className="personality-subtitle">
             Berdasarkan kuis, kami akan coba menentukan tipe kepribadian kafe Anda:
           </p>

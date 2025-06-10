@@ -138,34 +138,15 @@ const SmartFinderPage = () => {
       const newSaved = [...savedCafes, currentCafe];
       setSavedCafes(newSaved);
       localStorage.setItem('savedCafes', JSON.stringify(newSaved));
-      
-      // Show heart animation
-      gsap.fromTo('.heart-animation', 
-        { scale: 0, opacity: 1 },
-        { scale: 2, opacity: 0, duration: 0.8, ease: 'power2.out' }
-      );
     }
     
-    // Animate card out
-    const card = document.querySelector('.recommendation-card-active');
-    gsap.to(card, {
-      x: direction === 'right' ? window.innerWidth : -window.innerWidth,
-      rotation: direction === 'right' ? 30 : -30,
-      opacity: 0,
-      duration: 0.4,
-      ease: 'power2.in',
-      onComplete: () => {
-        // Reset card position immediately
-        gsap.set(card, { x: 0, rotation: 0, opacity: 1, scale: 1 });
-        
-        if (currentRecommendation < recommendations.length - 1) {
-          setCurrentRecommendation(currentRecommendation + 1);
-        } else {
-          // End of recommendations
-          setCurrentPhase('end');
-        }
-      }
-    });
+    // Move to next recommendation immediately (no additional animation needed)
+    if (currentRecommendation < recommendations.length - 1) {
+      setCurrentRecommendation(currentRecommendation + 1);
+    } else {
+      // End of recommendations
+      setCurrentPhase('end');
+    }
   };
 
   const animatePhaseTransition = () => {
@@ -218,12 +199,28 @@ const SmartFinderPage = () => {
       
       case 'recommendations':
         return (
-          <RecommendationCard
-            cafe={recommendations[currentRecommendation]}
-            onSwipe={handleSwipe}
-            currentIndex={currentRecommendation + 1}
-            totalCount={recommendations.length}
-          />
+          <div className="card-stack-container">
+            {/* Render stack of cards */}
+            {recommendations.slice(currentRecommendation, currentRecommendation + 3).map((cafe, index) => (
+              <div
+                key={`${cafe.id}-${currentRecommendation}`}
+                className={`stacked-card ${index === 0 ? 'active' : ''}`}
+                style={{
+                  zIndex: 10 - index,
+                  transform: `scale(${1 - index * 0.03}) translateY(${index * 8}px)`,
+                  opacity: index === 0 ? 1 : 0.9
+                }}
+              >
+                <RecommendationCard
+                  cafe={cafe}
+                  onSwipe={index === 0 ? handleSwipe : undefined}
+                  currentIndex={currentRecommendation + index + 1}
+                  totalCount={recommendations.length}
+                  isActive={index === 0}
+                />
+              </div>
+            ))}
+          </div>
         );
       
       case 'end':
@@ -260,9 +257,6 @@ const SmartFinderPage = () => {
 
   return (
     <div className="smart-finder-page">
-      {currentPhase === 'recommendations' && (
-        <div className="heart-animation">❤️</div>
-      )}
       {renderContent()}
     </div>
   );
