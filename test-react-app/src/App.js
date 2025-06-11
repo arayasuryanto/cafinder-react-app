@@ -42,6 +42,9 @@ import SmartFinderPage from './components/smartfinder/SmartFinderPage';
 // Import Recommendations components
 import CategoryRecommendationsPage from './components/recommendations/CategoryRecommendationsPage';
 
+// Import Burndown Chart component
+import BurndownChartPage from './components/burndown/BurndownChartPage';
+
 // Import sample cafe data for fallback
 import singleCafeData from './data/singleCafeData';
 
@@ -141,6 +144,9 @@ function App() {
       } else if (path === '/rekomendasi' || path === '/recommendations') {
         setCurrentPage('recommendations');
         setSelectedCafe(null);
+      } else if (path === '/burndown-chart') {
+        setCurrentPage('burndown-chart');
+        setSelectedCafe(null);
       }
     };
     
@@ -184,6 +190,9 @@ function App() {
       setSelectedCafe(null);
     } else if (path === '/rekomendasi' || path === '/recommendations') {
       setCurrentPage('recommendations');
+      setSelectedCafe(null);
+    } else if (path === '/burndown-chart') {
+      setCurrentPage('burndown-chart');
       setSelectedCafe(null);
     }
   };
@@ -285,6 +294,9 @@ function App() {
         )}
         {currentPage === 'recommendations' && (
           <CategoryRecommendationsPage />
+        )}
+        {currentPage === 'burndown-chart' && (
+          <BurndownChartPage />
         )}
       </main>
       
