@@ -3,6 +3,9 @@ import './SimpleCafePage.css'; // Use our new CSS file
 import ReviewSummary from './ReviewSummary';
 import ReviewCard from './ReviewCard';
 import UserReviewsSection from './UserReviewsSection';
+import ReviewModal from '../reviews/ReviewModal';
+import ReviewList from '../reviews/ReviewList';
+import { useAuth } from '../../contexts/AuthContext';
 
 // Helper function to get the appropriate icon for each facility
 const getFacilityIcon = (feature) => {
@@ -269,9 +272,13 @@ const getFirstAvailableHours = (openingHours) => {
 };
 
 const SimpleCafePage = ({ cafeData, onBackToCatalog }) => {
+  const { user, openAuthModal } = useAuth();
+  
   // State for managing UI elements
   const [showHours, setShowHours] = useState(false);
   const [displayedReviews, setDisplayedReviews] = useState(3); // Initially show 3 reviews
+  const [showReviewModal, setShowReviewModal] = useState(false);
+  const [reviewKey, setReviewKey] = useState(0); // Force re-render of ReviewList
   
   // Use only existing reviews (no dummy data)
   const enrichedReviews = useMemo(() => {
@@ -288,6 +295,19 @@ const SimpleCafePage = ({ cafeData, onBackToCatalog }) => {
     console.log('Cafe data:', cafeData);
     console.log('Google Maps Direction URL:', cafeData.google_maps_direction);
   }, [cafeData]);
+
+  // Handle review modal
+  const handleWriteReview = () => {
+    if (!user) {
+      openAuthModal();
+      return;
+    }
+    setShowReviewModal(true);
+  };
+
+  const handleReviewSubmitted = () => {
+    setReviewKey(prev => prev + 1); // Force re-render of ReviewList
+  };
 
   // Handle null data
   if (!cafeData) {
@@ -456,6 +476,16 @@ const SimpleCafePage = ({ cafeData, onBackToCatalog }) => {
                 </svg>
                 {cafeData.website ? 'Visit Website' : 'No Website'}
               </a>
+              <button 
+                className="review-btn" 
+                onClick={handleWriteReview}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14 2H6C4.9 2 4 2.9 4 4V20C4 21.1 4.89 22 5.99 22H18C19.1 22 20 21.1 20 20V8L14 2ZM18 20H6V4H13V9H18V20Z" fill="currentColor"/>
+                  <path d="M8 15.5L10.5 13L13 15.5L16.5 12L19 14.5V18H8V15.5Z" fill="currentColor"/>
+                </svg>
+                Tulis Review
+              </button>
             </div>
           </div>
         </div>
@@ -550,10 +580,10 @@ const SimpleCafePage = ({ cafeData, onBackToCatalog }) => {
           </div>
         </div>
         
-        {/* User Reviews Section */}
-        <UserReviewsSection 
+        {/* Firebase Reviews Section */}
+        <ReviewList 
+          key={reviewKey}
           cafeId={cafeData.id} 
-          cafeName={cafeData.name} 
         />
         
         {/* "You might also like" section */}
@@ -564,6 +594,14 @@ const SimpleCafePage = ({ cafeData, onBackToCatalog }) => {
           </div>
         </div>
       </div>
+      
+      {/* Review Modal */}
+      <ReviewModal
+        isOpen={showReviewModal}
+        onClose={() => setShowReviewModal(false)}
+        cafe={cafeData}
+        onReviewSubmitted={handleReviewSubmitted}
+      />
     </div>
   );
 };

@@ -279,6 +279,27 @@
   transform: translateY(-2px);
 }
 
+.review-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #667eea;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 15px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.review-btn:hover {
+  background-color: #5a6fd8;
+  transform: translateY(-2px);
+}
+
 /* Cafe Content Section Layout */
 .cafe-content-section {
   display: grid;

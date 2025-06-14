@@ -1,0 +1,268 @@
+.review-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.75);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(4px);
+  padding: 20px;
+}
+
+.review-modal {
+  background: white;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.review-modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f5f5f5;
+  border: none;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+
+.review-modal-close:hover {
+  background: #e0e0e0;
+}
+
+.review-modal-close:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.review-modal-header {
+  padding: 30px 30px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.review-modal-header h2 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+}
+
+.cafe-location {
+  margin: 0;
+  color: #666;
+  font-size: 14px;
+}
+
+.review-form {
+  padding: 30px;
+}
+
+.rating-section {
+  margin-bottom: 30px;
+}
+
+.rating-section label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.star {
+  background: none;
+  border: none;
+  font-size: 32px;
+  color: #ddd;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+}
+
+.star:hover {
+  color: #ffc107;
+  transform: scale(1.1);
+}
+
+.star.active {
+  color: #ffc107;
+}
+
+.star:disabled {
+  cursor: not-allowed;
+}
+
+.rating-text {
+  margin-left: 12px;
+  font-size: 16px;
+  color: #666;
+  font-weight: 600;
+}
+
+.comment-section {
+  margin-bottom: 20px;
+}
+
+.comment-section label {
+  display: block;
+  margin-bottom: 12px;
+  font-weight: 600;
+  color: #333;
+}
+
+.comment-section textarea {
+  width: 100%;
+  padding: 14px;
+  border: 2px solid #e0e0e0;
+  border-radius: 12px;
+  font-size: 15px;
+  resize: vertical;
+  font-family: inherit;
+  transition: border-color 0.2s ease;
+}
+
+.comment-section textarea:focus {
+  outline: none;
+  border-color: #F05438;
+}
+
+.comment-section textarea:disabled {
+  background: #f5f5f5;
+  cursor: not-allowed;
+}
+
+.char-count {
+  text-align: right;
+  font-size: 12px;
+  color: #999;
+  margin-top: 6px;
+}
+
+.error-message {
+  background: #fee;
+  color: #c33;
+  padding: 12px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  font-size: 14px;
+}
+
+.review-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+}
+
+.cancel-btn,
+.submit-btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.cancel-btn {
+  background: #f5f5f5;
+  color: #666;
+}
+
+.cancel-btn:hover {
+  background: #e0e0e0;
+}
+
+.submit-btn {
+  background: #F05438;
+  color: white;
+}
+
+.submit-btn:hover {
+  background: #e14a30;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(240, 84, 56, 0.3);
+}
+
+.cancel-btn:disabled,
+.submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.review-author-preview {
+  position: absolute;
+  bottom: 20px;
+  left: 30px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 14px;
+  color: #666;
+}
+
+.review-author-preview img {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid #f0f0f0;
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .review-modal {
+    margin: 20px;
+  }
+
+  .review-modal-header,
+  .review-form {
+    padding: 20px;
+  }
+
+  .star {
+    font-size: 28px;
+  }
+
+  .review-actions {
+    flex-direction: column;
+  }
+
+  .cancel-btn,
+  .submit-btn {
+    width: 100%;
+  }
+}
