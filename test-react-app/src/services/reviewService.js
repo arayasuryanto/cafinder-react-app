@@ -13,7 +13,8 @@ import {
   getDoc,
   setDoc
 } from 'firebase/firestore';
-import { db } from '../config/firebase';
+import { signInAnonymously } from 'firebase/auth';
+import { db, auth } from '../config/firebase';
 
 class ReviewService {
   constructor() {
@@ -24,6 +25,13 @@ class ReviewService {
   // Add a new review
   async addReview(cafeId, userId, reviewData) {
     try {
+      // Ensure Firebase authentication
+      if (!auth.currentUser) {
+        console.log('No Firebase user, signing in anonymously...');
+        await signInAnonymously(auth);
+        console.log('Firebase anonymous sign-in successful');
+      }
+
       const review = {
         cafeId,
         userId,
