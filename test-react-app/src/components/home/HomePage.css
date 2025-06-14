@@ -944,67 +944,68 @@
 
 .region-card {
   position: relative;
-  padding: 16px 20px;
+  padding: 12px 16px;
   background: white;
-  border: 2px solid #F3F4F6;
-  border-radius: 16px;
+  border: 1px solid #E5E7EB;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-height: 60px;
 }
 
 .region-card:hover {
-  border-color: #E5E7EB;
+  border-color: #F05438;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 15px rgba(240, 84, 56, 0.1);
 }
 
 .region-card.active {
-  border-color: var(--region-color);
-  background: linear-gradient(135deg, rgba(var(--region-color-rgb), 0.05), transparent);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  border-color: #F05438;
+  background: linear-gradient(135deg, rgba(240, 84, 56, 0.08), rgba(240, 84, 56, 0.02));
+  box-shadow: 0 6px 20px rgba(240, 84, 56, 0.15);
 }
 
 .region-header {
   display: flex;
   align-items: center;
-  gap: 12px;
-  margin-bottom: 8px;
+  gap: 10px;
+  margin-bottom: 6px;
 }
 
 .region-dot {
-  width: 12px;
-  height: 12px;
-  background: var(--region-color);
+  width: 10px;
+  height: 10px;
+  background: #F05438;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
 .region-name {
-  font-size: 16px;
-  font-weight: 700;
-  color: #1F2937;
+  font-size: 15px;
+  font-weight: 600;
+  color: #2A3541;
   flex: 1;
 }
 
 .region-count {
-  font-size: 14px;
-  font-weight: 600;
-  color: #6B7280;
-  background: #F9FAFB;
-  padding: 4px 12px;
-  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #F05438;
+  background: rgba(240, 84, 56, 0.1);
+  padding: 3px 10px;
+  border-radius: 10px;
 }
 
 .region-desc {
-  font-size: 14px;
-  color: #6B7280;
-  margin-left: 24px;
-  line-height: 1.5;
+  font-size: 13px;
+  color: #6c757d;
+  margin-left: 20px;
+  line-height: 1.4;
 }
 
 .region-details {
-  margin-top: 12px;
-  margin-left: 24px;
+  margin-top: 8px;
+  margin-left: 20px;
 }
 
 .popular-cafes {
@@ -1025,11 +1026,11 @@
 .cafe-tag {
   font-size: 11px;
   font-weight: 500;
-  color: var(--region-color);
-  background: rgba(var(--region-color-rgb), 0.1);
+  color: #F05438;
+  background: rgba(240, 84, 56, 0.1);
   padding: 2px 8px;
   border-radius: 8px;
-  border: 1px solid rgba(var(--region-color-rgb), 0.2);
+  border: 1px solid rgba(240, 84, 56, 0.2);
 }
 
 /* CTA Button */
