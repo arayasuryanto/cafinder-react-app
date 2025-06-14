@@ -13,7 +13,7 @@ const Footer = () => {
                 style={{ height: '40px', width: 'auto' }}
               />
             </div>
-            <p className="footer-desc">Discover insights and recommendations to enhance your cafe experience in Surabaya and beyond.</p>
+            <p className="footer-desc">Temukan wawasan dan rekomendasi untuk meningkatkan pengalaman cafe Anda di Surabaya dan sekitarnya.</p>
           </div>
           
           <div className="footer-col">

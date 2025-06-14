@@ -154,7 +154,7 @@ const CafeDiscoveryMap = ({ navigateTo }) => {
 
             {/* CTA Button */}
             <div className="discovery-cta">
-              <button onClick={() => navigateTo('/map')} className="explore-all-btn">
+              <button onClick={() => navigateTo('/regional-exploration')} className="explore-all-btn">
                 <span className="btn-icon">🚀</span>
                 <span className="btn-text">Explore Semua Area</span>
                 <span className="btn-arrow">→</span>
