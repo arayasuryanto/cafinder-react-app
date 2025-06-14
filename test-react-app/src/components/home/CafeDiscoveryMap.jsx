@@ -9,39 +9,39 @@ const CafeDiscoveryMap = ({ navigateTo }) => {
 
   const regions = {
     pusat: { 
-      name: 'Surabaya Pusat', 
+      name: 'Pusat', 
       cafes: 45, 
       color: '#F05438',
-      description: 'Area bisnis dan perkantoran',
-      popularCafes: ['Starbucks Tunjungan Plaza', 'Excelso TP', 'Fore Coffee']
+      description: 'Heritage & Modern',
+      popularCafes: ['Zangrandi', 'Calibre Coffee']
     },
     timur: { 
-      name: 'Surabaya Timur', 
+      name: 'Timur', 
       cafes: 38, 
       color: '#3B82F6',
-      description: 'Zona hunian dan kuliner',
-      popularCafes: ['Kopi Kenangan Rungkut', 'Janji Jiwa', 'Kedai Kopi Kulo']
+      description: 'Student Friendly',
+      popularCafes: ['TECO Coffee', 'Casa Coffee']
     },
     barat: { 
-      name: 'Surabaya Barat', 
+      name: 'Barat', 
       cafes: 52, 
       color: '#10B981',
-      description: 'Mall dan entertainment',
-      popularCafes: ['Chatime Ciputra', 'KOI Pakuwon', 'Fore Coffee']
+      description: 'Premium & Golf',
+      popularCafes: ['Redback', 'Gatherinc']
     },
     utara: { 
-      name: 'Surabaya Utara', 
+      name: 'Utara', 
       cafes: 29, 
       color: '#8B5CF6',
-      description: 'Area industri dan pelabuhan',
-      popularCafes: ['Warung Kopi Klotok', 'Kopi Nusantara', 'Local Coffee']
+      description: 'Riverside & Historic',
+      popularCafes: ['Petekan', "D'Kalimas"]
     },
     selatan: { 
-      name: 'Surabaya Selatan', 
+      name: 'Selatan', 
       cafes: 41, 
       color: '#F59E0B',
-      description: 'Zona pendidikan dan hijau',
-      popularCafes: ['Coffee Bean UNAIR', 'Kopi Tubruk', 'Cafe Literasi']
+      description: 'Rooftop & Aesthetic',
+      popularCafes: ['KUNI', 'Scrt Coffee']
     }
   };
 
@@ -112,8 +112,8 @@ const CafeDiscoveryMap = ({ navigateTo }) => {
             </h2>
             
             <p className="discovery-description">
-              Temukan rekomendasi cafe terbaik berdasarkan wilayah di Surabaya. 
-              Setiap area memiliki karakteristik dan suasana yang unik.
+              Kurasi dari team Cafinder dengan berbagai sumber review cafe terpercaya 
+              untuk memberikan rekomendasi terbaik di setiap wilayah Surabaya.
             </p>
 
             {/* Regions List */}
