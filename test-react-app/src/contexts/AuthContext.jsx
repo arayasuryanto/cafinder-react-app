@@ -1,5 +1,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import authService from '../services/authService';
+import { onAuthStateChanged } from 'firebase/auth';
+import { auth } from '../config/firebase';
 
 const AuthContext = createContext();
 
@@ -24,6 +26,16 @@ export const AuthProvider = ({ children }) => {
       setUser(savedUser);
     }
     setLoading(false);
+
+    // Monitor Firebase auth state
+    const unsubscribe = onAuthStateChanged(auth, (firebaseUser) => {
+      if (firebaseUser) {
+        console.log('Firebase user signed in:', firebaseUser.uid);
+        console.log('Firebase user email:', firebaseUser.email);
+      } else {
+        console.log('Firebase user signed out');
+      }
+    });
 
     // Set up auth service callbacks
     authService.onSignInSuccess = (userInfo) => {
@@ -50,7 +62,11 @@ export const AuthProvider = ({ children }) => {
     };
 
     window.addEventListener('showAuthModal', handleShowAuthModal);
-    return () => window.removeEventListener('showAuthModal', handleShowAuthModal);
+    
+    return () => {
+      window.removeEventListener('showAuthModal', handleShowAuthModal);
+      unsubscribe(); // Clean up Firebase auth listener
+    };
   }, []);
 
   const signIn = async () => {
