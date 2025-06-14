@@ -13,35 +13,40 @@ const CafeDiscoveryMap = ({ navigateTo }) => {
       cafes: 45, 
       color: '#F05438',
       description: 'Heritage & Modern',
-      popularCafes: ['Zangrandi', 'Calibre Coffee']
+      popularCafes: ['Zangrandi', 'Calibre Coffee'],
+      shortCafe: 'Zangrandi'
     },
     timur: { 
       name: 'Timur', 
       cafes: 38, 
       color: '#3B82F6',
       description: 'Student Friendly',
-      popularCafes: ['TECO Coffee', 'Casa Coffee']
+      popularCafes: ['TECO Coffee', 'Casa Coffee'],
+      shortCafe: 'TECO Coffee'
     },
     barat: { 
       name: 'Barat', 
       cafes: 52, 
       color: '#10B981',
       description: 'Premium & Golf',
-      popularCafes: ['Redback', 'Gatherinc']
+      popularCafes: ['Redback', 'Gatherinc'],
+      shortCafe: 'Redback'
     },
     utara: { 
       name: 'Utara', 
       cafes: 29, 
       color: '#8B5CF6',
       description: 'Riverside & Historic',
-      popularCafes: ['Petekan', "D'Kalimas"]
+      popularCafes: ['Petekan', "D'Kalimas"],
+      shortCafe: 'Petekan'
     },
     selatan: { 
       name: 'Selatan', 
       cafes: 41, 
       color: '#F59E0B',
       description: 'Rooftop & Aesthetic',
-      popularCafes: ['KUNI', 'Scrt Coffee']
+      popularCafes: ['KUNI', 'Scrt Coffee'],
+      shortCafe: 'KUNI'
     }
   };
 
@@ -123,31 +128,12 @@ const CafeDiscoveryMap = ({ navigateTo }) => {
                   key={key}
                   className={`region-card ${selectedRegion === key ? 'active' : ''}`}
                   onClick={() => setSelectedRegion(key)}
-                  style={{
-                    '--region-color': region.color,
-                    '--region-color-rgb': key === 'pusat' ? '240, 84, 56' :
-                                        key === 'timur' ? '59, 130, 246' :
-                                        key === 'barat' ? '16, 185, 129' :
-                                        key === 'utara' ? '139, 92, 246' :
-                                        '245, 158, 11'
-                  }}
                 >
                   <div className="region-header">
                     <div className="region-dot"></div>
                     <div className="region-name">{region.name}</div>
-                    <div className="region-count">{region.cafes} cafe</div>
                   </div>
-                  <div className="region-desc">{region.description}</div>
-                  {selectedRegion === key && (
-                    <div className="region-details">
-                      <div className="popular-cafes">
-                        <span className="popular-label">Popular:</span>
-                        {region.popularCafes.slice(0, 2).map((cafe, index) => (
-                          <span key={index} className="cafe-tag">{cafe}</span>
-                        ))}
-                      </div>
-                    </div>
-                  )}
+                  <div className="region-cafe">{region.shortCafe}</div>
                 </div>
               ))}
             </div>
