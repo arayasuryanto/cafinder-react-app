@@ -42,6 +42,7 @@ import SmartFinderPage from './components/smartfinder/SmartFinderPage';
 // Import Recommendations components
 import CategoryRecommendationsPage from './components/recommendations/CategoryRecommendationsPage';
 import NeedBasedRecommendations from './components/recommendations/NeedBasedRecommendations';
+import RegionalExplorationPage from './components/recommendations/RegionalExplorationPage';
 
 // Import Burndown Chart component
 import BurndownChartPage from './components/burndown/BurndownChartPage';
@@ -148,6 +149,9 @@ function App() {
       } else if (path === '/need-based-recommendations') {
         setCurrentPage('need-based-recommendations');
         setSelectedCafe(null);
+      } else if (path === '/regional-exploration') {
+        setCurrentPage('regional-exploration');
+        setSelectedCafe(null);
       } else if (path === '/burndown-chart') {
         setCurrentPage('burndown-chart');
         setSelectedCafe(null);
@@ -197,6 +201,9 @@ function App() {
       setSelectedCafe(null);
     } else if (path === '/need-based-recommendations') {
       setCurrentPage('need-based-recommendations');
+      setSelectedCafe(null);
+    } else if (path === '/regional-exploration') {
+      setCurrentPage('regional-exploration');
       setSelectedCafe(null);
     } else if (path === '/burndown-chart') {
       setCurrentPage('burndown-chart');
@@ -304,6 +311,9 @@ function App() {
         )}
         {currentPage === 'need-based-recommendations' && (
           <NeedBasedRecommendations />
+        )}
+        {currentPage === 'regional-exploration' && (
+          <RegionalExplorationPage />
         )}
         {currentPage === 'burndown-chart' && (
           <BurndownChartPage />
