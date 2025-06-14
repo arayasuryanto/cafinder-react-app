@@ -6,23 +6,33 @@ class AuthService {
 
   async loadGoogleScript() {
     return new Promise((resolve, reject) => {
+      // Check if script is already loaded from index.html
+      if (window.google && window.google.accounts) {
+        console.log('Google Identity Services already loaded');
+        this.isGoogleLoaded = true;
+        resolve();
+        return;
+      }
+
       if (this.isGoogleLoaded) {
         resolve();
         return;
       }
 
-      const script = document.createElement('script');
-      script.src = 'https://accounts.google.com/gsi/client';
-      script.async = true;
-      script.defer = true;
-      
-      script.onload = () => {
-        this.isGoogleLoaded = true;
-        resolve();
-      };
-      
-      script.onerror = reject;
-      document.head.appendChild(script);
+      // Wait for the script to load from index.html
+      let attempts = 0;
+      const checkInterval = setInterval(() => {
+        attempts++;
+        if (window.google && window.google.accounts) {
+          console.log('Google Identity Services loaded');
+          this.isGoogleLoaded = true;
+          clearInterval(checkInterval);
+          resolve();
+        } else if (attempts > 20) { // 2 seconds timeout
+          clearInterval(checkInterval);
+          reject(new Error('Google Identity Services failed to load'));
+        }
+      }, 100);
     });
   }
 
@@ -33,9 +43,12 @@ class AuthService {
       throw new Error('Google API failed to load');
     }
 
+    const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || 'your_google_client_id_here';
+    console.log('Initializing Google Auth with client ID:', clientId);
+
     return new Promise((resolve) => {
       window.google.accounts.id.initialize({
-        client_id: process.env.REACT_APP_GOOGLE_CLIENT_ID || 'your_google_client_id_here',
+        client_id: clientId,
         callback: this.handleCredentialResponse.bind(this),
         auto_select: false,
         cancel_on_tap_outside: true,
@@ -66,35 +79,45 @@ class AuthService {
 
   async signInWithGoogle() {
     try {
+      console.log('Starting Google Sign-In process...');
       await this.initializeGoogleAuth();
       
-      window.google.accounts.id.prompt((notification) => {
-        if (notification.isNotDisplayed() || notification.isSkippedMoment()) {
-          // Fallback to popup if prompt is not shown
-          this.showGooglePopup();
+      // Create a temporary button to trigger the sign-in
+      const buttonDiv = document.createElement('div');
+      buttonDiv.style.display = 'none';
+      document.body.appendChild(buttonDiv);
+      
+      window.google.accounts.id.renderButton(
+        buttonDiv,
+        {
+          theme: 'outline',
+          size: 'large',
+          type: 'standard',
         }
-      });
+      );
+      
+      // Click the rendered button programmatically
+      setTimeout(() => {
+        const googleButton = buttonDiv.querySelector('div[role="button"]');
+        if (googleButton) {
+          console.log('Clicking Google button...');
+          googleButton.click();
+        } else {
+          console.error('Google button not found in rendered div');
+        }
+        // Clean up
+        setTimeout(() => {
+          if (buttonDiv.parentNode) {
+            document.body.removeChild(buttonDiv);
+          }
+        }, 100);
+      }, 100);
+      
     } catch (error) {
       console.error('Google Sign-In error:', error);
+      alert('Failed to initialize Google Sign-In. Please check the console for errors.');
       this.onSignInError(error);
     }
-  }
-
-  showGooglePopup() {
-    window.google.accounts.id.renderButton(
-      document.createElement('div'),
-      {
-        theme: 'outline',
-        size: 'large',
-        type: 'standard',
-        click_listener: () => {
-          window.google.accounts.id.prompt();
-        }
-      }
-    );
-    
-    // Trigger the popup directly
-    window.google.accounts.id.prompt();
   }
 
   signOut() {

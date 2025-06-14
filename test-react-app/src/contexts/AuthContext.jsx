@@ -38,6 +38,14 @@ export const AuthProvider = ({ children }) => {
     authService.onSignOutSuccess = () => {
       setUser(null);
     };
+
+    // Listen for auth modal trigger
+    const handleShowAuthModal = () => {
+      setAuthModalOpen(true);
+    };
+
+    window.addEventListener('showAuthModal', handleShowAuthModal);
+    return () => window.removeEventListener('showAuthModal', handleShowAuthModal);
   }, []);
 
   const signIn = async () => {

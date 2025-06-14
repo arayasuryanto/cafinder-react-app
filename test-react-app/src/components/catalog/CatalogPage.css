@@ -227,7 +227,7 @@
 
 .cafe-rating {
   position: absolute;
-  top: 15px;
+  bottom: 15px;
   right: 15px;
   background-color: white;
   display: flex;
@@ -238,6 +238,14 @@
   font-weight: 600;
   font-size: 14px;
   color: var(--dark);
+}
+
+/* Favorite button positioning in catalog */
+.cafe-catalog-img .favorite-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 2;
 }
 
 .cafe-rating .review-count {

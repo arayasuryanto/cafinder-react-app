@@ -12,9 +12,13 @@ import Footer from './components/layout/Footer';
 // Import UI components
 import CursorFollower from './components/ui/CursorFollower';
 import ProgressBar from './components/ui/ProgressBar';
+import FloatingFavorites from './components/ui/FloatingFavorites';
 
 // Import Auth Context
 import { AuthProvider } from './contexts/AuthContext';
+
+// Import Dashboard
+import UserDashboard from './components/dashboard/UserDashboard';
 
 // Import Home sections
 import Hero from './components/home/Hero';
@@ -69,6 +73,8 @@ function App() {
   // State for storing cafe data
   const [cafesData, setCafesData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  // State for dashboard
+  const [showDashboard, setShowDashboard] = useState(false);
   
   // Fetch cafes data from cleaned_surabaya_cafes.json
   useEffect(() => {
@@ -287,6 +293,17 @@ function App() {
         
         {/* Header */}
         <Header />
+        
+        {/* Floating Favorites Button */}
+        <FloatingFavorites onOpen={() => setShowDashboard(true)} />
+        
+        {/* User Dashboard */}
+        {showDashboard && (
+          <UserDashboard 
+            onClose={() => setShowDashboard(false)}
+            onViewCafe={viewCafe}
+          />
+        )}
         
         {/* Main content */}
         <main>
