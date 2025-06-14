@@ -20,12 +20,14 @@ export const AuthProvider = ({ children }) => {
     // Check if user is already signed in
     const savedUser = authService.getCurrentUser();
     if (savedUser) {
+      console.log('Restored user from localStorage:', savedUser);
       setUser(savedUser);
     }
     setLoading(false);
 
     // Set up auth service callbacks
     authService.onSignInSuccess = (userInfo) => {
+      console.log('User signed in:', userInfo);
       setUser(userInfo);
       setAuthModalOpen(false);
     };

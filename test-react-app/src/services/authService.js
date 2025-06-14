@@ -1,3 +1,5 @@
+import authPersistence from '../utils/authPersistence';
+
 class AuthService {
   constructor() {
     this.isGoogleLoaded = false;
@@ -122,7 +124,7 @@ class AuthService {
 
   signOut() {
     // Clear user data from local storage
-    localStorage.removeItem('cafinder_user');
+    authPersistence.removeUser();
     
     // Sign out from Google
     if (window.google) {
@@ -135,12 +137,11 @@ class AuthService {
   }
 
   getCurrentUser() {
-    const userData = localStorage.getItem('cafinder_user');
-    return userData ? JSON.parse(userData) : null;
+    return authPersistence.getUser();
   }
 
   isAuthenticated() {
-    return !!this.getCurrentUser();
+    return authPersistence.isAuthenticated();
   }
 
   // Callback methods to be set by the auth context
@@ -157,7 +158,11 @@ class AuthService {
       signedInAt: new Date().toISOString()
     };
     
-    localStorage.setItem('cafinder_user', JSON.stringify(userData));
+    // Use the persistence utility
+    const saved = authPersistence.saveUser(userData);
+    if (!saved) {
+      console.error('Failed to persist user data');
+    }
     
     // This will be overridden by AuthContext
     console.log('User signed in:', userData);

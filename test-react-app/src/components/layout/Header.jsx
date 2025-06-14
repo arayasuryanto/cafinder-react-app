@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 import AuthModal from '../auth/AuthModal';
 
 const Header = () => {
-  const { user, openAuthModal, closeAuthModal, authModalOpen, signOut, signIn } = useAuth();
+  const { user, loading, openAuthModal, closeAuthModal, authModalOpen, signOut, signIn } = useAuth();
+
+  useEffect(() => {
+    console.log('Header render - User:', user, 'Loading:', loading);
+  }, [user, loading]);
 
   const handleSignInClick = () => {
     openAuthModal();
