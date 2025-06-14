@@ -90,6 +90,23 @@ const Header = () => {
                 />
               </a>
             </div>
+            
+            <div className="mobile-auth">
+              {user ? (
+                <div className="mobile-user-menu">
+                  <img 
+                    src={user.picture} 
+                    alt={user.name}
+                    className="mobile-user-avatar"
+                    onClick={handleSignOut}
+                  />
+                </div>
+              ) : (
+                <button className="mobile-signin-btn" onClick={handleSignInClick}>
+                  Sign In
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </header>

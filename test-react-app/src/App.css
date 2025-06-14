@@ -299,13 +299,57 @@ main {
   .mobile-header-content {
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
     padding: 0 20px;
   }
   
   .mobile-logo a {
     display: flex;
     align-items: center;
+  }
+  
+  /* Mobile Auth Styles */
+  .mobile-auth {
+    display: flex;
+    align-items: center;
+  }
+  
+  .mobile-signin-btn {
+    background: #F05438;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 8px rgba(240, 84, 56, 0.2);
+  }
+  
+  .mobile-signin-btn:hover {
+    background: #e04427;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(240, 84, 56, 0.3);
+  }
+  
+  .mobile-user-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .mobile-user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #F05438;
+    transition: all 0.2s ease;
+  }
+  
+  .mobile-user-avatar:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(240, 84, 56, 0.3);
   }
   
   /* Mobile Bottom Navigation */
