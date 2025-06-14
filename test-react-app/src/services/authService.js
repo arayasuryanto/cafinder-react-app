@@ -1,4 +1,6 @@
 import authPersistence from '../utils/authPersistence';
+import { signInWithCredential, GoogleAuthProvider } from 'firebase/auth';
+import { auth } from '../config/firebase';
 
 class AuthService {
   constructor() {
@@ -59,11 +61,21 @@ class AuthService {
     });
   }
 
-  handleCredentialResponse(response) {
+  async handleCredentialResponse(response) {
     console.log('Google credential response received');
     try {
       const userInfo = this.parseJWT(response.credential);
       console.log('Parsed user info:', userInfo);
+      
+      // Sign in to Firebase with the Google credential
+      try {
+        const credential = GoogleAuthProvider.credential(response.credential);
+        const firebaseResult = await signInWithCredential(auth, credential);
+        console.log('Firebase sign-in successful:', firebaseResult.user.uid);
+      } catch (firebaseError) {
+        console.error('Firebase sign-in failed:', firebaseError);
+        // Continue with local auth even if Firebase fails
+      }
       
       // First, always save to localStorage
       const userData = {
