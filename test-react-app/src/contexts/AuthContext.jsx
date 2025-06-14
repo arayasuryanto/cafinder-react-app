@@ -27,8 +27,11 @@ export const AuthProvider = ({ children }) => {
 
     // Set up auth service callbacks
     authService.onSignInSuccess = (userInfo) => {
-      console.log('User signed in:', userInfo);
-      setUser(userInfo);
+      console.log('AuthContext: User signed in:', userInfo);
+      // Make sure we're setting the same data that was saved
+      const savedUser = authService.getCurrentUser();
+      console.log('AuthContext: Saved user from storage:', savedUser);
+      setUser(savedUser || userInfo);
       setAuthModalOpen(false);
     };
 

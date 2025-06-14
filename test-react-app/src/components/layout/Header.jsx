@@ -7,6 +7,9 @@ const Header = () => {
 
   useEffect(() => {
     console.log('Header render - User:', user, 'Loading:', loading);
+    // Debug: Check localStorage directly
+    const storedUser = localStorage.getItem('cafinder_user');
+    console.log('Direct localStorage check:', storedUser);
   }, [user, loading]);
 
   const handleSignInClick = () => {

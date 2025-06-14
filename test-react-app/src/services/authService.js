@@ -60,8 +60,10 @@ class AuthService {
   }
 
   handleCredentialResponse(response) {
+    console.log('Google credential response received');
     try {
       const userInfo = this.parseJWT(response.credential);
+      console.log('Parsed user info:', userInfo);
       this.onSignInSuccess(userInfo);
     } catch (error) {
       console.error('Failed to parse credential response:', error);

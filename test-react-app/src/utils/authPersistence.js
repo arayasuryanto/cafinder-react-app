@@ -5,6 +5,7 @@ const AUTH_STORAGE_KEY = 'cafinder_user';
 export const authPersistence = {
   // Save user data to localStorage
   saveUser: (userData) => {
+    console.log('authPersistence.saveUser called with:', userData);
     try {
       if (!userData) {
         console.error('No user data to save');
@@ -16,8 +17,13 @@ export const authPersistence = {
         timestamp: new Date().toISOString()
       };
       
+      console.log('Attempting to save to localStorage:', dataToStore);
       localStorage.setItem(AUTH_STORAGE_KEY, JSON.stringify(dataToStore));
-      console.log('User data persisted:', dataToStore);
+      
+      // Verify save
+      const verification = localStorage.getItem(AUTH_STORAGE_KEY);
+      console.log('Verification - data in localStorage:', verification);
+      console.log('User data persisted successfully');
       return true;
     } catch (error) {
       console.error('Failed to save user data:', error);
