@@ -64,10 +64,34 @@ class AuthService {
     try {
       const userInfo = this.parseJWT(response.credential);
       console.log('Parsed user info:', userInfo);
-      this.onSignInSuccess(userInfo);
+      
+      // First, always save to localStorage
+      const userData = {
+        id: userInfo.sub,
+        email: userInfo.email,
+        name: userInfo.name,
+        picture: userInfo.picture,
+        verified_email: userInfo.email_verified,
+        given_name: userInfo.given_name,
+        family_name: userInfo.family_name,
+        signedInAt: new Date().toISOString()
+      };
+      
+      // Save directly here
+      const saved = authPersistence.saveUser(userData);
+      if (!saved) {
+        console.error('Failed to persist user data in handleCredentialResponse');
+      }
+      
+      // Then call the callback (which may be overridden by AuthContext)
+      if (this.onSignInSuccess) {
+        this.onSignInSuccess(userInfo);
+      }
     } catch (error) {
       console.error('Failed to parse credential response:', error);
-      this.onSignInError(error);
+      if (this.onSignInError) {
+        this.onSignInError(error);
+      }
     }
   }
 
@@ -148,26 +172,9 @@ class AuthService {
 
   // Callback methods to be set by the auth context
   onSignInSuccess(userInfo) {
-    // Store user info
-    const userData = {
-      id: userInfo.sub,
-      email: userInfo.email,
-      name: userInfo.name,
-      picture: userInfo.picture,
-      verified_email: userInfo.email_verified,
-      given_name: userInfo.given_name,
-      family_name: userInfo.family_name,
-      signedInAt: new Date().toISOString()
-    };
-    
-    // Use the persistence utility
-    const saved = authPersistence.saveUser(userData);
-    if (!saved) {
-      console.error('Failed to persist user data');
-    }
-    
     // This will be overridden by AuthContext
-    console.log('User signed in:', userData);
+    // The actual saving happens in handleCredentialResponse
+    console.log('onSignInSuccess callback called');
   }
 
   onSignInError(error) {
