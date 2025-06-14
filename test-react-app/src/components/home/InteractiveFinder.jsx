@@ -195,7 +195,7 @@ const InteractiveFinder = ({ navigateTo }) => {
             {[...needs.slice(0, 5), ...needs.slice(0, 5)].map((need, index) => (
               <div
                 key={`row1-${need.id}-${index}`}
-                onClick={() => navigateTo(`/rekomendasi?category=${need.id}`)}
+                onClick={() => navigateTo('/need-based-recommendations')}
                 className="need-card"
                 onMouseEnter={() => setHoveredNeed(need.id)}
                 onMouseLeave={() => setHoveredNeed(null)}
@@ -240,7 +240,7 @@ const InteractiveFinder = ({ navigateTo }) => {
             {[...needs.slice(5), ...needs.slice(5)].map((need, index) => (
               <div
                 key={`row2-${need.id}-${index}`}
-                onClick={() => navigateTo(`/rekomendasi?category=${need.id}`)}
+                onClick={() => navigateTo('/need-based-recommendations')}
                 className="need-card"
                 onMouseEnter={() => setHoveredNeed(need.id)}
                 onMouseLeave={() => setHoveredNeed(null)}

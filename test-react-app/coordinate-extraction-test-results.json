@@ -1,0 +1,40 @@
+{
+  "statistics": {
+    "total": 424,
+    "hasPlaceId": 424,
+    "hasGoogleMapsUrl": 424,
+    "extractableCoords": 0,
+    "patterns": {}
+  },
+  "samples": {
+    "withCoords": [],
+    "withoutCoords": [
+      {
+        "name": "Filgud+",
+        "url": "https://www.google.com/maps/search/?api=1&query=Filgud%2B&query_place_id=ChIJh9U5rh391y0R_D4KjkxgXrY",
+        "placeId": "ChIJh9U5rh391y0R_D4KjkxgXrY"
+      },
+      {
+        "name": "Ropopang Citraland",
+        "url": "https://www.google.com/maps/search/?api=1&query=Ropopang%20Citraland&query_place_id=ChIJTTM6WIf91y0RotZGcWHII0k",
+        "placeId": "ChIJTTM6WIf91y0RotZGcWHII0k"
+      },
+      {
+        "name": "LoveBugsCafe",
+        "url": "https://www.google.com/maps/search/?api=1&query=LoveBugsCafe&query_place_id=ChIJYwLbGQD91y0R2pb1qgsh06s",
+        "placeId": "ChIJYwLbGQD91y0R2pb1qgsh06s"
+      },
+      {
+        "name": "Kopi teras",
+        "url": "https://www.google.com/maps/search/?api=1&query=Kopi%20teras&query_place_id=ChIJfVbuGoT91y0RNhWAjHd-e0o",
+        "placeId": "ChIJfVbuGoT91y0RNhWAjHd-e0o"
+      },
+      {
+        "name": "L Spot Cafe",
+        "url": "https://www.google.com/maps/search/?api=1&query=L%20Spot%20Cafe&query_place_id=ChIJVzXd5Mf91y0Rz7fXcuH6LkE",
+        "placeId": "ChIJVzXd5Mf91y0Rz7fXcuH6LkE"
+      }
+    ]
+  },
+  "timestamp": "2025-06-07T03:17:01.683Z"
+}
