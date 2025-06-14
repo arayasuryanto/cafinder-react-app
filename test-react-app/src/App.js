@@ -13,6 +13,9 @@ import Footer from './components/layout/Footer';
 import CursorFollower from './components/ui/CursorFollower';
 import ProgressBar from './components/ui/ProgressBar';
 
+// Import Auth Context
+import { AuthProvider } from './contexts/AuthContext';
+
 // Import Home sections
 import Hero from './components/home/Hero';
 import InteractiveFinder from './components/home/InteractiveFinder';
@@ -274,55 +277,57 @@ function App() {
   );
   
   return (
-    <div className="App">
-      {/* Cursor follower */}
-      <CursorFollower />
-      
-      {/* Progress Bar */}
-      <ProgressBar />
-      
-      {/* Header */}
-      <Header />
-      
-      {/* Main content */}
-      <main>
-        {currentPage === 'home' && <HomePage />}
-        {currentPage === 'catalog' && (
-          <CatalogPage 
-            cafes={cafesData} 
-            onViewCafe={viewCafe} 
-            isLoading={isLoading} 
-          />
-        )}
-        {currentPage === 'cafe' && selectedCafe && (
-          <SimpleCafePage cafeData={selectedCafe} onBackToCatalog={backToCatalog} />
-        )}
-        {currentPage === 'map' && (
-          <CafeMapPage />
-        )}
-        {currentPage === 'tentang-kami' && (
-          <TentangKamiPage />
-        )}
-        {currentPage === 'smart-finder' && (
-          <SmartFinderPage />
-        )}
-        {currentPage === 'recommendations' && (
-          <CategoryRecommendationsPage />
-        )}
-        {currentPage === 'need-based-recommendations' && (
-          <NeedBasedRecommendations />
-        )}
-        {currentPage === 'regional-exploration' && (
-          <RegionalExplorationPage />
-        )}
-        {currentPage === 'burndown-chart' && (
-          <BurndownChartPage />
-        )}
-      </main>
-      
-      {/* Footer */}
-      <Footer />
-    </div>
+    <AuthProvider>
+      <div className="App">
+        {/* Cursor follower */}
+        <CursorFollower />
+        
+        {/* Progress Bar */}
+        <ProgressBar />
+        
+        {/* Header */}
+        <Header />
+        
+        {/* Main content */}
+        <main>
+          {currentPage === 'home' && <HomePage />}
+          {currentPage === 'catalog' && (
+            <CatalogPage 
+              cafes={cafesData} 
+              onViewCafe={viewCafe} 
+              isLoading={isLoading} 
+            />
+          )}
+          {currentPage === 'cafe' && selectedCafe && (
+            <SimpleCafePage cafeData={selectedCafe} onBackToCatalog={backToCatalog} />
+          )}
+          {currentPage === 'map' && (
+            <CafeMapPage />
+          )}
+          {currentPage === 'tentang-kami' && (
+            <TentangKamiPage />
+          )}
+          {currentPage === 'smart-finder' && (
+            <SmartFinderPage />
+          )}
+          {currentPage === 'recommendations' && (
+            <CategoryRecommendationsPage />
+          )}
+          {currentPage === 'need-based-recommendations' && (
+            <NeedBasedRecommendations />
+          )}
+          {currentPage === 'regional-exploration' && (
+            <RegionalExplorationPage />
+          )}
+          {currentPage === 'burndown-chart' && (
+            <BurndownChartPage />
+          )}
+        </main>
+        
+        {/* Footer */}
+        <Footer />
+      </div>
+    </AuthProvider>
   );
 }
 

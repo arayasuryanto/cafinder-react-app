@@ -1,6 +1,22 @@
 import React from 'react';
+import { useAuth } from '../../contexts/AuthContext';
+import AuthModal from '../auth/AuthModal';
 
 const Header = () => {
+  const { user, openAuthModal, closeAuthModal, authModalOpen, signOut, signIn } = useAuth();
+
+  const handleSignInClick = () => {
+    openAuthModal();
+  };
+
+  const handleGoogleSignIn = () => {
+    signIn();
+  };
+
+  const handleSignOut = () => {
+    signOut();
+  };
+
   return (
     <>
       {/* Desktop Header */}
@@ -25,8 +41,30 @@ const Header = () => {
             </ul>
             
             <div className="auth-btns">
-              <button className="login-btn">Login</button>
-              <button className="signup-btn">Sign Up</button>
+              {user ? (
+                <div className="user-menu">
+                  <div className="user-info">
+                    <img 
+                      src={user.picture} 
+                      alt={user.name}
+                      className="user-avatar"
+                    />
+                    <span className="user-name">{user.given_name}</span>
+                  </div>
+                  <button className="signout-btn" onClick={handleSignOut}>
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <button className="login-btn" onClick={handleSignInClick}>
+                    Login
+                  </button>
+                  <button className="signup-btn" onClick={handleSignInClick}>
+                    Sign Up
+                  </button>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -68,6 +106,13 @@ const Header = () => {
           <span className="nav-label">Tentang Kami</span>
         </a>
       </nav>
+
+      {/* Auth Modal */}
+      <AuthModal 
+        isOpen={authModalOpen}
+        onClose={closeAuthModal}
+        onGoogleSignIn={handleGoogleSignIn}
+      />
     </>
   );
 };
